@@ -16,7 +16,13 @@
                 <a href="{{url('/home')}}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
             <li>
-                <a href="{{url('/deliveries')}}"><i class="fa fa-dashboard fa-fw"></i> Deliveries</a>
+                <a href="{{url('/deliveries')}}"><i class="fa fa-truck fa-fw"></i> Deliveries</a>
+            </li>
+            <li>
+                <a href="{{url('/configs')}}"><i class="fa fa-gear fa-fw"></i> Config/Defaults</a>
+            </li>
+            <li>
+                <a href="{{url('/merchants')}}"><i class="fa fa-users fa-fw"></i> Merchants</a>
             </li>
         </ul>
     </div>

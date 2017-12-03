@@ -15,6 +15,9 @@ Route::get('/', 'WelcomeController@show');
 
 Route::get('/home', 'HomeController@show');
 
+Route::get('/integrator' , function (){
+    return view('pages.integrator');
+});
 
 Route::get('/deliveries' , function (){
     return view('pages.deliveries');

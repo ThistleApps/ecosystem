@@ -22,3 +22,15 @@ Route::get('/integrator' , function (){
 Route::get('/deliveries' , function (){
     return view('pages.deliveries');
 });
+
+Route::get('/configs' , function (){
+    return view('pages.configs-default');
+});
+
+Route::get('/merchants' , function (){
+    return view('pages.merchants');
+});
+
+Route::get('/merchants/edit' , function (){
+    return view('pages.edit-merchant');
+});

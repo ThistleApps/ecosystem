@@ -13,7 +13,10 @@
                 <!-- /input-group -->
             </li>
             <li>
-                <a href="{{url('/home')}}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                <a href="{{url('/integrator')}}"><i class="fa fa-plug fa-fw"></i> Landing Page</a>
+            </li>
+            <li>
+                <a href="{{url('/profile')}}"><i class="fa fa-user fa-fw"></i> Profile</a>
             </li>
             <li>
                 <a href="{{url('/deliveries')}}"><i class="fa fa-truck fa-fw"></i> Deliveries</a>

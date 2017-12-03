@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>@yield('title')</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{asset('/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -65,6 +65,8 @@
 <script src="{{asset('/vendor/morrisjs/morris.min.js')}}"></script>
 <!-- Custom Theme JavaScript -->
 <script src="{{asset('/dist/js/sb-admin-2.js')}}"></script>
+
+@yield('script')
 
 </body>
 

@@ -15,6 +15,17 @@ Route::get('/', 'WelcomeController@show');
 
 Route::get('/home', 'HomeController@show');
 
+Route::get('/integrator' , function (){
+    return view('pages.integrator');
+});
+
+Route::get('/create/account' , function (){
+    return view('pages.create-account');
+});
+
+Route::get('/profile' , function (){
+    return view('pages.profile');
+});
 
 Route::get('/deliveries' , function (){
     return view('pages.deliveries');

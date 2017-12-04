@@ -29,7 +29,7 @@
 
 </head>
 
-<body class="with-navbar">
+<body class="with-navbar" style="background-color: #f5f8fa;">
 
 <div id="wrapper">
 

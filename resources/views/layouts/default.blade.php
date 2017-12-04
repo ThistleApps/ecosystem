@@ -22,6 +22,7 @@
 
     <!-- Custom CSS -->
     <link href="{{ asset('/dist/css/sb-admin-2.css') }}" rel="stylesheet">
+    <link href="{{asset('/css/app.css')}}" rel="stylesheet">
 
     <link href="{{ asset('css/sticky-footer-navbar.css') }}" rel="stylesheet">
 
@@ -36,7 +37,7 @@
     @include("layouts.partials.nav-bar-top")
     @include("layouts.partials.nav-left-side")
 
-    <div id="page-wrapper">
+    <div id="page-wrapper" >
         @yield('content')
     </div>
 

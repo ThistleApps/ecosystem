@@ -42,3 +42,7 @@ Route::get('/merchants' , function (){
 Route::get('/merchants/edit' , function (){
     return view('pages.edit-merchant');
 });
+
+Route::get('/configurator' , function (){
+    return view('pages.configurator');
+});

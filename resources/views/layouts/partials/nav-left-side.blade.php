@@ -27,6 +27,9 @@
             <li>
                 <a href="{{url('/merchants')}}"><i class="fa fa-users fa-fw"></i> Merchants</a>
             </li>
+            <li>
+                <a href="{{url('/configurator')}}"><i class="fa fa-gear fa-fw"></i> Configurator</a>
+            </li>
         </ul>
     </div>
     <!-- /.sidebar-collapse -->

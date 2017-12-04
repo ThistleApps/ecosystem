@@ -1,5 +1,31 @@
 @extends('layouts.default')
 
+@section('style')
+<style>
+    .ingredients {
+        position:relative;
+        width: 250px;
+        height: 200px;
+        border-style: outset;
+        border-radius: 1px;
+    }
+    .card-img-top {
+        position:relative;
+        margin-top: 6%;
+        background-color: #f2f2f2;
+        width: 90%;
+    }
+    .coming-soon {
+        position:absolute;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        width: 100%;
+        margin-top:-50px;
+
+    }
+
+</style>
+@endsection
 @section('content')
     <div class="row">
         <div class="col-lg-12">
@@ -8,23 +34,59 @@
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
-    <div class="card">
-        <img class="card-img-top" src="{{asset('/img/getswift.png')}}" height="180" width="318" alt="Card image cap">
-        <div class="card-block">
-            <p class="card-text">Some quick </p>
-        </div>
-    </div>
-
+    <div class="row">
         <div class="col-lg-12">
-            <div class="card" style="width: 20rem;">
-                <img class="card-img-top" src="{{asset('/img/getswift.png')}}" height="180" width="318" alt="Card image cap">
-                <div class="card-block">
-                    <h4 class="card-title">Card title</h4>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+            <div class="col-lg-3" >
+                <div class="ingredients">
+                    <div class="text-center">
+                        <img class="card-img-top" src="{{asset('/img/getswift.png')}}" alt="Card image cap">
+                    </div>
+                    <div class="text-center">
+                        <h3>Getswift</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+
+                <div class="ingredients">
+                    <div class="text-center">
+                        <img class="card-img-top" src="{{asset('/img/MailChimp.png')}}" alt="Card image cap">
+                    </div>
+                    <div class="coming-soon text-center">
+                        <h3>Coming Soon</h3>
+                    </div>
+                    <div class="text-center">
+                        <h3>MailChimp</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="ingredients">
+                    <div class="text-center">
+                        <img class="card-img-top" src="{{asset('/img/getswift.png')}}" alt="Card image cap">
+                    </div>
+                    <div class="coming-soon text-center">
+                        <h3>Coming Soon</h3>
+                    </div>
+                    <div class="text-center">
+                        <h3>CRM</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="ingredients">
+                    <div class="text-center">
+                        <img class="card-img-top" src="{{asset('/img/getswift.png')}}" alt="Card image cap">
+                    </div>
+                    <div class="coming-soon text-center">
+                        <h3>Coming Soon</h3>
+                    </div>
+                    <div class="text-center">
+                        <h3>CMS</h3>
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- /.col-lg-12 -->
     </div>
+
 @endsection

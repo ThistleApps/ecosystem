@@ -1,4 +1,5 @@
 @extends('layouts.default')
+@section('title',  'Configs/Defaults' )
 
 @section('content')
     <div class="row">

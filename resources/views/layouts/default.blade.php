@@ -22,8 +22,6 @@
 
     <!-- Custom CSS -->
     <link href="{{ asset('/dist/css/sb-admin-2.css') }}" rel="stylesheet">
-    <link href="{{asset('/css/app.css')}}" rel="stylesheet">
-
     <link href="{{ asset('css/sticky-footer-navbar.css') }}" rel="stylesheet">
 
     @yield('style')

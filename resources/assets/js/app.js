@@ -18,6 +18,16 @@ require('spark-bootstrap');
 
 require('./components/bootstrap');
 
+Spark.forms.register = {
+    first_name: '',
+    last_name: '',
+    business_name: '',
+    primary_affiliate:'',
+    primary_affiliate_number:'',
+    pos_type:'',
+    pos_wan_address:''
+};
+
 var app = new Vue({
     mixins: [require('spark')]
 });

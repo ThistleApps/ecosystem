@@ -11,20 +11,36 @@
 |
 */
 
-Route::get('/', 'WelcomeController@show');
+Route::get('/', [
+    'as'    => 'integrator',
+    'uses'  => 'IntegratorController@index'
+]);
+
+Route::group(['middleware' => 'auth'] , function () {
+
+    Route::get('/profile' , [
+        'as'    => 'user.profile',
+        'uses'  => 'UserController@index'
+    ]);
+
+    Route::post('/profile/update', [
+        'as'    => 'user.profile.update',
+        'uses'  => 'UserController@update'
+    ]);
+
+
+
+
+});
+
+
 
 Route::get('/home', 'HomeController@show');
 
-Route::get('/integrator' , function (){
-    return view('pages.integrator');
-});
+
 
 Route::get('/create/account' , function (){
     return view('pages.create-account');
-});
-
-Route::get('/profile' , function (){
-    return view('pages.profile');
 });
 
 Route::get('/deliveries' , function (){

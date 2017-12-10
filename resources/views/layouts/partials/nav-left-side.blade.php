@@ -13,9 +13,6 @@
                 <!-- /input-group -->
             </li>
             <li>
-                <a href="{{url('/integrator')}}"><i class="fa fa-plug fa-fw"></i> Landing Page</a>
-            </li>
-            <li>
                 <a href="{{url('/profile')}}"><i class="fa fa-user fa-fw"></i> Profile</a>
             </li>
             <li>

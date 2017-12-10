@@ -33,22 +33,36 @@
         @endif
     @endif
 
-    <!-- Name -->
-    <div class="form-group" :class="{'has-error': registerForm.errors.has('name')}">
-        <label class="col-md-4 control-label">Name</label>
+    <!-- First Name -->
+    <div class="form-group" :class="{'has-error': registerForm.errors.has('first_name')}">
+        <label class="col-md-4 control-label">First Name</label>
 
         <div class="col-md-6">
-            <input type="text" class="form-control" name="name" v-model="registerForm.name" autofocus>
+            <input type="text" class="form-control" name="first_name" v-model="registerForm.first_name" autofocus>
 
-            <span class="help-block" v-show="registerForm.errors.has('name')">
-                @{{ registerForm.errors.get('name') }}
+            <span class="help-block" v-show="registerForm.errors.has('first_name')">
+                @{{ registerForm.errors.get('first_name') }}
             </span>
+        </div>
+    </div>
+
+
+    <!-- Last Name -->
+    <div class="form-group" :class="{'has-error': registerForm.errors.has('last_name')}">
+        <label class="col-md-4 control-label">Last Name</label>
+
+        <div class="col-md-6">
+            <input type="text" class="form-control" name="first_name" v-model="registerForm.last_name" autofocus>
+
+            <span class="help-block" v-show="registerForm.errors.has('last_name')">
+            @{{ registerForm.errors.get('last_name') }}
+        </span>
         </div>
     </div>
 
     <!-- E-Mail Address -->
     <div class="form-group" :class="{'has-error': registerForm.errors.has('email')}">
-        <label class="col-md-4 control-label">E-Mail Address</label>
+        <label class="col-md-4 control-label">Username</label>
 
         <div class="col-md-6">
             <input type="email" class="form-control" name="email" v-model="registerForm.email">
@@ -81,6 +95,69 @@
 
             <span class="help-block" v-show="registerForm.errors.has('password_confirmation')">
                 @{{ registerForm.errors.get('password_confirmation') }}
+            </span>
+        </div>
+    </div>
+
+
+    <!-- Business Name -->
+    <div class="form-group" :class="{'has-error': registerForm.errors.has('business_name')}">
+        <label class="col-md-4 control-label">Business Name</label>
+
+        <div class="col-md-6">
+            <input type="text" class="form-control" name="business_name" v-model="registerForm.business_name" autofocus>
+
+            <span class="help-block" v-show="registerForm.errors.has('business_name')">
+                @{{ registerForm.errors.get('business_name') }}
+            </span>
+        </div>
+    </div>
+
+    <!-- Primary Supplier/CoOp/Brand Affiliate -->
+    <div class="form-group" :class="{'has-error': registerForm.errors.has('primary_affiliate')}">
+        <label class="col-md-4 control-label">Primary Supplier/CoOp/Brand Affiliate</label>
+
+        <div class="col-md-6">
+            <input type="text" class="form-control" name="primary_affiliate" v-model="registerForm.primary_affiliate" autofocus>
+
+            <span class="help-block" v-show="registerForm.errors.has('primary_affiliate')">
+            @{{ registerForm.errors.get('primary_affiliate') }}
+        </span>
+        </div>
+    </div>
+
+
+    <!-- Affiliate Number -->
+    <div class="form-group" :class="{'has-error': registerForm.errors.has('primary_affiliate_number')}">
+        <label class="col-md-4 control-label">Affiliate Number</label>
+
+        <div class="col-md-6">
+            <input type="text" class="form-control" name="primary_affiliate_number" v-model="registerForm.primary_affiliate_number" autofocus>
+
+            <span class="help-block" v-show="registerForm.errors.has('primary_affiliate_number')">
+                @{{ registerForm.errors.get('primary_affiliate_number') }}
+            </span>
+        </div>
+    </div>
+
+    <!-- Pos Type -->
+    <div class="form-group" :class="{'has-error': registerForm.errors.has('pos_type')}">
+        <label class="col-md-4 control-label">Target Platform/POS</label>
+
+        <div class="col-md-6">
+            {{--<input type="text" class="form-control" name="pos_type" v-model="registerForm.pos_type" autofocus>--}}
+            <select class="form-control" name="pos_type" v-model="registerForm.pos_type" autofocus>
+                <option value="counter_point">Counter Point</option>
+                <option value="epicor">Epicor (Eagle)</option>
+                <option value="erply">ERPLY</option>
+                <option value="lightspeed">LightSpeed</option>
+                <option value="netsuite">Netsuite</option>
+                <option value="rics">RICS</option>
+                <option value="quick_books">QuickBooks</option>
+            </select>
+
+            <span class="help-block" v-show="registerForm.errors.has('pos_type')">
+                @{{ registerForm.errors.get('pos_type') }}
             </span>
         </div>
     </div>

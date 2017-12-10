@@ -5,5 +5,8 @@
 
         <!-- Update Contact Information -->
         @include('spark::settings.profile.update-contact-information')
+
+        <!-- Update Profile Details -->
+        @include('user.spark-profile-update')
     </div>
 </spark-profile>

@@ -90,3 +90,6 @@ require('./kiosk/metrics');
 require('./kiosk/users');
 require('./kiosk/profile');
 require('./kiosk/add-discount');
+
+
+require('./settings/profile/update-profile-details');

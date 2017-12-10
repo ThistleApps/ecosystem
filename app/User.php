@@ -14,6 +14,13 @@ class User extends SparkUser
     protected $fillable = [
         'name',
         'email',
+        'first_name',
+        'last_name',
+        'business_name',
+        'primary_affiliate',
+        'primary_affiliate_number',
+        'pos_type',
+        'pos_wan_address',
     ];
 
     /**
@@ -47,4 +54,11 @@ class User extends SparkUser
         'trial_ends_at' => 'datetime',
         'uses_two_factor_auth' => 'boolean',
     ];
+
+    public function getNameAttribute($value) {
+        if (is_null($this->attributes['name']) or empty(trim($this->attributes['name'])))
+            return $this->attributes['first_name'].' '.$this->attributes['last_name'];
+        else
+            return $value;
+    }
 }

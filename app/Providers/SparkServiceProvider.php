@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Carbon\Carbon;
 use Laravel\Spark\Spark;
 use Laravel\Spark\Providers\AppServiceProvider as ServiceProvider;
 
@@ -51,6 +52,46 @@ class SparkServiceProvider extends ServiceProvider
      */
     public function booted()
     {
+        Spark::afterLoginRedirectTo('/profile');
+
+        Spark::validateUsersWith(function () {
+            return [
+                'first_name' => 'required|max:255',
+                'last_name' => 'required|max:255',
+                'business_name' => 'required|max:255',
+                'primary_affiliate' => 'required|max:255',
+                'primary_affiliate_number' => 'required|max:255',
+                'pos_type' => 'required|max:255',
+                'email' => 'required|max:255|unique:users',
+                'password' => 'required|confirmed|min:6',
+                'vat_id' => 'max:50|vat_id',
+                'terms' => 'required|accepted',
+
+            ];
+        });
+
+        Spark::createUsersWith(function ($request) {
+            $user = Spark::user();
+
+            $data = $request->all();
+
+            $user->forceFill([
+                'first_name' => $data['first_name'],
+                'last_name' => $data['last_name'],
+                'business_name' => $data['business_name'],
+                'primary_affiliate' => $data['primary_affiliate'],
+                'primary_affiliate_number' => $data['primary_affiliate_number'],
+                'pos_type' => $data['pos_type'],
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']),
+                'last_read_announcements_at' => Carbon::now(),
+                'trial_ends_at' => Carbon::now()->addDays(Spark::trialDays()),
+            ])->save();
+
+            return $user;
+        });
+
         Spark::useStripe()->noCardUpFront()->trialDays(10);
 
         Spark::freePlan()

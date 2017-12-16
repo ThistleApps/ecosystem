@@ -13,7 +13,7 @@
         position:relative;
         margin-top: 6%;
         background-color: #f2f2f2;
-        width: 90%;
+        width: 10%;
     }
     .coming-soon {
         position:absolute;
@@ -36,7 +36,7 @@
     <!-- /.row -->
     <div class="row">
         <div class="col-lg-12">
-            <div class="col-lg-3" >
+            <div class="col-lg-3"  >
                 <div class="ingredients">
                     <div class="text-center">
                         <img class="card-img-top" src="{{asset('/img/getswift.png')}}" alt="Card image cap">

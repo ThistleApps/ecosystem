@@ -55,10 +55,28 @@ class User extends SparkUser
         'uses_two_factor_auth' => 'boolean',
     ];
 
-    public function getNameAttribute($value) {
+    public function getNameAttribute($value)
+    {
         if (is_null($this->attributes['name']) or empty(trim($this->attributes['name'])))
-            return $this->attributes['first_name'].' '.$this->attributes['last_name'];
+            return $this->attributes['first_name'] . ' ' . $this->attributes['last_name'];
         else
             return $value;
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id')->withTimestamps();
+    }
+
+    /**
+     * @param $role
+     * @return mixed
+     */
+    public function hasRole($role)
+    {
+        return $role ? $this->roles()->where('name', $role)->exists() : false;
     }
 }

@@ -1,29 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+@extends('layouts.layout_guest')
+@section('title',  'Integrator' )
 
-    <title>@yield('title', config('app.name'))</title>
-
-    <!-- Fonts -->
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600' rel='stylesheet' type='text/css'>
-    <link href="{{asset('/vendor/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
-
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/sticky-footer-navbar.css') }}" rel="stylesheet">
-</head>
-
-<body class="with-navbar">
-<!-- Navigation -->
-@if(auth()->check())
-    @include("layouts.partials.nav-bar-top")
-@else
-    @include("vendor.spark.nav.guest")
-@endif
-
+@section('content')
 <div class="container">
 
     <div class="page-header text-center">
@@ -77,10 +55,4 @@
     </div>
 
 </div><!--/.container-->
-
-<hr>
-@include("layouts.partials.nav-footer")
-
-<script src="{{ asset('js/app.js') }}"></script>
-</body>
-</html>
+@endsection

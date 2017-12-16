@@ -16,24 +16,6 @@
     <link href="/css/sweetalert.css" rel="stylesheet">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/navbar-left.min.css">
-
-    <style>
-        #page-wrapper {
-            padding: 0 15px;
-            min-height: 568px;
-            background-color: white;
-        }
-        @media (min-width: 768px) {
-            #page-wrapper {
-                position: inherit;
-                /*margin: 0 0 0 250px;*/
-                padding: 0 20px;
-                border-left: 1px solid #e7e7e7;
-            }
-        }
-    </style>
-
     <!-- Scripts -->
 @yield('scripts', '')
 
@@ -47,19 +29,18 @@
 <body class="with-navbar">
 
 <div id="spark-app" v-cloak>
-<!-- Navigation -->
+    <!-- Navigation -->
 @if (Auth::check())
-    @include("layouts.partials.nav-left-side")
     @include('spark::nav.user')
 @else
     @include('spark::nav.guest')
 @endif
 
 <!-- Main Content -->
-<div id="page-wrapper">
-@yield('content')
-</div>
-<!-- Application Level Modals -->
+    <div id="page-wrapper">
+        @yield('content')
+    </div>
+    <!-- Application Level Modals -->
     @if (Auth::check())
         @include('spark::modals.notifications')
         @include('spark::modals.support')
@@ -72,8 +53,6 @@
 <script src="/js/sweetalert.min.js"></script>
 
 {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>--}}
-
-<script async defer src="https://buttons.github.io/buttons.js"></script>
 
 @yield('script')
 </body>

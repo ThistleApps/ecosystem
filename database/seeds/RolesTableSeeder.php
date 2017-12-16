@@ -24,5 +24,7 @@ class RolesTableSeeder extends Seeder
             'name' => 'Merchant',
             'description' => 'Merchant has access of merchant level system'
         ]);
+
+        $this->call(UserRoleTableSeeder::class);
     }
 }

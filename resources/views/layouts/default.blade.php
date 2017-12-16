@@ -18,6 +18,10 @@
 
     <link rel="stylesheet" href="css/navbar-left.min.css">
 
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('/vendor/toastr-master/build/toastr.min.css') }}">
+
     <style>
         #page-wrapper {
             padding: 0 15px;
@@ -73,7 +77,33 @@
 
 {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>--}}
 
+<script src="{{ asset('/vendor/toastr-master/build/toastr.min.js') }}"></script>
+
+
 <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<script>
+            @if(Session::has('message'))
+    var type = "{{ Session::get('alert-type', 'info') }}";
+    switch(type){
+        case 'info':
+            toastr.info("{{ Session::get('message') }}");
+            break;
+
+        case 'warning':
+            toastr.warning("{{ Session::get('message') }}");
+            break;
+
+        case 'success':
+            toastr.success("{{ Session::get('message') }}");
+            break;
+
+        case 'error':
+            toastr.error("{{ Session::get('message') }}");
+            break;
+    }
+    @endif
+</script>
 
 @yield('script')
 </body>

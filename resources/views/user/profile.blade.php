@@ -16,7 +16,7 @@
             <form action="{{route('user.profile.update')}}" method="post" class="form-horizontal">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group">
-                    <label class="control-label col-sm-4" for="first_name">Name</label>
+                    <label class="control-label col-sm-4" for="first_name">First Name</label>
                     <div class="col-sm-8">
                         <input type="text" class="form-control" id="first_name" name="first_name" value="{{$user->first_name}}" placeholder="Jane">
                     </div>

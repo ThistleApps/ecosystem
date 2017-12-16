@@ -16,7 +16,9 @@ Route::get('/', [
     'uses'  => 'IntegratorController@index'
 ]);
 
-Route::group(['middleware' => 'auth'] , function () {
+Route::get('/home', 'HomeController@show');
+
+Route::group(['middleware' => ['auth', 'merchant']] , function () {
 
     Route::get('/profile' , [
         'as'    => 'user.profile',
@@ -28,37 +30,35 @@ Route::group(['middleware' => 'auth'] , function () {
         'uses'  => 'UserController@update'
     ]);
 
+});
 
+Route::group(['middleware' => 'admin'] , function () {
 
+    Route::get('/merchants' , function (){
+        return view('pages.merchants');
+    });
+
+    Route::get('/merchants/edit' , function (){
+        return view('pages.edit-merchant');
+    });
 
 });
 
+Route::group(['middleware' => ['admin', 'merchant']], function () {
 
+    Route::get('/create/account' , function (){
+        return view('pages.create-account');
+    });
 
-Route::get('/home', 'HomeController@show');
+    Route::get('/deliveries' , function (){
+        return view('pages.deliveries');
+    });
 
+    Route::get('/configs' , function (){
+        return view('pages.configs-default');
+    });
 
-
-Route::get('/create/account' , function (){
-    return view('pages.create-account');
-});
-
-Route::get('/deliveries' , function (){
-    return view('pages.deliveries');
-});
-
-Route::get('/configs' , function (){
-    return view('pages.configs-default');
-});
-
-Route::get('/merchants' , function (){
-    return view('pages.merchants');
-});
-
-Route::get('/merchants/edit' , function (){
-    return view('pages.edit-merchant');
-});
-
-Route::get('/configurator' , function (){
-    return view('pages.configurator');
+    Route::get('/configurator' , function (){
+        return view('pages.configurator');
+    });
 });

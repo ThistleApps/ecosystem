@@ -10,10 +10,11 @@
     "require": {
         "php": ">=7.0.0",
         "fideloper/proxy": "~3.3",
-        "laravel/framework": "5.5.*",
-        "laravel/tinker": "~1.0",
+        "grimthorr/laravel-toast": "^1.1",
         "laravel/cashier": "~7.0",
-        "laravel/spark": "*@dev"
+        "laravel/framework": "5.5.*",
+        "laravel/spark": "*@dev",
+        "laravel/tinker": "~1.0"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
@@ -28,7 +29,10 @@
         ],
         "psr-4": {
             "App\\": "app/"
-        }
+        },
+        "files": [
+            "app/Blendapp/Helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

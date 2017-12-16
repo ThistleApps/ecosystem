@@ -76,7 +76,7 @@
                         <input type="text" class="form-control" id="pos_wan_address" name="pos_wan_address" value="{{$user->pos_wan_address}}" placeholder="10.0.0.10">
                     </div>
                     <div class="col-sm-2">
-                        <button type="button" class="btn btn-default">Test Connection</button>
+                        <button type="button" id="test_con" class="btn btn-default">Test Connection</button>
                     </div>
                     <div class="col-sm-1">
                         <a data-toggle="popover" data-trigger="hover" data-content="Getting test info.">
@@ -125,6 +125,57 @@
     <script>
         $(document).ready(function(){
             $('[data-toggle="popover"]').popover();
+
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            };
+
+
+            $('#test_con').on('click' , function () {
+                var van = $('#pos_wan_address');
+
+                ip = van.val();
+                if (ip === '')
+                    van.focusin();
+                else {
+                    $.ajax({
+                        url: "{{route('user.profile.test.connection')}}",
+                        data: {'pos_wan_address' : ip},
+                        headers: { 'X-XSRF-TOKEN' : '{{\Illuminate\Support\Facades\Crypt::encrypt(csrf_token())}}' },
+                        error: function() {
+
+                        },
+                        success: function(data) {
+                            $('#test_con').attr('disabled' , 'disabled');
+                            if (data.alert_type)
+                                toastr["success"](data.message);
+                            else
+                                toastr["error"](data.message);
+
+                            $('#test_con').removeAttr('disabled');
+                        },
+                        type: 'POST'
+                    });
+                }
+            })
+
+
         });
+
+
     </script>
 @endsection

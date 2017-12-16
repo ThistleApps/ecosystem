@@ -28,6 +28,12 @@ Route::group(['middleware' => 'auth'] , function () {
         'uses'  => 'UserController@update'
     ]);
 
+    Route::post('/profile/test-connection', [
+        'as'    => 'user.profile.test.connection',
+        'uses'  => 'UserController@TestConnection'
+    ]);
+
+
 
 
 

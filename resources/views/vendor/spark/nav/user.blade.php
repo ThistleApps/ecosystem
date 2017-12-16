@@ -21,6 +21,7 @@
                 </div>
 
                 <!-- Branding Image -->
+
                 @include('spark::nav.brand')
             </div>
 

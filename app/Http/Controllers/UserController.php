@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -21,8 +23,39 @@ class UserController extends Controller
         $user = auth()->user();
         $user->update($request->all());
 
+        $notification = array(
+            'message' => 'Profile Updated successfully',
+            'alert-type' => 'success'
+        );
 
-        return back();
+        return back()->with($notification);
+    }
+
+    public function TestConnection(Request $request) {
+        // Test database connection
+        setRemoteConnection($request->get('pos_wan_address'));
+        try {
+        $status = DB::connection('remote')->getPdo();
+        } catch (\Exception $e) {
+            $status = false;
+        }
+
+        if ($status)
+        {
+            $notification = array(
+                'message' => 'Connection Connected Successfully',
+                'alert_type' => true
+            );
+        }
+        else
+        {
+            $notification = array(
+                'message' => 'System not able to connect',
+                'alert_type' => false
+            );
+        }
+
+        return $notification;
     }
 
 

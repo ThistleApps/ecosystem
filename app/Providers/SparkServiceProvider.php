@@ -54,6 +54,7 @@ class SparkServiceProvider extends ServiceProvider
     {
         Spark::afterLoginRedirectTo('/profile');
 
+
         Spark::validateUsersWith(function () {
             return [
                 'first_name' => 'required|max:255',

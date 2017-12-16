@@ -1,34 +1,32 @@
-<div class="navbar-default sidebar" role="navigation" style="margin: 0;">
-    <div class="sidebar-nav navbar-collapse">
-        <ul class="nav" id="side-menu">
-            <li class="sidebar-search">
-                <div class="input-group custom-search-form">
-                    <input type="text" class="form-control" style="height: 34px;" placeholder="Search...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </span>
-                </div>
-                <!-- /input-group -->
-            </li>
-            <li>
-                <a href="{{url('/profile')}}"><i class="fa fa-user fa-fw"></i> Profile</a>
-            </li>
-            <li>
-                <a href="{{url('/deliveries')}}"><i class="fa fa-truck fa-fw"></i> Deliveries</a>
-            </li>
-            <li>
-                <a href="{{url('/configs')}}"><i class="fa fa-gear fa-fw"></i> Config/Defaults</a>
-            </li>
-            <li>
-                <a href="{{url('/merchants')}}"><i class="fa fa-users fa-fw"></i> Merchants</a>
-            </li>
-            <li>
-                <a href="{{url('/configurator')}}"><i class="fa fa-gear fa-fw"></i> Configurator</a>
-            </li>
-        </ul>
+
+<nav class="navbar navbar-inverse navbar-fixed-left">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="{{url('/profile')}}"><i class="fa fa-user fa-fw"></i> Profile</a></li>
+                <li>
+                    <a href="{{url('/deliveries')}}"><i class="fa fa-truck fa-fw"></i> Deliveries</a>
+                </li>
+                <li>
+                    <a href="{{url('/configs')}}"><i class="fa fa-gear fa-fw"></i> Config/Defaults</a>
+                </li>
+                <li>
+                    <a href="{{url('/merchants')}}"><i class="fa fa-users fa-fw"></i> Merchants</a>
+                </li>
+                <li>
+                    <a href="{{url('/configurator')}}"><i class="fa fa-gear fa-fw"></i> Configurator</a>
+                </li>
+            </ul>
+        </div>
     </div>
-    <!-- /.sidebar-collapse -->
-</div>
-<!-- /.navbar-static-side -->
+</nav>
+

@@ -16,7 +16,8 @@ class UserController extends Controller
     public function index(){
 
         $user = Auth()->user();
-        return view('user.profile' , compact('user'));
+        $pos_types = \App\Models\PosType::all();
+        return view('user.profile' , compact('user', 'pos_types'));
     }
 
     public function update(Request $request) {

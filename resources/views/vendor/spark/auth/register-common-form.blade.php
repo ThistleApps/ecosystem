@@ -147,13 +147,9 @@
         <div class="col-md-6">
             {{--<input type="text" class="form-control" name="pos_type" v-model="registerForm.pos_type" autofocus>--}}
             <select class="form-control" name="pos_type" v-model="registerForm.pos_type" autofocus>
-                <option value="counter_point">Counter Point</option>
-                <option value="epicor">Epicor (Eagle)</option>
-                <option value="erply">ERPLY</option>
-                <option value="lightspeed">LightSpeed</option>
-                <option value="netsuite">Netsuite</option>
-                <option value="rics">RICS</option>
-                <option value="quick_books">QuickBooks</option>
+                <option v-for="option in {{ \App\Models\PosType::all() }}" :value="option.id">
+                    @{{ option.name }}
+                </option>
             </select>
 
             <span class="help-block" v-show="registerForm.errors.has('pos_type')">

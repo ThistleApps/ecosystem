@@ -68,14 +68,9 @@
                     <div class="col-sm-8">
                         <select id="pos_type" class="form-control" name="pos_type">
                             <option value="">Custom/Other</option>
-                            <option value="counter_point">Counter Point</option>
-                            <option value="epicor">Epicor (Eagle)</option>
-                            <option value="erply">ERPLY</option>
-                            <option value="lightspeed">Lightspeed</option>
-                            <option value="netsuite">Netsuite</option>
-                            <option value="retailpro">RetailPRO</option>
-                            <option value="rics">RICS</option>
-                            <option value="quickbooks">QuickBooks</option>
+                            @foreach($pos_types  as $id => $pos_type_name)
+                                <option value="{{$id}}">{{$pos_type_name}}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>

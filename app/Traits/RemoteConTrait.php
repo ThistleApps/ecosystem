@@ -18,8 +18,6 @@ trait RemoteConTrait
 
         $user = Auth::user();
 
-        config(['database.remote' => [
-            'host'   => $user->pos_wan_address
-        ]]);
+        setRemoteConnection($user->pos_wan_address);
     }
 }

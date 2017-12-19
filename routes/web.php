@@ -19,7 +19,7 @@ Route::get('/', [
 Route::get('/home', 'HomeController@show');
 Route::get('/test', 'TestController@index');
 
-Route::group(['middleware' => ['auth', 'merchant']] , function () {
+Route::group([/*'middleware' => ['auth', 'merchant']*/] , function () {
 
     Route::get('/profile' , [
         'as'    => 'user.profile',
@@ -38,7 +38,7 @@ Route::group(['middleware' => ['auth', 'merchant']] , function () {
 
 });
 
-Route::group(['middleware' => 'admin'] , function () {
+Route::group([/*'middleware' => 'admin'*/] , function () {
 
     Route::get('/merchants' , function (){
         return view('pages.merchants');
@@ -50,7 +50,7 @@ Route::group(['middleware' => 'admin'] , function () {
 
 });
 
-Route::group(['middleware' => ['admin', 'merchant']], function () {
+Route::group([/*'middleware' => ['admin', 'merchant']*/], function () {
 
     Route::get('/create/account' , function (){
         return view('pages.create-account');

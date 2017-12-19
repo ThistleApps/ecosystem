@@ -11,6 +11,8 @@ class PosTypeSeeder extends Seeder
      */
     public function run()
     {
+        App\Models\PosType::query()->truncate();
+
         App\Models\PosType::query()->create([
             'name' => 'Counter Point',
             'description' => 'Counter Point'

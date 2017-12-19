@@ -15,7 +15,7 @@ class CreatePosTypeTable extends Migration
     {
         Schema::create('pos_types', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('type');
+            $table->string('name');
             $table->string('description');
             $table->timestamps();
         });

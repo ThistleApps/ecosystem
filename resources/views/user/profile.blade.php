@@ -18,7 +18,7 @@
                 <div class="form-group">
                     <label class="control-label col-sm-4" for="first_name">First Name</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="first_name" name="first_name" value="{{$user->first_name}}" placeholder="Jane">
+                        <input type="text" class="form-control" id="first_name" name="first_name" value="{{$user->first_name}}" placeholder="Jane" autofocus>
                     </div>
                 </div>
                 <div class="form-group">
@@ -66,7 +66,13 @@
                 <div class="form-group">
                     <label class="control-label col-sm-4" for="pos_type">POS Type</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="pos_type" name="pos_type" value="{{$user->pos_type}}" placeholder="POS">
+                        {{--<input type="text" class="form-control" id="pos_type" name="pos_type" value="{{$user->pos_type}}" placeholder="POS">--}}
+                        <select id="pos_type" class="form-control" name="pos_type">
+                                <option value="">Select Type</option>
+                            @foreach($pos_types as $item)
+                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
 

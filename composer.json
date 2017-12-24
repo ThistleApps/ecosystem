@@ -14,7 +14,9 @@
         "laravel/cashier": "~7.0",
         "laravel/framework": "5.5.*",
         "laravel/spark": "*@dev",
-        "laravel/tinker": "~1.0"
+        "laravel/tinker": "~1.0",
+        "doctrine/dbal": "2.6.x-dev",
+        "yajra/laravel-datatables-oracle": "^8.3"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
@@ -41,7 +43,9 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": []
+            "dont-discover": [
+                "laravel/spark"
+            ]
         }
     },
     "scripts": {
@@ -54,6 +58,9 @@
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover"
+        ],
+        "post-install-cmd": [
+            "ln -sr public/storage storage/app/public"
         ]
     },
     "config": {

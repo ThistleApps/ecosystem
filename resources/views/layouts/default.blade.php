@@ -36,8 +36,26 @@
                 border-left: 1px solid #e7e7e7;
             }
         }
-    </style>
+        .modal {
+            text-align: center;
+        }
 
+        @media screen and (min-width: 768px) {
+            .modal:before {
+                display: inline-block;
+                vertical-align: middle;
+                content: " ";
+                height: 100%;
+            }
+        }
+
+        .modal-dialog {
+            display: inline-block;
+            text-align: left;
+            vertical-align: middle;
+        }
+    </style>
+@yield('style')
     <!-- Scripts -->
 @yield('scripts', '')
 

@@ -17,11 +17,11 @@ class CreateOrderDetailsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->index()->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->char('sku_number' , 20);
+            $table->string('sku_number' , 20);
             $table->date('delivery_date');
-            $table->char('selling_u_m' , 2);
+            $table->string('selling_u_m' , 2);
             $table->float('qty_selling_units' );
-            $table->char('item' , 14);
+            $table->string('item' , 14);
             $table->string('description' , 32);
             $table->float('cust_price');
             $table->timestamps();

@@ -34,12 +34,7 @@ class UserController extends Controller
 
     public function TestConnection(Request $request) {
         // Test database connection
-        setRemoteConnection($request->get('pos_wan_address'));
-        try {
-        $status = DB::connection('remote')->getPdo();
-        } catch (\Exception $e) {
-            $status = false;
-        }
+        $status = test_remote_connection($request->get('pos_wan_address'));
 
         if ($status)
         {

@@ -17,11 +17,11 @@ class CreateOrderHeardersTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->index()->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->char('store_number' , 2);
+            $table->string('store_number' , 2);
             $table->integer('job_number')->index()->nullable();
             $table->integer('order_number')->index()->nullable();
             $table->string('customer_name' , 30)->nullable();
-            $table->char('customer_number' , 8)->nullable();
+            $table->string('customer_number' , 8)->nullable();
             $table->string('ship_to_name' , 30)->nullable();
             $table->string('ship_to_addr_1' , 30)->nullable();
             $table->string('ship_to_addr_2' , 30)->nullable();
@@ -36,12 +36,12 @@ class CreateOrderHeardersTable extends Migration
             $table->date('creation_date')->nullable();
             $table->date('delivery_date')->nullable();
             $table->date('expiration_date')->nullable();
-            $table->char('salesperson_id')->nullable();
-            $table->char('clerk' , 10)->nullable();
-            $table->char('transaction_code_1' , 1)->nullable();
-            $table->char('transaction_code_2' , 1)->nullable();
-            $table->char('transaction_code_3' , 1)->nullable();
-            $table->char('transaction_code_4' , 1)->nullable();
+            $table->string('salesperson_id')->nullable();
+            $table->string('clerk' , 10)->nullable();
+            $table->string('transaction_code_1' , 1)->nullable();
+            $table->string('transaction_code_2' , 1)->nullable();
+            $table->string('transaction_code_3' , 1)->nullable();
+            $table->string('transaction_code_4' , 1)->nullable();
             $table->timestamps();
         });
     }

@@ -18,13 +18,13 @@ class CreateStoreInformationsTable extends Migration
             $table->char('store_number');
             $table->integer('user_id')->index()->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->char('long_name' , 50);
-            $table->char('addr_line1' , 32);
-            $table->char('addr_line2' , 32);
-            $table->char('addr_line3' , 32);
-            $table->char('zone' , 1);
-            $table->char('area_code' , 3);
-            $table->char('number' , 7);
+            $table->string('long_name' , 50);
+            $table->string('addr_line1' , 32);
+            $table->string('addr_line2' , 32);
+            $table->string('addr_line3' , 32);
+            $table->string('zone' , 1);
+            $table->string('area_code' , 3);
+            $table->string('number' , 7);
             $table->timestamps();
         });
     }

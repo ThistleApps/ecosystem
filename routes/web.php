@@ -38,6 +38,37 @@ Route::group([/*'middleware' => ['auth', 'merchant']*/] , function () {
 
 });
 
+Route::group(['prefix' => 'configurator'] , function () {
+
+    Route::get('/' , [
+        'as'    => 'configurator.index',
+        'uses'  => 'ConfiguratorController@index',
+    ]);
+
+    Route::post('/getswift' , [
+        'as'    => 'configurator.getswift.save',
+        'uses'  => 'ConfiguratorController@getswiftSettingsSave',
+    ]);
+});
+
+Route::group(['prefix' => 'deliveries'] , function () {
+    Route::get('/' , [
+        'as' => 'deliveries.index',
+        'uses' => 'DeliveriesController@index'
+    ]);
+
+    Route::get('/datatable' , [
+        'as' => 'deliveries.datatable',
+        'uses' => 'DeliveriesController@datatable'
+    ]);
+
+
+});
+
+
+
+
+
 Route::group([/*'middleware' => 'admin'*/] , function () {
 
     Route::get('/merchants' , function (){
@@ -56,15 +87,12 @@ Route::group([/*'middleware' => ['admin', 'merchant']*/], function () {
         return view('pages.create-account');
     });
 
-    Route::get('/deliveries' , function (){
-        return view('pages.deliveries');
-    });
+//    Route::get('/deliveries' , function (){
+//        return view('pages.deliveries');
+//    });
 
     Route::get('/configs' , function (){
         return view('pages.configs-default');
     });
 
-    Route::get('/configurator' , function (){
-        return view('pages.configurator');
-    });
 });

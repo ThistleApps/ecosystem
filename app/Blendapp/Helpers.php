@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
 
 function setRemoteConnection($host) {
     Config::set('database.connections.remote' , [
@@ -16,6 +17,24 @@ function setRemoteConnection($host) {
     ]);
 }
 
+function test_remote_connection($wan_address) {
+    setRemoteConnection($wan_address);
+    try {
+        $status = DB::connection('remote')->getPdo();
+    } catch (\Exception $e) {
+        $status = false;
+    }
 
+    return $status?true:false;
+}
+
+function order_codes() {
+    return [
+        'oh_transaction_code_1' => 'Code 1',
+        'oh_transaction_code_2' => 'Code 2',
+        'oh_transaction_code_3' => 'Code 3',
+        'oh_transaction_code_4' => 'Code 4',
+    ];
+}
 
 ?>

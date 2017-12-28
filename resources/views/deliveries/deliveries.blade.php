@@ -6,59 +6,61 @@
 @endsection
 
 @section('content')
-<div class="row">
-    <div class="col-lg-12">
-        <h1 class="page-header text-center"><span class="fa fa-truck"></span> Deliveries</h1>
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
-<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading text-center"><span class="fa fa-truck"></span> Deliveries</div>
 
-    <div class="col-lg-12">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                deliveries
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
+        <div class="panel-body">
 
-                <div class="row">
-                    <div class="" style="margin-bottom: 50px">
-                        <div class="form-inline">
-                            <div class="col-lg-2 col-sm-12">
-                                <div class="form-group">
-                                    <select class="form-control" name="status">
-                                        <option value="">status</option>
+            <div class="row">
+                <div class="" style="margin-bottom: 50px">
+                    <div class="form-inline">
+                        <div class="col-md-4 col-sm-12">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label" for="status">Status:</label>
+                                <div class="col-sm-8">
+                                    <select id="status" class="input-sm form-control" name="status">
+                                        <option value="">Status</option>
                                         <option value="active">Active</option>
                                         <option value="successful">Successful</option>
                                         <option value="canceled">Canceled</option>
                                     </select>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="col-lg-3 col-sm-12">
-                                <div class="form-group">
-                                    <label for="start_date">Order Due From</label>
-                                    <input type="date" id="start_date" class="form-control" name="start_date">
-                                    <span class="fa fa-calendar fa-2x"></span>
+                        <div class="col-md-4 col-sm-12">
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label" for="start_date">From:</label>
+                                <div class="col-sm-8">
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-addon">
+                                            <span class="fa fa-calendar"></span>
+                                        </span>
+                                        <input type="date" id="start_date" class="input-sm form-control" name="start_date">
+                                    </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="col-lg-3 col-sm-12">
-                                <div class="form-group">
-                                    <label for="end_date">Order Due To</label>
-                                    <input type="date" id="end_date" class="form-control" name="end_date">
-                                    <span class="fa fa-calendar fa-2x"></span>
+                        <div class="col-md-4 col-sm-12">
+                            <div class="form-group row">
+                                <label class="col-sm-1 col-form-label" for="end_date">To:</label>
+                                <div class="col-sm-8">
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-addon">
+                                            <span class="fa fa-calendar"></span>
+                                        </span>
+                                        <input type="date" id="end_date" class="input-sm form-control" name="end_date">
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-
-
-                <table width="100%" class="table table-striped table-responsive table-bordered table-hover" id="table">
+            <div class="table-responsive">
+                <table width="100%" class="table table-striped" id="table">
                     <thead>
                     <tr>
                         <th>Order Number</th>
@@ -68,8 +70,8 @@
                         <th>Order Due Date</th>
                         <th>Ship To</th>
                         <th>Address 1</th>
-                        <th>Address 2</th>
-                        <th>Address 3</th>
+                        {{--<th>Address 2</th>--}}
+                        {{--<th>Address 3</th>--}}
                         <th>Email</th>
                         {{--<th>Status</th>--}}
                     </tr>
@@ -78,16 +80,10 @@
 
                     </tbody>
                 </table>
-                <!-- /.table-responsive -->
-                {{--<div class="well">--}}
-                {{--</div>--}}
             </div>
-            <!-- /.panel-body -->
+
         </div>
-        <!-- /.panel -->
     </div>
-    <!-- /.col-lg-12 -->
-</div>
 @endsection
 {{-- page level scripts --}}
 @section('script')
@@ -111,8 +107,8 @@
                     { data: 'expiration_date', name: 'expiration_date'},
                     { data: 'ship_to_name', name:'ship_to_name'},
                     { data: 'ship_to_addr_1', name:'ship_to_addr_1'},
-                    { data: 'ship_to_addr_2', name:'ship_to_addr_2'},
-                    { data: 'ship_to_addr_3', name:'ship_to_addr_3'},
+//                    { data: 'ship_to_addr_2', name:'ship_to_addr_2'},
+//                    { data: 'ship_to_addr_3', name:'ship_to_addr_3'},
                     { data: 'ship_to_email_address', name: 'ship_to_email_address'}
                 ]
             });

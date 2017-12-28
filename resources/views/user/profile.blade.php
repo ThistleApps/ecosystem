@@ -2,16 +2,14 @@
 @section('title',  'Profile' )
 
 @section('content')
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header text-center"><span class="fa fa-user"></span> Profile</h1>
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
-    <!-- /.row -->
-    <div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading text-center"><span class="fa fa-user"></span> Profile</div>
 
-        <div class="col-sm-8 col-md-offset-2">
+        <div class="panel-body">
+            <!-- Success Message -->
+            {{--<div class="alert alert-success">--}}
+                {{--Your contact information has been updated!--}}
+            {{--</div>--}}
 
             <form action="{{route('user.profile.update')}}" method="post" class="form-horizontal">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -68,7 +66,7 @@
                     <div class="col-sm-8">
                         {{--<input type="text" class="form-control" id="pos_type" name="pos_type" value="{{$user->pos_type}}" placeholder="POS">--}}
                         <select id="pos_type" class="form-control" name="pos_type">
-                                <option value="">Select Type</option>
+                            <option value="">Select Type</option>
                             @foreach($pos_types as $item)
                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
                             @endforeach
@@ -106,25 +104,25 @@
                         <a href="{{url('/settings#/subscription')}}" type="button" class="btn btn-default">Click here</a>
                     </div>
                     {{--<div class="col-sm-4">--}}
-                        {{--<select id="plan" class="form-control">--}}
-                            {{--<option value="basic_free">Basic Free</option>--}}
-                            {{--<option value="intermediate">Intermediate ($49)</option>--}}
-                            {{--<option value="advanced">Advanced ($99)</option>--}}
-                        {{--</select>--}}
+                    {{--<select id="plan" class="form-control">--}}
+                    {{--<option value="basic_free">Basic Free</option>--}}
+                    {{--<option value="intermediate">Intermediate ($49)</option>--}}
+                    {{--<option value="advanced">Advanced ($99)</option>--}}
+                    {{--</select>--}}
                     {{--</div>--}}
 
                     {{--<div class="col-sm-4">--}}
-                        {{--<div class="input-group">--}}
-                            {{--<input type="text" class="form-control" id="pay_info" name="pay_info" placeholder="Pay Info">--}}
-                            {{--<span class="input-group-addon"><i class="fa fa-credit-card-alt"></i></span>--}}
-                        {{--</div>--}}
+                    {{--<div class="input-group">--}}
+                    {{--<input type="text" class="form-control" id="pay_info" name="pay_info" placeholder="Pay Info">--}}
+                    {{--<span class="input-group-addon"><i class="fa fa-credit-card-alt"></i></span>--}}
+                    {{--</div>--}}
                     {{--</div>--}}
                 </div>
 
             </form>
         </div>
-
     </div>
+
 @endsection
 
 @section('script')

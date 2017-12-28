@@ -10,53 +10,22 @@
 
     <!-- Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600' rel='stylesheet' type='text/css'>
-    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'
+          type='text/css'>
 
     <!-- CSS -->
     <link href="/css/sweetalert.css" rel="stylesheet">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/navbar-left.min.css">
+    {{--<link rel="stylesheet" href="css/navbar-left.min.css">--}}
 
 
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('/vendor/toastr-master/build/toastr.min.css') }}">
-
-    <style>
-        #page-wrapper {
-            padding: 0 15px;
-            min-height: 568px;
-            background-color: white;
-        }
-        @media (min-width: 768px) {
-            #page-wrapper {
-                position: inherit;
-                /*margin: 0 0 0 250px;*/
-                padding: 0 20px;
-                border-left: 1px solid #e7e7e7;
-            }
-        }
-        .modal {
-            text-align: center;
-        }
-
-        @media screen and (min-width: 768px) {
-            .modal:before {
-                display: inline-block;
-                vertical-align: middle;
-                content: " ";
-                height: 100%;
-            }
-        }
-
-        .modal-dialog {
-            display: inline-block;
-            text-align: left;
-            vertical-align: middle;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/custom.css') }}">
 @yield('style')
-    <!-- Scripts -->
+
+<!-- Scripts -->
 @yield('scripts', '')
 
 <!-- Global Spark Object -->
@@ -69,19 +38,33 @@
 <body class="with-navbar">
 
 <div id="spark-app" v-cloak>
-<!-- Navigation -->
+    <!-- Navigation -->
 @if (Auth::check())
-    @include("layouts.partials.nav-left-side")
     @include('spark::nav.user')
 @else
     @include('spark::nav.guest')
 @endif
 
 <!-- Main Content -->
-<div id="page-wrapper">
-@yield('content')
-</div>
-<!-- Application Level Modals -->
+    <div id="page-wrapper">
+
+        <div class="spark-screen container">
+            <div class="row">
+                <!-- Tabs -->
+                <div class="col-md-4">
+                    @if (Auth::check())
+                        @include("layouts.partials.nav-left-side")
+                    @endif
+                </div>
+
+                <div class="col-md-8">
+                    @yield('content')
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Level Modals -->
     @if (Auth::check())
         @include('spark::modals.notifications')
         @include('spark::modals.support')
@@ -101,25 +84,25 @@
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 
 <script>
-            @if(Session::has('message'))
-    var type = "{{ Session::get('alert-type', 'info') }}";
-    switch(type){
-        case 'info':
-            toastr.info("{{ Session::get('message') }}");
-            break;
+    @if(Session::has('message'))
+        var type = "{{ Session::get('alert-type', 'info') }}";
+        switch (type) {
+            case 'info':
+                toastr.info("{{ Session::get('message') }}");
+                break;
 
-        case 'warning':
-            toastr.warning("{{ Session::get('message') }}");
-            break;
+            case 'warning':
+                toastr.warning("{{ Session::get('message') }}");
+                break;
 
-        case 'success':
-            toastr.success("{{ Session::get('message') }}");
-            break;
+            case 'success':
+                toastr.success("{{ Session::get('message') }}");
+                break;
 
-        case 'error':
-            toastr.error("{{ Session::get('message') }}");
-            break;
-    }
+            case 'error':
+                toastr.error("{{ Session::get('message') }}");
+                break;
+        }
     @endif
 </script>
 

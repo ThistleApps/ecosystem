@@ -4,11 +4,12 @@
     <style>
         .ingredients {
             position:relative;
-            width: 250px;
+            width: auto;
             height: 200px;
             border-style: outset;
             border-radius: 1px;
             cursor: pointer;
+            margin-bottom: 10px;
         }
         .card-img-top {
             position:relative;
@@ -27,73 +28,70 @@
     </style>
 @endsection
 @section('content')
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header text-center"><span class="fa fa-gear  "></span> Configurator</h1>
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
 
-    <!-- /.row -->
-    <div class="row">
-        <div class="col-lg-12">
+    <div class="panel panel-default">
+        <div class="panel-heading text-center"><span class="fa fa-gear"></span> Configurator</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
 
-            <div class="col-lg-3" id="get-swift-config">
-                <div class="ingredients">
-                    <div class="text-center">
-                        <img class="card-img-top" src="{{asset('/img/getswift.png')}}" alt="Card image cap">
+                    <div class="col-md-4" id="get-swift-config">
+                        <div class="ingredients">
+                            <div class="text-center">
+                                <img class="card-img-top" src="{{asset('/img/getswift.png')}}" alt="Card image cap">
+                            </div>
+                            <div class="text-center">
+                                <h3>Getswift</h3>
+                            </div>
+                        </div>
                     </div>
-                    <div class="text-center">
-                        <h3>Getswift</h3>
+
+                    <div class="col-md-4">
+                        <div class="ingredients">
+                            <div class="text-center">
+                                <img class="card-img-top" src="{{asset('/img/MailChimp.png')}}" alt="Card image cap">
+                            </div>
+                            <div class="coming-soon text-center">
+                                <h3>Coming Soon</h3>
+                            </div>
+                            <div class="text-center">
+                                <h3>MailChimp</h3>
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="col-md-4">
+                        <div class="ingredients">
+                            <div class="text-center">
+                                <img class="card-img-top" src="{{asset('/img/getswift.png')}}" alt="Card image cap">
+                            </div>
+                            <div class="coming-soon text-center">
+                                <h3>Coming Soon</h3>
+                            </div>
+                            <div class="text-center">
+                                <h3>CRM</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="ingredients">
+                            <div class="text-center">
+                                <img class="card-img-top" src="{{asset('/img/getswift.png')}}" alt="Card image cap">
+                            </div>
+                            <div class="coming-soon text-center">
+                                <h3>Coming Soon</h3>
+                            </div>
+                            <div class="text-center">
+                                <h3>CMS</h3>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-
-            <div class="col-lg-3">
-                <div class="ingredients">
-                    <div class="text-center">
-                        <img class="card-img-top" src="{{asset('/img/MailChimp.png')}}" alt="Card image cap">
-                    </div>
-                    <div class="coming-soon text-center">
-                        <h3>Coming Soon</h3>
-                    </div>
-                    <div class="text-center">
-                        <h3>MailChimp</h3>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3">
-                <div class="ingredients">
-                    <div class="text-center">
-                        <img class="card-img-top" src="{{asset('/img/getswift.png')}}" alt="Card image cap">
-                    </div>
-                    <div class="coming-soon text-center">
-                        <h3>Coming Soon</h3>
-                    </div>
-                    <div class="text-center">
-                        <h3>CRM</h3>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3">
-                <div class="ingredients">
-                    <div class="text-center">
-                        <img class="card-img-top" src="{{asset('/img/getswift.png')}}" alt="Card image cap">
-                    </div>
-                    <div class="coming-soon text-center">
-                        <h3>Coming Soon</h3>
-                    </div>
-                    <div class="text-center">
-                        <h3>CMS</h3>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
-
     <div id="getswift-conf-modal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->

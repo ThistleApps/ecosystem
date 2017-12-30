@@ -2,7 +2,7 @@
 @section('title',  'Deliveries' )
 @section('style')
     <link rel="stylesheet" type="text/css" href="{{ asset('/vendor/datatables/css/dataTables.bootstrap.css') }}" />
-{{--    <link href="{{ asset('assets/css/pages/tables.css') }}" rel="stylesheet" type="text/css" />--}}
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')
@@ -60,7 +60,7 @@
             </div>
 
             <div class="table-responsive">
-                <table width="100%" class="table table-striped" id="table">
+                <table width="100%" class="table table-striped table-bordered nowrap" id="table">
                     <thead>
                     <tr>
                         <th>Order Number</th>
@@ -70,8 +70,8 @@
                         <th>Order Due Date</th>
                         <th>Ship To</th>
                         <th>Address 1</th>
-                        {{--<th>Address 2</th>--}}
-                        {{--<th>Address 3</th>--}}
+                        <th>Address 2</th>
+                        <th>Address 3</th>
                         <th>Email</th>
                         {{--<th>Status</th>--}}
                     </tr>
@@ -87,6 +87,7 @@
 @endsection
 {{-- page level scripts --}}
 @section('script')
+    {{--<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js" ></script>--}}
     <script type="text/javascript" src="{{ asset('/vendor/datatables/js/jquery.dataTables.js') }}" ></script>
     <script type="text/javascript" src="{{ asset('/vendor/datatables/js/dataTables.bootstrap.js') }}" ></script>
 
@@ -95,6 +96,7 @@
         $(function() {
             var table = $('#table').DataTable({
                 processing: true,
+
                 serverSide: true,
                 iDisplayLength: 100,
                 "order": [[ 0, "desc" ]],
@@ -107,10 +109,11 @@
                     { data: 'expiration_date', name: 'expiration_date'},
                     { data: 'ship_to_name', name:'ship_to_name'},
                     { data: 'ship_to_addr_1', name:'ship_to_addr_1'},
-//                    { data: 'ship_to_addr_2', name:'ship_to_addr_2'},
-//                    { data: 'ship_to_addr_3', name:'ship_to_addr_3'},
+                    { data: 'ship_to_addr_2', name:'ship_to_addr_2'},
+                    { data: 'ship_to_addr_3', name:'ship_to_addr_3'},
                     { data: 'ship_to_email_address', name: 'ship_to_email_address'}
-                ]
+                ],
+
             });
         });
 

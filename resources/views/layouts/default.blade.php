@@ -23,6 +23,13 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('/vendor/toastr-master/build/toastr.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/custom.css') }}">
+
+    <style>
+        .container {
+            width: auto;
+        }
+    </style>
+
 @yield('style')
 
 <!-- Scripts -->
@@ -51,13 +58,13 @@
         <div class="spark-screen container">
             <div class="row">
                 <!-- Tabs -->
-                <div class="col-md-4">
+                <div class="col-md-2">
                     @if (Auth::check())
                         @include("layouts.partials.nav-left-side")
                     @endif
                 </div>
 
-                <div class="col-md-8">
+                <div class="col-md-10">
                     @yield('content')
                 </div>
             </div>

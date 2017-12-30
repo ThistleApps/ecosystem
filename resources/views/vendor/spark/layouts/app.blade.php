@@ -16,6 +16,11 @@
     <link href="/css/sweetalert.css" rel="stylesheet">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
+    <style>
+        .container {
+            width: auto;
+        }
+    </style>
     <!-- Scripts -->
     @yield('scripts', '')
 

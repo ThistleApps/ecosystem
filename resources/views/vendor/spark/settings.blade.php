@@ -13,7 +13,7 @@
     <div class="spark-screen container">
         <div class="row">
             <!-- Tabs -->
-            <div class="col-md-4">
+            <div class="col-md-2">
                 <div class="panel panel-default panel-flush">
                     <div class="panel-heading">
                         Settings
@@ -98,7 +98,7 @@
             </div>
 
             <!-- Tab Panels -->
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <div class="tab-content">
                     <!-- Profile -->
                     <div role="tabpanel" class="tab-pane active" id="profile">

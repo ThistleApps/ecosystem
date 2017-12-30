@@ -1,11 +1,12 @@
 @extends('layouts.default')
+@section('title',  'Configurator' )
 
 @section('style')
     <style>
         .ingredients {
             position:relative;
             width: auto;
-            height: 200px;
+            height: 175px;
             border-style: outset;
             border-radius: 1px;
             cursor: pointer;
@@ -16,15 +17,16 @@
             margin-top: 6%;
             background-color: #f2f2f2;
             width: 100%;
+            height: 70px;
         }
         .coming-soon {
             position:absolute;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.7);
             color: white;
             width: 100%;
-            margin-top:-50px;
+            margin-top: -71px;
+            height: 70px;
         }
-
     </style>
 @endsection
 @section('content')
@@ -63,7 +65,7 @@
                     <div class="col-md-4">
                         <div class="ingredients">
                             <div class="text-center">
-                                <img class="card-img-top" src="{{asset('/img/getswift.png')}}" alt="Card image cap">
+                                <img class="card-img-top" src="{{asset('/img/crm.svg')}}" alt="Card image cap">
                             </div>
                             <div class="coming-soon text-center">
                                 <h3>Coming Soon</h3>
@@ -77,7 +79,7 @@
                     <div class="col-md-4">
                         <div class="ingredients">
                             <div class="text-center">
-                                <img class="card-img-top" src="{{asset('/img/getswift.png')}}" alt="Card image cap">
+                                <img class="card-img-top" src="{{asset('/img/cms.svg')}}" alt="Card image cap">
                             </div>
                             <div class="coming-soon text-center">
                                 <h3>Coming Soon</h3>

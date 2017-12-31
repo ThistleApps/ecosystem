@@ -4,7 +4,8 @@
 
         <div class="panel-body">
             <!-- Success Message -->
-            <div class="alert alert-success" v-if="form.successful">
+            <div class="alert alert-success alert-dismissable" v-if="form.successful">
+                <button @click.prevent="" class="close" aria-label="close" @click="close">×</button>
                 Your profile has been updated!
             </div>
 
@@ -79,7 +80,7 @@
                     <label class="col-md-4 control-label">Target Platform/POS</label>
 
                     <div class="col-md-6">
-                        <select class="form-control" name="pos_type" v-model="form.pos_type" autofocus>
+                        <select class="form-control" name="pos_type" v-model="form.pos_type">
                             <option v-for="option in {{ \App\Models\PosType::all() }}" :value="option.id">
                                 @{{ option.name }}
                             </option>
@@ -93,18 +94,27 @@
 
                 <div class="form-group" :class="{'has-error': form.errors.has('pos_wan_address')}">
                     <label class="control-label col-sm-4" for="pos_wan_address">POS WAN Address</label>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <input ref="pos_wan_address" type="text" class="form-control" id="pos_wan_address" name="pos_wan_address" placeholder="10.0.0.10" v-model="form.pos_wan_address">
                     </div>
-                    <div class="col-sm-3">
-                        <button @click.prevent="testConnection" type="submit" class="btn btn-default">Test Connection</button>
+                    <div class="col-sm-2">
+                        <button @click.prevent="testConnection" type="submit" class="btn btn-default pull-right">
+                            <span :class="{'fa': true, 'fa-spinner fa-spin': isLoading, 'fa-plug': !isLoading}"></span>
+                            Test Connection
+                        </button>
                     </div>
                     <span class="help-block" v-show="form.errors.has('pos_wan_address')">
                         @{{ form.errors.get('pos_wan_address') }}
                     </span>
+                </div>
 
-                    <div :class="{'alert': true, 'alert-success': form.status, 'alert-danger': form.status == false}" v-if="form.testingConnection">
-                        @{{ form.message }}
+                <div class="form-group">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-6">
+                        <div class="alert alert-dismissable" :class="{'alert-success': connection.status, 'alert-danger': !connection.status}" v-if="connection.testingConnection">
+                            <button @click.prevent="" class="close" aria-label="close" @click="close">×</button>
+                            @{{ connection.message }}
+                        </div>
                     </div>
                 </div>
 
@@ -114,7 +124,6 @@
                         <button type="submit" class="btn btn-primary"
                                 @click.prevent="update"
                                 :disabled="form.busy">
-
                             Update
                         </button>
                     </div>

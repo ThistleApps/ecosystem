@@ -1,7 +1,7 @@
 Vue.component('update-profile-details', {
     props: ['user'],
 
-    data() {
+    data: function() {
         return {
             form: new SparkForm({
                 first_name: '',
@@ -11,14 +11,17 @@ Vue.component('update-profile-details', {
                 primary_affiliate_number: '',
                 pos_type: '',
                 pos_wan_address: '',
-                status: false,
+            }),
+            connection: {
                 message: '',
+                status: false,
                 testingConnection: false,
-            })
+            },
+            isLoading: false,
         };
     },
 
-    mounted() {
+    mounted: function () {
         this.form.first_name = this.user.first_name;
         this.form.last_name = this.user.last_name;
         this.form.business_name = this.user.business_name;
@@ -37,18 +40,28 @@ Vue.component('update-profile-details', {
         },
         testConnection() {
             var self = this;
-            self.testingConnection = true;
-            var van_ip = self.form.pos_wan_address;
-
+            var van_ip = this.form.pos_wan_address;
+            if (van_ip == null || van_ip == '') {
+                self.$refs.pos_wan_address.focus();
+                return;
+            }
+            self.isLoading = true;
             axios.post('/profile/test-connection', {'pos_wan_address': van_ip})
                 .then(response => {
-                    if(response.status == 200) {
-                        self.form.status = true;
+                    self.isLoading = false;
+
+                    if(response.data.alert_type == true) {
+                        self.connection.status = true;
                     } else {
-                        self.form.status = false;
+                        self.connection.status = false;
                     }
-                    self.form.message = response.data.message;
+                    self.connection.testingConnection = true;
+                    self.connection.message = response.data.message;
             });
+        },
+        close() {
+            this.connection.testingConnection = false;
+            this.form.successful = false;
         }
     }
 });

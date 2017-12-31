@@ -39,7 +39,7 @@ class UserController extends Controller
         if ($status)
         {
             $notification = array(
-                'message' => 'Connection Connected Successfully',
+                'message' => 'Connected Successfully',
                 'alert_type' => true
             );
         }

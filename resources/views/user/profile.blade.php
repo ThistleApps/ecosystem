@@ -1,6 +1,10 @@
 @extends('layouts.default')
 @section('title',  'Profile' )
-
+@section('style')
+    <style>
+        .popover{  width:100%;  }
+    </style>
+@endsection
 @section('content')
     <div class="panel panel-default">
         <div class="panel-heading text-center"><span class="fa fa-user"></span> Profile</div>
@@ -79,13 +83,13 @@
                     <div class="col-sm-4">
                         <input type="text" class="form-control" id="pos_wan_address" name="pos_wan_address" value="{{$user->pos_wan_address}}" placeholder="10.0.0.10">
                     </div>
-                    <div class="col-sm-2">
-                        <button type="button" id="test_con" class="btn btn-default">Test Connection</button>
-                    </div>
-                    <div class="col-sm-1">
-                        <a data-toggle="popover" data-trigger="hover" data-content="Getting test info.">
-                            <i aria-hidden="true" class="fa fa-info-circle"></i>
-                        </a>
+                    <div class="col-sm-4">
+                        <div class="btn-group">
+                            <button type="button" id="test_con" class="btn btn-default">Test Connection</button>
+                            <a data-placement="right" data-toggle="popover" data-trigger="hover" data-content="Getting test info.">
+                                <i aria-hidden="true" class="fa fa-info-circle"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
 

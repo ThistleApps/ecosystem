@@ -10,11 +10,10 @@
 
     <!-- Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600' rel='stylesheet' type='text/css'>
-    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'
-          type='text/css'>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
 
     <!-- CSS -->
-    <link href="/css/sweetalert.css" rel="stylesheet">
+    <link href="{{ asset('/css/sweetalert.css') }}" rel="stylesheet">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
     {{--<link rel="stylesheet" href="css/navbar-left.min.css">--}}
@@ -81,7 +80,7 @@
 
 <!-- JavaScript -->
 <script src="{{ mix('js/app.js') }}"></script>
-<script src="/js/sweetalert.min.js"></script>
+<script src="{{ asset('/js/sweetalert.min.js') }}"></script>
 
 {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>--}}
 

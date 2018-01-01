@@ -1,17 +1,29 @@
 @extends('layouts.layout_guest')
-@section('title',  'Integrator' )
+@section('title',  'Blend Retail' )
 
 @section('content')
 <div class="container">
 
     <div class="page-header text-center">
-        <h1>Integrator</h1>
+        <h1>Blend Retail</h1>
     </div>
+
+       <!-- Call to Action Well -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="well text-center">
+                <h2>Connect and Conquer Retail</h2>
+                <img class="img-responsive" src = "/img/POS_Chalkboard.jpg">
+            </div>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
     <div class="row">
         <div class="col-sm-7">
             <div class="jumbotron">
-                <h1>Hello, world!</h1>
-                <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
+                <h2>Connect and Conquer Retail</h2>
+                <p>Mixing the in-store experience with online tools that make your life easier.</p>
             </div>
         </div>
 
@@ -21,17 +33,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Call to Action Well -->
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="well text-center">
-                This is a well that is a great spot for a business tagline or phone number for easy access!
-            </div>
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
-    <!-- /.row -->
 
     <!-- Content Row -->
     <div class="row">

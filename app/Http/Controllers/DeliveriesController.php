@@ -17,4 +17,10 @@ class DeliveriesController extends Controller
 
         return DataTables::of($model)->toJson();
     }
+
+    public function orderDetails($order_number) {
+        $order_header = OrderHeader::findOrFail($order_number);
+
+        return $order_header->orderDetails;
+    }
 }

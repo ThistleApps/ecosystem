@@ -62,6 +62,11 @@ Route::group(['prefix' => 'deliveries'] , function () {
         'uses' => 'DeliveriesController@datatable'
     ]);
 
+    Route::get('order-details/{order_number}' , [
+        'as' => 'deliveries.order-details',
+        'uses' => 'DeliveriesController@orderDetails'
+    ]);
+
 
 });
 

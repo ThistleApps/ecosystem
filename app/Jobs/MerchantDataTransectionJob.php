@@ -88,8 +88,6 @@ class MerchantDataTransectionJob implements ShouldQueue
 //        OrderHeader::insert($remoteOH);
 
 
-        dd('done');
-
 
 
     }

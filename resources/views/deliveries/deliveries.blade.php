@@ -2,6 +2,8 @@
 @section('title',  'Deliveries' )
 @section('style')
     <link rel="stylesheet" type="text/css" href="{{ asset('/vendor/datatables/css/dataTables.bootstrap.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('/vendor/bootstrap-daterangepicker-master/daterangepicker.css') }}" />
+
 @endsection
 
 @section('content')
@@ -10,52 +12,76 @@
 
         <div class="panel-body">
 
-            <div class="row">
-                <div class="" style="margin-bottom: 50px">
+            <div class="table-responsive">
+                <div class="" style="margin-bottom: 5%">
                     <div class="form-inline">
-                        <div class="col-md-3 col-sm-12">
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label" for="status">Status:</label>
-                                <div class="col-sm-8">
-                                    <select id="status" class="input-sm form-control" name="status">
-                                        <option value="">Status</option>
-                                        <option value="active">Active</option>
-                                        <option value="successful">Successful</option>
-                                        <option value="canceled">Canceled</option>
-                                    </select>
+                        <form class="form-inline" action="/" method="get" id="order-header-form">
+                            <div class="col-md-3 col-lg-3 col-sm-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label" for="status">Status:</label>
+                                    <div class="col-sm-8">
+                                        <select id="status" class="input-sm form-control" name="status">
+                                            <option value="">Status</option>
+                                            <option value="active">Active</option>
+                                            <option value="successful">Successful</option>
+                                            <option value="canceled">Canceled</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="pull-right">
-                            <div class="col-md-4 col-sm-12">
+                            <div class="col-lg-9 col-md-9 pull-right">
+                            <div class="col-md-3 col-lg-3 col-sm-12">
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label" for="start_date">From:</label>
+                                    <label class="col-sm-3 col-form-label" for="status">Filter On:</label>
+                                    <div class="col-sm-5">
+                                        <select id="status" class="input-sm form-control" name="filter_on">
+                                            <option value="order_date">Order Date</option>
+                                            <option value="order_due_date">Order Due Date</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-6 col-sm-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label" for="start_date">Date Range:</label>
                                     <div class="col-sm-8">
                                         <div class="input-group input-group-sm">
                                             <span class="input-group-addon">
                                                 <span class="fa fa-calendar"></span>
                                             </span>
-                                            <input type="date" id="start_date" class="input-sm form-control" name="start_date">
+                                            <input type="text" id="date_range" class="input-sm form-control" name="date_range">
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-md-4 col-sm-12">
+                                {{--<div class="col-md-6 col-lg-3 col-sm-12">--}}
+                                    {{--<div class="form-group row">--}}
+                                        {{--<label class="col-sm-1 col-form-label" for="end_date">To:</label>--}}
+                                        {{--<div class="col-sm-9">--}}
+                                            {{--<div class="input-group input-group-sm">--}}
+                                                {{--<span class="input-group-addon">--}}
+                                                    {{--<span class="fa fa-calendar"></span>--}}
+                                                {{--</span>--}}
+                                                {{--<input type="date" id="end_date" class="input-sm form-control" name="end_date">--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            <div class="col-md-3 col-lg-3 col-sm-12 ">
                                 <div class="form-group row">
-                                    <label class="col-sm-1 col-form-label" for="end_date">To:</label>
-                                    <div class="col-sm-8">
-                                        <div class="input-group input-group-sm">
-                                            <span class="input-group-addon">
-                                                <span class="fa fa-calendar"></span>
-                                            </span>
-                                            <input type="date" id="end_date" class="input-sm form-control" name="end_date">
-                                        </div>
-                                    </div>
+                                    <button type="button" id="filters-btn" class="btn btn-sm form-inline">filter</button>
                                 </div>
                             </div>
-                        </div>
+
+                                {{--<div class="col-md-3 col-lg-3 col-sm-12 ">--}}
+
+                                {{--</div>--}}
+
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -114,13 +140,31 @@
     {{--<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js" ></script>--}}
     <script type="text/javascript" src="{{ asset('/vendor/datatables/js/jquery.dataTables.js') }}" ></script>
     <script type="text/javascript" src="{{ asset('/vendor/datatables/js/dataTables.bootstrap.js') }}" ></script>
-
+    <script src="{{ asset('/vendor/bootstrap-daterangepicker-master/daterangepicker.js') }}" ></script>
+    <script src="{{ asset('/vendor/bootstrap-daterangepicker-master/moment.js') }}" ></script>
 
     <script>
         $(function() {
+
+
+            $('#date_range').daterangepicker({
+                autoUpdateInput: false,
+                locale: {
+                    cancelLabel: 'Clear'
+                }
+            });
+
+            $('#date_range').on('apply.daterangepicker', function(ev, picker) {
+                $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+            });
+
+            $('#date_range').on('cancel.daterangepicker', function(ev, picker) {
+                $(this).val('');
+            });
+
+
             var table = $('#table').DataTable({
                 processing: true,
-
                 serverSide: true,
                 iDisplayLength: 100,
                 "order": [[ 0, "desc" ]],
@@ -129,7 +173,7 @@
                     { data: 'order_number', name: 'order_number' },
 //                    { data: 'customer_number', name: 'customer_number' },
                     { data: 'customer_number', name: 'customer_number' },
-                    { data: 'creation_date', name: 'creation_date'},
+                    { data: 'delivery_date', name: 'delivery_date'},
                     { data: 'expiration_date', name: 'expiration_date'},
                     { data: 'ship_to_name', name:'ship_to_name'},
                     { data: 'ship_to_addr_1', name:'ship_to_addr_1'},
@@ -137,6 +181,12 @@
                     { data: 'ship_to_addr_3', name:'ship_to_addr_3'},
                     { data: 'ship_to_email_address', name: 'ship_to_email_address'}
                 ]
+            });
+
+            $('#filters-btn').on('click' , function () {
+                filt_val = $('#order-header-form').serialize();
+                url = "{{url('deliveries/datatable')}}"+"?"+filt_val;
+                table.ajax.url(url).load();
             });
 
             $('#table tbody').on('click', 'tr', function () {

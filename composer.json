@@ -60,7 +60,7 @@
             "@php artisan package:discover"
         ],
         "post-install-cmd": [
-            "ln -sr public/storage storage/app/public"
+            ""
         ]
     },
     "config": {

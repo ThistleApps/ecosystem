@@ -52,15 +52,15 @@
                 </li>
 
                 <!-- Configs Link -->
-                <li @if(request()->is('configs')) class="active" @endif role="presentation">
-                    <a href="{{ url('/configs') }}" aria-controls="configs">
+                <li @if(request()->is('config-default')) class="active" @endif role="presentation">
+                    <a href="{{ route('admin.config-default.index') }}" aria-controls="configs">
                         <i class="fa fa-fw fa-btn fa-gear"></i>Config/Defaults
                     </a>
                 </li>
 
                 <!-- Merchants Link -->
                 <li @if(request()->is('merchants')) class="active" @endif role="presentation">
-                    <a href="{{ url('/merchants') }}" aria-controls="merchants">
+                    <a href="{{ route('admin.merchants') }}" aria-controls="merchants">
                         <i class="fa fa-fw fa-btn fa-users"></i>Merchants
                     </a>
                 </li>

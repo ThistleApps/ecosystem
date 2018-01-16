@@ -70,34 +70,3 @@ Route::group(['prefix' => 'deliveries'] , function () {
 
 });
 
-
-
-
-
-Route::group([/*'middleware' => 'admin'*/] , function () {
-
-    Route::get('/merchants' , function (){
-        return view('pages.merchants');
-    });
-
-    Route::get('/merchants/edit' , function (){
-        return view('pages.edit-merchant');
-    });
-
-});
-
-Route::group([/*'middleware' => ['admin', 'merchant']*/], function () {
-
-    Route::get('/create/account' , function (){
-        return view('pages.create-account');
-    });
-
-//    Route::get('/deliveries' , function (){
-//        return view('pages.deliveries');
-//    });
-
-    Route::get('/configs' , function (){
-        return view('pages.configs-default');
-    });
-
-});

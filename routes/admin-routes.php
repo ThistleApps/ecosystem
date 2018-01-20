@@ -26,6 +26,29 @@ Route::group(['prefix' => 'config-default'] ,  function () {
         'as' => 'admin.config-default.index',
         'uses' => 'ConfigDefaultController@index'
     ]);
+
+    Route::get('/datatable' , [
+        'as' => 'admin.config-default.datatable-data',
+        'uses' => 'ConfigDefaultController@datatable'
+    ]);
+
+    Route::get('/datatable-editer' , [
+        'as' => 'admin.config-default.datatable-editer',
+        'uses' => 'ConfigDefaultController@datatableEditer'
+    ]);
+
+    Route::put('update/{id}' , [
+        'as' => 'admin.config-default.update',
+        'uses' => 'ConfigDefaultController@update'
+    ]);
+
+    Route::get('get/{id}' , [
+        'as' => 'admin.config-default.get-record',
+        'uses' => 'ConfigDefaultController@getSettingWithId'
+    ]);
+
+
+
 });
 
 

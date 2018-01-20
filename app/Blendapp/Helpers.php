@@ -4,13 +4,15 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 
 function setRemoteConnection($host) {
+    $db_Default_settings = \App\Models\AdminSetting::query()->where('scope' , 'Merchant DB')->get();
+
     Config::set('database.connections.remote' , [
         'host'          => $host,
         'driver'        => 'mysql',
         'port'          => \config('database.remote.TEMP_DB_PORT', '3306'),
-        'database'      => config('database.remote.TEMP_DB_DATABASE', 'forge'),
-        'username'      => config('database.remote.TEMP_DB_USERNAME', 'forge'),
-        'password'      => config('database.remote.TEMP_DB_PASSWORD', ''),
+        'database'      => @$db_Default_settings->where('slug' , \App\Models\AdminSetting::DEF_DB_NAME)->first()->value,
+        'username'      => @$db_Default_settings->where('slug' , \App\Models\AdminSetting::DEF_DB_UN)->first()->value,
+        'password'      => @$db_Default_settings->where('slug' , \App\Models\AdminSetting::DEF_DB_PW)->first()->value,
         'unix_socket'   => env('DB_SOCKET', ''),
         'charset'       => 'utf8mb4',
         'collation'     => 'utf8mb4_unicode_ci',
@@ -21,6 +23,7 @@ function test_remote_connection($wan_address) {
     setRemoteConnection($wan_address);
     try {
         $status = DB::connection('remote')->getPdo();
+
     } catch (\Exception $e) {
         $status = false;
     }

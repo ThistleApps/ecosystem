@@ -98,9 +98,7 @@ return [
     'remote' => [
         'TEMP_DB_CONNECTION' => 'mysql',
         'TEMP_DB_PORT' => '3306',
-        'TEMP_DB_DATABASE' => 'abayzing_EAGLEDW',
-        'TEMP_DB_USERNAME' => 'abayzing_READ',
-        'TEMP_DB_PASSWORD' => 'BlendApp2017'
+        'TEMP_DB_DATABASE' => 'abayzing_EAGLEDW'
     ],
 
     /*

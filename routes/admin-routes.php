@@ -7,15 +7,27 @@
  */
 
 
-Route::group(['prefix' =>'/merchants' /*'middleware' => 'admin'*/] , function () {
+Route::group(['prefix' =>'/merchants'] , function () {
 
-    Route::get('/' , function (){
-        return view('pages.merchants');
-    })->name('admin.merchants');
+    Route::get('/' , [
+        'as' => 'admin.merchants',
+        'uses' => 'MerchantsController@index'
+    ]);
 
-    Route::get('/edit' , function (){
-        return view('pages.edit-merchant');
-    })->name('admin.merchants.edit');
+    Route::get('/datatable' , [
+        'as' => 'admin.merchants.datatable',
+        'uses' => 'MerchantsController@getDatatable'
+    ]);
+
+    Route::get('{id}/edit' , [
+        'as' => 'admin.merchants.edit',
+        'uses' => 'MerchantsController@edit'
+    ]);
+
+    Route::put('{id}/update' , [
+        'as' => 'admin.merchants.update',
+        'uses' => 'MerchantsController@update'
+    ]);
 
 });
 

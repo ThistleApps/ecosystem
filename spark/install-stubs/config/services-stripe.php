@@ -31,8 +31,8 @@ return [
 
     'stripe' => [
         'model'  => App\User::class,
-        'key'    => env('STRIPE_KEY'),
-        'secret' => env('STRIPE_SECRET'),
+        'key'    => App\Models\AdminSetting::getStripeKey('stripe_pub'),
+        'secret' => App\Models\AdminSetting::getStripeKey('stripe_sec'),
     ],
 
 ];

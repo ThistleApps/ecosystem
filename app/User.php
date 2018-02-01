@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\PosType;
 use Laravel\Spark\User as SparkUser;
 
 class User extends SparkUser
@@ -43,6 +44,8 @@ class User extends SparkUser
         'billing_zip',
         'billing_country',
         'extra_billing_information',
+        'pos_mysql_un',
+        'pos_mysql_pw'
     ];
 
     /**
@@ -69,6 +72,10 @@ class User extends SparkUser
     public function roles()
     {
         return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id')->withTimestamps();
+    }
+
+    public function posType() {
+        return $this->hasOne(PosType::class , 'id' , 'pos_type');
     }
 
     /**

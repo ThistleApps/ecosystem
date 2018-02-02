@@ -72,7 +72,7 @@
                         <select id="pos_type" class="form-control" name="pos_type">
                             <option value="">Select Type</option>
                             @foreach($pos_types as $item)
-                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                <option {{$user->pos_type == $item->id?"selected":''}} value="{{ $item->id }}">{{ $item->name }}</option>
                             @endforeach
                         </select>
                     </div>

@@ -39,11 +39,44 @@
                                         <i class="fa fa-fw fa-btn fa-user"></i>Users
                                     </a>
                                 </li>
+
                             </ul>
                         </div>
                     </div>
                 </div>
+
+                <div class="panel panel-default panel-flush">
+                    <div class="panel-heading">
+                        Configurations
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="spark-settings-tabs">
+                            <ul class="nav spark-settings-stacked-tabs" role="tablist">
+
+                                <!-- Default Configurations Link -->
+                                <li role="presentation">
+                                    <a href="/spark/kiosk/config-default" >
+                                        <i class="fa fa-fw fa-btn fa-credit-card"></i>Default Configurations
+                                    </a>
+                                </li>
+
+                                <!-- Merchants Link -->
+                                <li role="presentation">
+                                    <a href="/spark/kiosk/merchants">
+                                        <i class="fa fa-fw fa-btn fa-credit-card"></i>Merchants
+                                    </a>
+                                </li>
+
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
             </div>
+
+
 
             <!-- Tab Panels -->
             <div class="col-md-8">
@@ -62,9 +95,11 @@
                     <div role="tabpanel" class="tab-pane" id="users">
                         @include('spark::kiosk.users')
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
 </spark-kiosk>
+
 @endsection

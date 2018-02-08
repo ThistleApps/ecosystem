@@ -1,54 +1,72 @@
-@extends('layouts.default')
-@section('title',  'Configs/Defaults' )
+@extends('spark::layouts.app')
+
+@section('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mousetrap/1.4.6/mousetrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+@endsection
 
 @section('content')
-    <div class="panel panel-default">
-        <div class="panel-heading text-center"><span class="fa fa-cog"></span> Configs/Defaults</div>
-        <div class="panel-body">
+        <div class="container-fluid">
             <div class="row">
+                <!-- Tabs -->
+            @include('vendor.spark.kiosk-partials.left-options-links')
 
-                <div class="col-lg-12">
-                    <table width="100%" class="table table-striped table-bordered nowrap" id="table">
-                        <thead>
-                        <tr>
-                            <th>Settings Type</th>
-                            <th>Scope</th>
-                            <th>Value</th>
-                            <th>Action</th>
-                        </tr>
-                        </thead>
-                        <tbody>
+            <!-- Tab Panels -->
+                <div class="col-md-8">
+                    <div class="panel panel-default">
+                        <div class="panel-heading text-center"><span class="fa fa-cog"></span> Configs/Defaults</div>
+                        <div class="panel-body">
+                            <div class="row">
 
-                        </tbody>
-                    </table>
-                    <!-- /.panel -->
+                                <div class="col-lg-12">
+                                    <table width="100%" class="table table-striped table-bordered nowrap" id="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Settings Type</th>
+                                            <th>Scope</th>
+                                            <th>Value</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        </tbody>
+                                    </table>
+                                    <!-- /.panel -->
+                                </div>
+                                <!-- /.col-lg-12 -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="edit-settings-modal" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+                                    <h4 class="modal-title">
+                                        Edit Default Config
+                                    </h4>
+                                </div>
+                                <div class="modal-body" id="def-conf-modal-body">
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" form="def-conf-form" class="btn btn-success">Update</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-                <!-- /.col-lg-12 -->
             </div>
+
         </div>
-    </div>
 
-    <div class="modal fade" id="edit-settings-modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-
-                    <h4 class="modal-title">
-                        Edit Default Config
-                    </h4>
-                </div>
-                <div class="modal-body" id="def-conf-modal-body">
-
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" form="def-conf-form" class="btn btn-success">Update</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
 @endsection
+
 @section('script')
     {{--<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js" ></script>--}}
     <script type="text/javascript" src="{{ asset('/vendor/datatables/js/jquery.dataTables.js') }}" ></script>
@@ -57,6 +75,7 @@
         $(function() {
 
 
+            console.log('hello000000000000000');
 
             var table = $('#table').DataTable({
                 processing: true,
@@ -75,7 +94,7 @@
         $(document).on('click' , '.setting-editor' , function () {
             setting_id = $(this).attr('data-val');
             console.log(setting_id);
-            url = "{{url('admin/config-default/get/')}}"+"/"+setting_id;
+            url = "{{url('spark/kiosk/config-default/get/')}}"+"/"+setting_id;
             $.ajax({
                 url: url,
                 error: function() {
@@ -95,7 +114,7 @@
     </script>
 
     <script type="text/template" id="order-detail-temp">
-        <form action="{{url('admin/config-default/update')}}/<%= target.id %>" class="form-horizontal" id="def-conf-form" method="post">
+        <form action="{{url('spark/kiosk/config-default/update')}}/<%= target.id %>" class="form-horizontal" id="def-conf-form" method="post">
             <input type="hidden" name="_method" value="PUT">
             <input type="hidden" name="_token" value="<%= $('meta[name="csrf-token"]').attr('content') %>">
             <div class="form-group">

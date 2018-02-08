@@ -78,6 +78,8 @@ class User extends SparkUser
         return $this->hasOne(PosType::class , 'id' , 'pos_type');
     }
 
+
+
     /**
      * @param $role
      * @return mixed

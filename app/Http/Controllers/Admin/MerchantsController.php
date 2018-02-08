@@ -17,12 +17,16 @@ class MerchantsController extends Controller
         return view('admin.merchant.index');
     }
 
-    public function getDatatable() {
+    public function getDatatable(Request $request) {
         try
         {
-
             $model = User::query();
 
+            if (isset($request->get('search')['value']) && !empty($request->get('search')['value']))
+                $model = $model->where('email' ,"LIKE",  "%".$request->get('search')['value']."%");
+
+            $model = $model->whereDoesntHave('roles')
+                ->orWhereHas('roles' , function ($q){$q->where('name' , '!=' , "Admin");});
             return DataTables::of($model)
                 ->addColumn('subscription_plan' , function ($merchant) {
                     return $merchant->sparkPlan()->name;
@@ -54,6 +58,7 @@ class MerchantsController extends Controller
 
         $merchant->pos_mysql_un = $request->pos_mysql_un;
         $merchant->pos_mysql_pw = $request->pos_mysql_pw;
+        $merchant->db_name = $request->db_name;
 
         if ($request->has('password') && !empty(trim($request->password)) )
             $merchant->password = bcrypt($request->password);

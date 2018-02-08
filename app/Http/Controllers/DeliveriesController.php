@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\MerchantDataTransectionJob;
 use App\Models\OrderHeader;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -43,5 +44,26 @@ class DeliveriesController extends Controller
         $order_header = OrderHeader::findOrFail($order_number);
 
         return $order_header->orderDetails;
+    }
+
+    public function fetchOrdersNow() {
+        try
+        {
+            $user = auth()->user();
+            $this->dispatch(new MerchantDataTransectionJob($user));
+
+            $notification = array(
+                'message' => 'Remote Orders Fetched Successfully',
+                'alert-type' => 'success'
+            );
+
+        }catch (\Exception $exception) {
+            $notification = array(
+                'message' => $exception->getMessage(),
+                'alert-type' => 'error'
+            );
+        }
+
+        return back()->with($notification);
     }
 }

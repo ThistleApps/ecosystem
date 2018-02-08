@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Jobs\MerchantDataTransectionJob;
 use App\User;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 
 class MerchantRemoteDateFetchingCommand extends Command
 {
@@ -39,6 +40,7 @@ class MerchantRemoteDateFetchingCommand extends Command
      */
     public function handle()
     {
+        Log::info('Merchant Remote Data Fetching');
         $users = User::all();
 
         foreach ($users as $user)

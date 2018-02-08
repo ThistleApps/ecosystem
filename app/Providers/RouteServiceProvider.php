@@ -64,8 +64,8 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapAdminRoutes(Router $router)
     {
         $router->group([
-            'namespace' => $this->namespace.'\Admin', 'middleware' => ['web', 'hasTeam' /*, 'admin'*/],
-            'prefix' => 'admin',
+            'namespace' => $this->namespace.'\Admin', 'middleware' => ['web', 'hasTeam', 'is_developer' /*, 'admin'*/],
+            'prefix' => 'spark/kiosk',
         ], function ($router) {
             require base_path('routes/admin-routes.php');
         });

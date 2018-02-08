@@ -8,7 +8,10 @@
 
 @section('content')
     <div class="panel panel-default">
-        <div class="panel-heading text-center"><span class="fa fa-truck"></span> Deliveries</div>
+        <div class="panel-heading text-center">
+            <span class="fa fa-truck"></span> Deliveries
+            <a href="{{route('deliveries.fetch-new-orders')}}" class="btn btn-primary pull-right">Fetch Orders Now</a>
+        </div>
 
         <div class="panel-body">
 

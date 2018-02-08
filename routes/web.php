@@ -67,6 +67,12 @@ Route::group(['prefix' => 'deliveries'] , function () {
         'uses' => 'DeliveriesController@orderDetails'
     ]);
 
+    Route::get('fetch-new-orders' , [
+        'as' => 'deliveries.fetch-new-orders',
+        'uses' => 'DeliveriesController@fetchOrdersNow'
+    ]);
+
+
 
 });
 

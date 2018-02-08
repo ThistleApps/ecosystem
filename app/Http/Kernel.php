@@ -59,5 +59,6 @@ class Kernel extends HttpKernel
         'teamSubscribed' => \Laravel\Spark\Http\Middleware\VerifyTeamIsSubscribed::class,
         'admin' => \App\Http\Middleware\AdminMiddleware::class,
         'merchant' => \App\Http\Middleware\MerchantMiddleware::class,
+        'is_developer' => \Laravel\Spark\Http\Middleware\VerifyUserIsDeveloper::class
     ];
 }

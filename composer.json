@@ -10,6 +10,7 @@
     "require": {
         "php": ">=7.0.0",
         "fideloper/proxy": "~3.3",
+        "arcanedev/log-viewer": "^4.3",
         "grimthorr/laravel-toast": "^1.1",
         "laravel/cashier": "~7.0",
         "laravel/framework": "5.5.*",

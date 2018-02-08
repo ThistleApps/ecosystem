@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\User;
 use Carbon\Carbon;
 use Laravel\Spark\Spark;
 use Laravel\Spark\Providers\AppServiceProvider as ServiceProvider;
@@ -34,7 +35,7 @@ class SparkServiceProvider extends ServiceProvider
      * @var array
      */
     protected $developers = [
-        //
+        'awais@codebrisk.com',
         'kwentllc@comcast.net'
     ];
 
@@ -52,8 +53,14 @@ class SparkServiceProvider extends ServiceProvider
      */
     public function booted()
     {
-        Spark::afterLoginRedirectTo('/profile');
 
+        $admin_emails = User::query()->whereHas('roles' , function ($q){
+            $q->where('name' , 'Admin');
+        })->pluck('email')->toArray();
+
+        Spark::developers(array_merge($admin_emails , $this->developers));
+
+        Spark::afterLoginRedirectTo('/settings');
 
         Spark::validateUsersWith(function () {
             return [

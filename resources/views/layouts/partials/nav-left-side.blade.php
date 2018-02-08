@@ -38,8 +38,8 @@
         <div class="spark-settings-tabs">
             <ul class="nav spark-settings-stacked-tabs" role="tablist">
                 <!-- Profile Link -->
-                <li @if(request()->is('profile')) class="active" @endif role="presentation">
-                    <a href="{{ url('/profile') }}" aria-controls="profile">
+                <li @if(request()->is('settings')) class="active" @endif role="presentation">
+                    <a href="{{ url('/settings') }}" aria-controls="profile">
                         <i class="fa fa-fw fa-btn fa-user"></i>Profile
                     </a>
                 </li>
@@ -51,19 +51,19 @@
                     </a>
                 </li>
 
-                <!-- Configs Link -->
-                <li @if(request()->is('config-default')) class="active" @endif role="presentation">
-                    <a href="{{ route('admin.config-default.index') }}" aria-controls="configs">
-                        <i class="fa fa-fw fa-btn fa-gear"></i>Config/Defaults
-                    </a>
-                </li>
+                {{--<!-- Configs Link -->--}}
+                {{--<li @if(request()->is('config-default')) class="active" @endif role="presentation">--}}
+                    {{--<a href="{{ route('admin.config-default.index') }}" aria-controls="configs">--}}
+                        {{--<i class="fa fa-fw fa-btn fa-gear"></i>Config/Defaults--}}
+                    {{--</a>--}}
+                {{--</li>--}}
 
-                <!-- Merchants Link -->
-                <li @if(request()->is('merchants')) class="active" @endif role="presentation">
-                    <a href="{{ route('admin.merchants') }}" aria-controls="merchants">
-                        <i class="fa fa-fw fa-btn fa-users"></i>Merchants
-                    </a>
-                </li>
+                {{--<!-- Merchants Link -->--}}
+                {{--<li @if(request()->is('merchants')) class="active" @endif role="presentation">--}}
+                    {{--<a href="{{ route('admin.merchants') }}" aria-controls="merchants">--}}
+                        {{--<i class="fa fa-fw fa-btn fa-users"></i>Merchants--}}
+                    {{--</a>--}}
+                {{--</li>--}}
 
                 <!-- Configurator Link -->
                 <li @if(request()->is('configurator')) class="active" @endif role="presentation">

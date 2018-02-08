@@ -23,7 +23,12 @@
                 <!-- Branding Image -->
 
                 @include('spark::nav.brand')
+
+                <div class="hamburger">
+                    <a href="/home" class="btn btn-default">DashBoard</a>
+                </div>
             </div>
+
 
             <div class="collapse navbar-collapse" id="spark-navbar-collapse">
                 <!-- Left Side Of Navbar -->

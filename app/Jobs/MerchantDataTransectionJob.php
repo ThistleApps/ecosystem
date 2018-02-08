@@ -48,10 +48,10 @@ class MerchantDataTransectionJob implements ShouldQueue
         if (is_null($this->user->pos_wan_address))
             throw new \Exception('This User not setup his remote database wan_address');
 
-        if (!test_remote_connection($this->user->pos_wan_address))
+        if (!test_remote_connection($this->user->pos_wan_address , $this->user))
             throw new \Exception('system not able to connect this '.$this->user->email.' merchant remote database');
 
-        setRemoteConnection($this->user->pos_wan_address);
+        setRemoteConnection( $this->user->pos_wan_address , $this->user );
 
         $field_name = $this->merchant_settings->key;
         $field_value = $this->merchant_settings->value;

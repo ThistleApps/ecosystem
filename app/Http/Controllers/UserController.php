@@ -34,7 +34,7 @@ class UserController extends Controller
 
     public function TestConnection(Request $request) {
         // Test database connection
-        $status = test_remote_connection($request->get('pos_wan_address'));
+        $status = test_remote_connection($request->get('pos_wan_address') , auth()->user());
 
         if ($status)
         {

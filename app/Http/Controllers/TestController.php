@@ -14,7 +14,7 @@ use Symfony\Component\Process\Process;
 class TestController extends Controller
 {
     public function index() {
-        $process = new Process('php artisan db:seed --class=PosTypeSeeder');
+        $process = new Process('php artisan db:seed --class=PosTypeSeeder --force');
         $process->setWorkingDirectory('../');
         $process->run();
         dd($process->getOutput());

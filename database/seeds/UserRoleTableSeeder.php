@@ -17,6 +17,7 @@ class UserRoleTableSeeder extends Seeder
 
         $user = \App\User::query()->first();
 
+        if ($user)
         $user->roles()->sync(['1']);
     }
 }

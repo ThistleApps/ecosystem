@@ -22,7 +22,6 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('/vendor/toastr-master/build/toastr.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/custom.css') }}">
 
     <style>
         .container {

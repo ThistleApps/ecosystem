@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\MerchantUpdateRequest;
+use App\Jobs\ResetMerchantPasswordJob;
 use App\Models\AdminSetting;
 use App\Models\PosType;
 use App\User;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Laravel\Spark\Http\Controllers\Auth\PasswordController;
 use Yajra\DataTables\Facades\DataTables;
 
 class MerchantsController extends Controller
@@ -72,4 +75,48 @@ class MerchantsController extends Controller
             'alert-type' => 'success'
         ]);
     }
+
+    public function resetMerchantEmail(Request $request)
+    {
+        try
+        {
+            $this->dispatch(new ResetMerchantPasswordJob($request->get('email')));
+            $response = [
+                'message' => 'Reset Password Email Has been Scheduled',
+                'alert_type' => 'success'
+            ];
+        }catch (\Exception $exception){
+            $response = $response = [
+                'message' => $exception->getMessage(),
+                'alert_type' => 'error'
+            ];
+        }
+
+        return response()->json($response);
+    }
+
+    public function merchantTestConnection(Request $request)
+    {
+
+        $status = test_remote_connection($request->get('pos_wan_address') , auth()->user() , $request->only(['db_name' , 'pos_mysql_un' , 'pos_mysql_pw' ]));
+
+        if ($status)
+        {
+            $notification = array(
+                'message' => 'Connected Successfully',
+                'alert_type' => true
+            );
+        }
+        else
+        {
+            $notification = array(
+                'message' => 'System not able to connect',
+                'alert_type' => false
+            );
+        }
+
+        return $notification;
+
+    }
+
 }

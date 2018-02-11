@@ -24,6 +24,18 @@ Route::group(['prefix' =>'/merchants'] , function () {
         'uses' => 'MerchantsController@edit'
     ]);
 
+    Route::get('passwordReset' , [
+        'as' => 'admin.merchants.password-reset',
+        'uses' => 'MerchantsController@resetMerchantEmail'
+    ]);
+
+    Route::post('test-connection' , [
+        'as' => 'admin.merchants.test-connection',
+        'uses' => 'MerchantsController@merchantTestConnection'
+    ]);
+
+
+
     Route::put('{id}/update' , [
         'as' => 'admin.merchants.update',
         'uses' => 'MerchantsController@update'

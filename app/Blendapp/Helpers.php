@@ -3,11 +3,17 @@
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 
-function setRemoteConnection($host , $user = null) {
+function setRemoteConnection($host , $user = null , $individual_cred = null) {
 
     $db_Default_settings = \App\Models\AdminSetting::query()->where('scope' , 'Merchant DB')->get();
 
-    if ($user->pos_mysql_un && $user->pos_mysql_pw && !empty($user->pos_mysql_un) && !empty($user->pos_mysql_pw))
+    if ($individual_cred && isset($individual_cred['db_name']) && isset($individual_cred['pos_mysql_un']) && isset($individual_cred['pos_mysql_pw']))
+    {
+        $db_un = $individual_cred['pos_mysql_un'];
+        $db_pw = $individual_cred['pos_mysql_pw'];
+        $db_name = $individual_cred['db_name'];
+    }
+    elseif ($user->pos_mysql_un && $user->pos_mysql_pw && !empty($user->pos_mysql_un) && !empty($user->pos_mysql_pw))
     {
         $db_un = $user->pos_mysql_un;
         $db_pw = $user->pos_mysql_pw;
@@ -34,9 +40,9 @@ function setRemoteConnection($host , $user = null) {
     ]);
 }
 
-function test_remote_connection($wan_address , $user = null) {
+function test_remote_connection($wan_address , $user = null , $individual_cred = null) {
 
-    setRemoteConnection($wan_address , $user);
+    setRemoteConnection($wan_address , $user , $individual_cred);
     try {
         $status = DB::connection('remote')->getPdo();
 

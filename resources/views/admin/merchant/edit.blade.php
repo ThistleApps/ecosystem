@@ -125,9 +125,9 @@
 
                                     <div class="form-group">
                                         <div class="col-sm-offset-4 col-sm-8">
-                                            <button class="btn btn-default" type="button">Test Connection</button>
+                                            <button class="btn btn-default" type="button" id="mr-test-connection"><span class="fa fa-spinner hide" id=""></span> Test Connection</button>
                                             <button class="btn btn-default" type="submit">Update Merchant</button>
-                                            <button class="btn btn-default" type="button" id="reset-pass">Reset Merch Password</button>
+                                            <a class="btn btn-default" id="reset-pass" href="javascript:void(0)" data-url="{{route('admin.merchants.password-reset' , ['email' => $merchant->email])}}"><span class="fa fa-spinner hide"></span>Send Reset Password Email</a>
                                         </div>
                                     </div>
 
@@ -151,13 +151,67 @@
 
 @endsection
 @section('script')
-
     <script>
         $(function() {
+            $('#mr-test-connection').on('click' , function () {
+                var connection_btn = $(this);
+                connection_btn.children('span').removeClass('hide');
+                connection_btn.children('span').addClass('fa-spin');
+                connection_btn.attr('disabled' , 'disabled');
+
+                var van = $('#pos_wan_address');
+                ip = van.val();
+                db_name = $('#db_name').val();
+                pos_mysql_un = $('#pos_mysql_un').val();
+                pos_mysql_pw = $('#pos_mysql_pw').val();
+                data = {'pos_wan_address' : ip , 'pos_mysql_un': pos_mysql_un , 'pos_mysql_pw':pos_mysql_pw , 'db_name':db_name};
+
+                $.ajax({
+                    url: "{!! route('admin.merchants.test-connection') !!}",
+                    data: data,
+                    headers: { 'X-XSRF-TOKEN' : '{{\Illuminate\Support\Facades\Crypt::encrypt(csrf_token())}}' },
+                    error: function() {
+
+                    },
+                    success: function(data) {
+
+                        connection_btn.children('span').addClass('hide');
+
+                        if (data.alert_type)
+                            toastr["success"](data.message);
+                        else
+                            toastr["error"](data.message);
+
+                        connection_btn.removeAttr('disabled');
+                    },
+                    type: 'POST'
+                });
+
+            });
+
             $('#reset-pass').on('click' , function (e) {
-                e.preventDefault();
-                $('#merchant-update-form').append("<input type='hidden' name='_pass_rest' value='true'>");
-                $('#merchant-update-form').submit();
+
+                var reset_email_btn = $(this);
+
+                reset_email_btn.children('span').removeClass('hide');
+                reset_email_btn.children('span').addClass('fa-spin');
+
+                merchant_email = "{{$merchant->email}}";
+                var action = $(this).attr('data-url');
+                $.ajax({
+                    url: action,
+                    data: {'email': merchant_email},
+                    success: function(data) {
+                        reset_email_btn.children('span').addClass('hide');
+                        reset_email_btn.children('span').removeClass('fa-spin');
+                        if (data.alert_type == 'success')
+                            toastr.success(data.message , 'Message');
+                        else
+                            toastr.error(data.message , 'Message');
+
+                    },
+                    type: 'get'
+                });
             })
         });
 

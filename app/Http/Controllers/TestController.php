@@ -17,19 +17,12 @@ class TestController extends Controller
 {
     public function index(Request $request) {
 
-//        $this->validate($request, ['email' => 'required|email']);
-//
-//        $broker = $response = $this->broker()->sendResetLink(
-//            $request->only('email')
-//        );
-//        dd($broker);
-//        $view = (new PasswordController())->sendResetLinkEmail($request);
-//        dd($view);
-//        $process = new Process('php artisan db:seed --class=PosTypeSeeder --force');
-//        $process = new Process('ls');
-//        $process->setWorkingDirectory('../storage/logs/la');
-//        $process->run();
-//        dd($process->getOutput());
+        $process = new Process('php artisan db:seed --class=AdminSettingsTableSeeder --force');
+
+        $process->setWorkingDirectory('../');
+        $process->run();
+        dd($process->getOutput());
+
 //        (new \AdminSettingsTableSeeder())->run();
 //        $this->dispatch(new MerchantDataTransectionJob(auth()->user()));
     }

@@ -35,8 +35,8 @@ class SparkServiceProvider extends ServiceProvider
      * @var array
      */
     protected $developers = [
-        'awais@codebrisk.com',
-        'kwentllc@comcast.net'
+        'awaismusl@gmail.com',
+        'kwentllc@comcast.net',
     ];
 
     /**
@@ -53,10 +53,15 @@ class SparkServiceProvider extends ServiceProvider
      */
     public function booted()
     {
-
-        $admin_emails = User::query()->whereHas('roles' , function ($q){
-            $q->where('name' , 'Admin');
-        })->pluck('email')->toArray();
+        try
+        {
+            $admin_emails = User::query()->whereHas('roles' , function ($q){
+                $q->where('name' , 'Admin');
+            })->pluck('email')->toArray();
+        }catch (\Exception $exception)
+        {
+            $admin_emails = [];
+        }
 
         Spark::developers(array_merge($admin_emails , $this->developers));
 
@@ -104,13 +109,13 @@ class SparkServiceProvider extends ServiceProvider
 
         Spark::freePlan()
             ->features([
-                'First', 'Second', 'Third'
+                'trail'
             ]);
 
         Spark::plan('Basic', 'provider-id-1')
             ->price(10)
             ->features([
-                'First', 'Second', 'Third'
+                'merchant-basic'
             ]);
     }
 }

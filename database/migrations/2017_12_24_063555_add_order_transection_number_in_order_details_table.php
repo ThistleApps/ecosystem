@@ -34,10 +34,6 @@ class AddOrderTransectionNumberInOrderDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::table('order_details', function (Blueprint $table) {
-            $table->dropForeign('transaction_number');
-            $table->dropColumn('transaction_number');
-            $table->dropColumn('ref_no');
-        });
+
     }
 }

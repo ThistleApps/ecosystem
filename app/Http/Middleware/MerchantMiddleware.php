@@ -15,13 +15,23 @@ class MerchantMiddleware
      */
     public function handle($request, Closure $next)
     {
+
+
         if (!auth()->check()) {
             return $next($request);
         }
+        $user = auth()->user();
+        $spark_properties = $user->sparkPlan();
 
-        if (!auth()->user()->hasRole('Merchant') && !auth()->user()->hasRole('Admin')) {
+//        dd($spark_properties);
+
+        if (! $user->hasRole('Merchant') && !auth()->user()->hasRole('Admin')) {
             return response('You Do Not Have Correct Permissions For This Feature!', 401);
         }
+
+
+
+
 
         return $next($request);
     }

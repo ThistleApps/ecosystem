@@ -19,18 +19,24 @@ class AdminSetting extends Model
      * @return array Stripe keys
      */
     public static function getStripeKey($key = null) {
-        //todo:for now i just hardcoded that always take test stripe keys.
-        $test = true;
-
-        if ($test)
-            $stripe_keys = self::query()->where('scope' , 'Test Api key')->pluck('value' , 'slug')->toArray();
-        else
-            $stripe_keys = self::query()->where('scope' , 'Live Api key')->pluck('value' , 'slug')->toArray();
-        
-        if (empty($stripe_keys))
+        try
         {
-            $stripe_keys['stripe_pub'] = env('STRIPE_KEY');
-            $stripe_keys['stripe_sec'] = env('STRIPE_SECRET');
+            //todo:for now i just hardcoded that always take test stripe keys.
+            $test = true;
+
+            if ($test)
+                $stripe_keys = self::query()->where('scope' , 'Test Api key')->pluck('value' , 'slug')->toArray();
+            else
+                $stripe_keys = self::query()->where('scope' , 'Live Api key')->pluck('value' , 'slug')->toArray();
+
+            if (empty($stripe_keys))
+            {
+                $stripe_keys['stripe_pub'] = env('STRIPE_KEY');
+                $stripe_keys['stripe_sec'] = env('STRIPE_SECRET');
+            }
+        }catch (\Exception $exception){
+            $stripe_keys['stripe_pub'] = null;
+            $stripe_keys['stripe_sec'] = null;
         }
 
         return $key?$stripe_keys[$key]:$stripe_keys;

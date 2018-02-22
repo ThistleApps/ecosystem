@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 
@@ -60,6 +62,26 @@ function order_codes() {
         'oh_transaction_code_3' => 'Code 3',
         'oh_transaction_code_4' => 'Code 4',
     ];
+}
+
+
+function setEnvValue($environmentName, $configKey, $newValue) {
+
+    if (!empty(trim($newValue)) && Config::get($configKey) != $newValue)
+    {
+        file_put_contents(App::environmentFilePath(), str_replace(
+            $environmentName . '=' . Config::get($configKey),
+            $environmentName . '=' . $newValue,
+            file_get_contents(App::environmentFilePath())
+        ));
+
+        Config::set($configKey, $newValue);
+
+        // Reload the cached config
+        if (file_exists(App::getCachedConfigPath())) {
+            Artisan::call("config:cache");
+        }
+    }
 }
 
 ?>

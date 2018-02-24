@@ -65,23 +65,23 @@ function order_codes() {
 }
 
 
-function setEnvValue($environmentName, $configKey, $newValue) {
-
-    if (!empty(trim($newValue)) && Config::get($configKey) != $newValue)
-    {
-        file_put_contents(App::environmentFilePath(), str_replace(
-            $environmentName . '=' . Config::get($configKey),
-            $environmentName . '=' . $newValue,
-            file_get_contents(App::environmentFilePath())
-        ));
-
-        Config::set($configKey, $newValue);
-
-        // Reload the cached config
-        if (file_exists(App::getCachedConfigPath())) {
-            Artisan::call("config:cache");
-        }
-    }
-}
+//function setEnvValue($environmentName, $configKey, $newValue) {
+//
+//    if (!empty(trim($newValue)) && Config::get($configKey) != $newValue)
+//    {
+//        file_put_contents(App::environmentFilePath(), str_replace(
+//            $environmentName . '=' . Config::get($configKey),
+//            $environmentName . '=' . $newValue,
+//            file_get_contents(App::environmentFilePath())
+//        ));
+//
+//        Config::set($configKey, $newValue);
+//
+//        // Reload the cached config
+//        if (file_exists(App::getCachedConfigPath())) {
+//            Artisan::call("config:cache");
+//        }
+//    }
+//}
 
 ?>

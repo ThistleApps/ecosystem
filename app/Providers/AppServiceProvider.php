@@ -16,12 +16,12 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-        $stripe_keys = \App\Models\AdminSetting::getStripeKey();
-        if (isset($stripe_keys['stripe_pub']) && !empty(trim($stripe_keys['stripe_pub'])) && isset($stripe_keys['stripe_sec']) && !empty(trim($stripe_keys['stripe_sec'])) )
-        {
-            setEnvValue('STRIPE_KEY' ,"services.stripe.key",  $stripe_keys['stripe_pub']);
-            setEnvValue('STRIPE_SECRET' , "services.stripe.secret" , $stripe_keys['stripe_sec']);
-        }
+//        $stripe_keys = \App\Models\AdminSetting::getStripeKey();
+//        if (isset($stripe_keys['stripe_pub']) && !empty(trim($stripe_keys['stripe_pub'])) && isset($stripe_keys['stripe_sec']) && !empty(trim($stripe_keys['stripe_sec'])) )
+//        {
+//            setEnvValue('STRIPE_KEY' ,"services.stripe.key",  $stripe_keys['stripe_pub']);
+//            setEnvValue('STRIPE_SECRET' , "services.stripe.secret" , $stripe_keys['stripe_sec']);
+//        }
 
     }
 

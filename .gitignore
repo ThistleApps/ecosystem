@@ -1,5 +1,6 @@
 /node_modules
 /public/hot
+/config/admin_settings.php
 /storage/*.key
 /vendor
 /.idea

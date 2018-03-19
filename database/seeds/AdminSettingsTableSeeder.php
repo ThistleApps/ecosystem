@@ -35,29 +35,15 @@ class AdminSettingsTableSeeder extends Seeder
         ]);
 
         \App\Models\AdminSetting::query()->create([
-            'key' => 'Stripe test Public key',
-            'Scope' => 'Test Api key',
-            'description' => 'stripe test api key just for test transactions',
-            'slug' => 'stripe_pub'
-        ]);
-
-        \App\Models\AdminSetting::query()->create([
-            'key' => 'Stripe Test Secret key',
-            'Scope' => 'Test Api key',
-            'description' => 'stripe test api key just for test transactions',
-            'slug' => 'stripe_sec'
-        ]);
-
-        \App\Models\AdminSetting::query()->create([
-            'key' => 'Stripe Live Public key',
-            'Scope' => 'Live Api key',
+            'key' => 'Stripe Public key',
+            'Scope' => 'Stripe Api key',
             'description' => 'stripe Live api key for Real transactions',
             'slug' => 'stripe_pub'
         ]);
 
         \App\Models\AdminSetting::query()->create([
-            'key' => 'Stripe Live Secret Key',
-            'Scope' => 'Live Api key',
+            'key' => 'Stripe Secret Key',
+            'Scope' => 'Stripe Api key',
             'description' => 'stripe Live api key for Real transactions',
             'slug' => 'stripe_sec'
         ]);

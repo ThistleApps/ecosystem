@@ -65,23 +65,29 @@ function order_codes() {
 }
 
 
-//function setEnvValue($environmentName, $configKey, $newValue) {
-//
-//    if (!empty(trim($newValue)) && Config::get($configKey) != $newValue)
-//    {
-//        file_put_contents(App::environmentFilePath(), str_replace(
-//            $environmentName . '=' . Config::get($configKey),
-//            $environmentName . '=' . $newValue,
-//            file_get_contents(App::environmentFilePath())
-//        ));
-//
-//        Config::set($configKey, $newValue);
-//
-//        // Reload the cached config
-//        if (file_exists(App::getCachedConfigPath())) {
-//            Artisan::call("config:cache");
-//        }
-//    }
-//}
+function set_file_value($configKey, $newValue) {
+    $old_val = \config("admin_settings.{$configKey}");
+    $found = false;
+    if (!empty(trim($newValue)) && $old_val != $newValue)
+    {
+        foreach (file(base_path('config/admin_settings.php')) as $line)
+        {
+            if(strpos($line, $configKey) !== false)
+            {
+                file_put_contents(base_path('config/admin_settings.php'), str_replace(
+                    $line,
+                    '\''.$configKey.'\'' . '=>' . '\''.$newValue.'\''.','."\r\n",
+                    file_get_contents(base_path('config/admin_settings.php'))
+                ));
+
+                $found = true;
+                echo $line;
+                break;
+            }
+        }
+    }
+
+    return $found;
+}
 
 ?>

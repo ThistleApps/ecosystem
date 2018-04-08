@@ -75,8 +75,6 @@
         $(function() {
 
 
-            console.log('hello000000000000000');
-
             var table = $('#table').DataTable({
                 processing: true,
                 serverSide: true,

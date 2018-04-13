@@ -58,7 +58,7 @@ class TicketitServiceProvider extends ServiceProvider
 
                 return $field;
             });
-
+//
             // Passing to views the master view value from the setting file
             view()->composer('ticketit::*', function ($view) {
                 $tools = new ToolsController();

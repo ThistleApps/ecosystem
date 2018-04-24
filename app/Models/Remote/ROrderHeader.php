@@ -19,6 +19,10 @@ class ROrderHeader extends Model
 
     protected static function boot()
     {
+        static::addGlobalScope('oh_order_number', function (Builder $builder) {
+            $builder->where('oh_order_number', '<>' , 0);
+        });
+
         static::addGlobalScope('select_fields', function (Builder $builder) {
             $builder->select(
                 [
@@ -51,5 +55,9 @@ class ROrderHeader extends Model
 
     public function orderDetails() {
         return $this->hasMany(ROrderDetail::class , 'od_transaction_number' , 'order_number');
+    }
+
+    public function orderStore() {
+        return $this->hasOne(RStoreInfo::class , 'st_store_number','store_number');
     }
 }

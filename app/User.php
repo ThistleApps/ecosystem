@@ -2,8 +2,13 @@
 
 namespace App;
 
+use App\Models\MerchantSetting;
+use App\Models\OrderDetail;
+use App\Models\OrderHeader;
 use App\Models\PosType;
+use App\Models\StoreInformation;
 use Laravel\Spark\User as SparkUser;
+use function MongoDB\BSON\toJSON;
 
 class User extends SparkUser
 {
@@ -87,5 +92,32 @@ class User extends SparkUser
     public function hasRole($role)
     {
         return $role ? $this->roles()->where('name', $role)->exists() : false;
+    }
+
+    public function orderHeaders()
+    {
+        return $this->hasMany(OrderHeader::class);
+    }
+
+    public function storeInformation()
+    {
+        return $this->hasMany(StoreInformation::class);
+    }
+
+    public function orderDetails()
+    {
+        return $this->hasMany(OrderDetail::class);
+    }
+
+    public function merchantSettings()
+    {
+        return $this->hasMany(MerchantSetting::class);
+    }
+
+    public function getMerchantGetswiftKey()
+    {
+        $getswift_key = $this->merchantSettings()->where('slug' , MerchantSetting::GETSWIFT_KEY_SLUG)
+            ->first();
+        return isset($getswift_key->key)?$getswift_key->key:null;
     }
 }

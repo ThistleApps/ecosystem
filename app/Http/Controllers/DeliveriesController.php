@@ -47,8 +47,8 @@ class DeliveriesController extends Controller
     }
 
     public function fetchOrdersNow() {
-        try
-        {
+//        try
+//        {
             $user = auth()->user();
             $this->dispatch(new MerchantDataTransectionJob($user));
 
@@ -57,12 +57,12 @@ class DeliveriesController extends Controller
                 'alert-type' => 'success'
             );
 
-        }catch (\Exception $exception) {
-            $notification = array(
-                'message' => $exception->getMessage(),
-                'alert-type' => 'error'
-            );
-        }
+//        }catch (\Exception $exception) {
+//            $notification = array(
+//                'message' => $exception->getMessage(),
+//                'alert-type' => 'error'
+//            );
+//        }
 
         return back()->with($notification);
     }

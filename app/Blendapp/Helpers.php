@@ -9,6 +9,7 @@ function setRemoteConnection($host , $user = null , $individual_cred = null) {
 
     $db_Default_settings = \App\Models\AdminSetting::query()->where('scope' , 'Merchant DB')->get();
 
+
     if ($individual_cred && isset($individual_cred['db_name']) && isset($individual_cred['pos_mysql_un']) && isset($individual_cred['pos_mysql_pw']))
     {
         $db_un = $individual_cred['pos_mysql_un'];
@@ -27,7 +28,6 @@ function setRemoteConnection($host , $user = null , $individual_cred = null) {
         $db_un = @$db_Default_settings->where('slug' , \App\Models\AdminSetting::DEF_DB_UN)->first()->value;
         $db_pw = @$db_Default_settings->where('slug' , \App\Models\AdminSetting::DEF_DB_PW)->first()->value;
     }
-
 
     Config::set('database.connections.remote' , [
         'host'          => $host,

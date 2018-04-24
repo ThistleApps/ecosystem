@@ -6,6 +6,8 @@ use App\Models\MerchantSetting;
 use App\Models\OrderDetail;
 use App\Models\OrderHeader;
 use App\Models\Remote\ROrderHeader;
+use App\Models\Remote\RStoreInfo;
+use App\Models\StoreInformation;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
@@ -48,6 +50,7 @@ class MerchantDataTransectionJob implements ShouldQueue
         if (is_null($this->user->pos_wan_address))
             throw new \Exception('This User not setup his remote database wan_address');
 
+
         if (!test_remote_connection($this->user->pos_wan_address , $this->user))
             throw new \Exception('system not able to connect this '.$this->user->email.' merchant remote database');
 
@@ -64,31 +67,41 @@ class MerchantDataTransectionJob implements ShouldQueue
                 });
             foreach ($remoteOHs as $remoteOH) {
 
-                OrderHeader::updateOrCreate(['order_number' => $remoteOH->order_number] , $remoteOH->getAttributes());
+                //order headers
+                $this->user->orderHeaders()
+                    ->withoutGlobalScope('user_id')
+                    ->updateOrCreate([
+                        'order_number' => $remoteOH->order_number,
+                        'user_id' => $this->user->id
+                    ],
+                    $remoteOH->getAttributes());
 
-                $order_details = $remoteOH->orderDetails->map( function ($data){
-                    $data['user_id'] = $this->user->id;
-                    return $data;
-                });
-
-                foreach ($order_details as $orderDetail) {
-                    OrderDetail::updateOrCreate(['transaction_number' => $orderDetail->transaction_number , 'ref_no' => $orderDetail->ref_no ] ,
+                echo $remoteOH->order_number."\n";
+                //order details
+                foreach ($remoteOH->orderDetails as $orderDetail)
+                {
+                    $this->user->orderDetails()
+                        ->updateOrCreate([
+                            'user_id' => $this->user->id,
+                            'transaction_number' => $orderDetail->transaction_number,
+                            'ref_no' => $orderDetail->ref_no
+                        ],
                         $orderDetail->toArray() );
+                }
+
+                // store information
+                if ($st = $remoteOH->orderStore)
+                {
+                    $this->user->storeInformation()
+                        ->updateOrCreate([
+                            'store_number' => $st->store_number,
+                            'user_id' => $this->user->id
+                        ],
+                        $st->getAttributes());
                 }
 
             }
         });
-//        dd($remoteOH->first()->orderDetails);
-//            ->map( function ($data){
-//            $data['user_id'] = $this->user->id;
-//            $data['created_at'] = Carbon::now()->toDateTimeString();
-//            return $data;
-//        })->toArray();
-
-//        OrderHeader::insert($remoteOH);
-
-
-
 
     }
 }

@@ -88,4 +88,6 @@ class User extends SparkUser
     {
         return $role ? $this->roles()->where('name', $role)->exists() : false;
     }
+
+
 }

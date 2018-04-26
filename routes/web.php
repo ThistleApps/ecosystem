@@ -16,10 +16,11 @@ Route::get('/', [
     'uses'  => 'IntegratorController@index'
 ]);
 
-Route::get('/home', 'HomeController@show');
 Route::get('/test', 'TestController@index');
 
-Route::group([/*'middleware' => ['auth', 'merchant']*/] , function () {
+//Route::group(['middleware' => ['auth', 'merchant']] , function () {
+
+    Route::get('/home', 'HomeController@show');
 
     Route::get('/profile' , [
         'as'    => 'user.profile',
@@ -36,43 +37,43 @@ Route::group([/*'middleware' => ['auth', 'merchant']*/] , function () {
         'uses'  => 'UserController@TestConnection'
     ]);
 
-});
 
-Route::group(['prefix' => 'configurator'] , function () {
+    Route::group(['prefix' => 'configurator'] , function () {
 
-    Route::get('/' , [
-        'as'    => 'configurator.index',
-        'uses'  => 'ConfiguratorController@index',
-    ]);
+        Route::get('/' , [
+            'as'    => 'configurator.index',
+            'uses'  => 'ConfiguratorController@index',
+        ]);
 
-    Route::post('/getswift' , [
-        'as'    => 'configurator.getswift.save',
-        'uses'  => 'ConfiguratorController@getswiftSettingsSave',
-    ]);
-});
+        Route::post('/getswift' , [
+            'as'    => 'configurator.getswift.save',
+            'uses'  => 'ConfiguratorController@getswiftSettingsSave',
+        ]);
+    });
 
-Route::group(['prefix' => 'deliveries'] , function () {
-    Route::get('/' , [
-        'as' => 'deliveries.index',
-        'uses' => 'DeliveriesController@index'
-    ]);
+    Route::group(['prefix' => 'deliveries'] , function () {
+        Route::get('/' , [
+            'as' => 'deliveries.index',
+            'uses' => 'DeliveriesController@index'
+        ]);
 
-    Route::get('/datatable' , [
-        'as' => 'deliveries.datatable',
-        'uses' => 'DeliveriesController@datatable'
-    ]);
+        Route::get('/datatable' , [
+            'as' => 'deliveries.datatable',
+            'uses' => 'DeliveriesController@datatable'
+        ]);
 
-    Route::get('order-details/{order_number}' , [
-        'as' => 'deliveries.order-details',
-        'uses' => 'DeliveriesController@orderDetails'
-    ]);
+        Route::get('order-details/{order_number}' , [
+            'as' => 'deliveries.order-details',
+            'uses' => 'DeliveriesController@orderDetails'
+        ]);
 
-    Route::get('fetch-new-orders' , [
-        'as' => 'deliveries.fetch-new-orders',
-        'uses' => 'DeliveriesController@fetchOrdersNow'
-    ]);
-
+        Route::get('fetch-new-orders' , [
+            'as' => 'deliveries.fetch-new-orders',
+            'uses' => 'DeliveriesController@fetchOrdersNow'
+        ]);
 
 
-});
+    });
+
+//});
 

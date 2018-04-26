@@ -31,6 +31,9 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \Laravel\Spark\Http\Middleware\CreateFreshApiToken::class,
+
+            //custom middleware
+            \App\Http\Middleware\MerchantMiddleware::class
         ],
 
         'api' => [

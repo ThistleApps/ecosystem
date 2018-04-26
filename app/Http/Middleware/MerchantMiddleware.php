@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Laravel\Spark\Spark;
 
 class MerchantMiddleware
 {
@@ -20,17 +21,21 @@ class MerchantMiddleware
         if (!auth()->check()) {
             return $next($request);
         }
+
         $user = auth()->user();
         $spark_properties = $user->sparkPlan();
 
-//        dd($spark_properties);
 
-        if (! $user->hasRole('Merchant') && !auth()->user()->hasRole('Admin')) {
-            return response('You Do Not Have Correct Permissions For This Feature!', 401);
+        //todo: it just for the temporary hardcoded the developer email there should be the admin email
+        $developers = [
+            'awaismusl@gmail.com',
+            'kwentllc@comcast.net',
+        ];
+        if (!in_array($user->email ,$developers ) && $user->posType->name != 'Epicor (Eagle)')
+        {
+            auth()->logout();
+            return response('Thanks for registering. We are currently working on this POS system and will contact you as soon as it is ready. If you require a custom quote then please let us know.!', 200);
         }
-
-
-
 
 
         return $next($request);

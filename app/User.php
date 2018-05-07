@@ -94,6 +94,7 @@ class User extends SparkUser
         return $role ? $this->roles()->where('name', $role)->exists() : false;
     }
 
+<<<<<<< HEAD
     public function orderHeaders()
     {
         return $this->hasMany(OrderHeader::class);
@@ -120,4 +121,7 @@ class User extends SparkUser
             ->first();
         return isset($getswift_key->key)?$getswift_key->key:null;
     }
+=======
+
+>>>>>>> 510f38c9fdf486b70dea13fe2b868ff53a264ec4
 }

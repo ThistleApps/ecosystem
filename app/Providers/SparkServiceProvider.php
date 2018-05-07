@@ -58,6 +58,7 @@ class SparkServiceProvider extends ServiceProvider
             $admin_emails = User::query()->whereHas('roles' , function ($q){
                 $q->where('name' , 'Admin');
             })->pluck('email')->toArray();
+
         }catch (\Exception $exception)
         {
             $admin_emails = [];

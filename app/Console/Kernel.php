@@ -2,7 +2,6 @@
 
 namespace App\Console;
 
-use App\Console\Commands\MerchantRemoteDateFetchingCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -14,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        MerchantRemoteDateFetchingCommand::class
+        \App\Console\Commands\MerchantRemoteDateFetchingCommand::class,
+        \App\Console\Commands\getswiftDeliveriesUpload::class
     ];
 
     /**
@@ -26,7 +26,10 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
          $schedule->command('merchant-remote-data-fetch')
-                  ->everyMinute();
+                  ->hourly()->withoutOverlapping();
+
+        $schedule->command('sync:getswift-deliveries')
+            ->hourly()->withoutOverlapping();
     }
 
     /**

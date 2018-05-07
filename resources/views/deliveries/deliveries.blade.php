@@ -98,6 +98,7 @@
                         <th>Cust Number</th>
                         <th>Order Date</th>
                         <th>Order Due Date</th>
+                        <th>Status</th>
                         <th>Ship To</th>
                         <th>Address 1</th>
                         <th>Address 2</th>
@@ -174,10 +175,10 @@
                 ajax: '{!! route('deliveries.datatable') !!}',
                 columns: [
                     { data: 'order_number', name: 'order_number' },
-//                    { data: 'customer_number', name: 'customer_number' },
                     { data: 'customer_number', name: 'customer_number' },
                     { data: 'delivery_date', name: 'delivery_date'},
                     { data: 'expiration_date', name: 'expiration_date'},
+                    { data: 'getswift_status', name: 'getswift_status' },
                     { data: 'ship_to_name', name:'ship_to_name'},
                     { data: 'ship_to_addr_1', name:'ship_to_addr_1'},
                     { data: 'ship_to_addr_2', name:'ship_to_addr_2'},

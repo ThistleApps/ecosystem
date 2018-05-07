@@ -19,7 +19,6 @@ class DeliveriesController extends Controller
 //        return $request->all();
         $model = OrderHeader::query();
 
-
         if ($request->has('date_range') && !empty(trim($request->date_range)))
         {
             $date = explode(' - ' , $request->date_range);
@@ -30,7 +29,6 @@ class DeliveriesController extends Controller
                 $model = $model->where('delivery_date' ,'>=', $date[0])->where('delivery_date' ,'<=', $date[1]);
             if (!empty(trim($request->date_range)) && !empty(trim($request->filter_on)) && $request->filter_on == 'order_due_date')
                 $model = $model->where('expiration_date' ,'>=', $date[0])->where('expiration_date' ,'<=', $date[1]);
-
         }
 
         if(!empty(trim($request->status)) )

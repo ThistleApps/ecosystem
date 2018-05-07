@@ -25,6 +25,11 @@ class ApiRequest
 
     }
 
+    /**
+     * @param $url
+     * @param $data
+     * @return array list
+     */
     public static function curlRequest($url , $data)
     {
         $curl = curl_init();
@@ -46,15 +51,19 @@ class ApiRequest
             ),
         ));
 
-        $response = curl_exec($curl);
+        $res = curl_exec($curl);
         $err = curl_error($curl);
+
+        $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
         curl_close($curl);
 
         if ($err) {
-            return $err;
+            $response = $err;
         } else {
-            return $response;
+            $response = $res;
         }
+
+        return array(\GuzzleHttp\json_decode($response) , $httpcode);
     }
 }

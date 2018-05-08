@@ -6,7 +6,7 @@
  * Time: 10:48 PM
  */
 
-
+Route::get('logs', '\Melihovv\LaravelLogViewer\LaravelLogViewerController@index');
 Route::group(['prefix' =>'/merchants'] , function () {
 
     Route::get('/' , [

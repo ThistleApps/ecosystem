@@ -170,6 +170,7 @@ return [
 
         Yajra\DataTables\DatatablesServiceProvider::class,
         Arcanedev\LogViewer\LogViewerServiceProvider::class,
+        Melihovv\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
 
         /*
          * Application Service Providers...

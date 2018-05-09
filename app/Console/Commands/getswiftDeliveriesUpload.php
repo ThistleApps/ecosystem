@@ -48,6 +48,14 @@ class getswiftDeliveriesUpload extends Command
         {
             Auth::loginUsingId($user->id);
 
+            $getswift_key = auth()->user()->getMerchantGetswiftKey();
+
+            if (is_null($getswift_key))
+            {
+                Log::info("getswift order sync: this merchant ".auth()->user()->email. " not have the getswift key");
+                continue;
+            }
+
             $order_headers = OrderHeader::query()->where(function ($q){
                 $q->whereNull('getswift_status')->orWhere('getswift_status' , OrderHeader::DELIVERY_NEW);
             })->orderByDesc('id')->get();
@@ -63,13 +71,17 @@ class getswiftDeliveriesUpload extends Command
                 echo "response code ". $httpcode ." ";
                 if ($httpcode != 200 && isset($response->message))
                 {
-                    Log::notice('getswift order sync: '.$response->message);
+                    Log::error('getswift order sync: order_number: '.$order_header->order_number.' -----message:---- '.$response->message);
                     continue;
                 }
 
                 $order_header->getswift_status = OrderHeader::GETSWIFT_STATUS_POSTED;
 
-                $order_header->save();
+                if ($order_header->save())
+                {
+                    Log::info('getswift order sync: order_number: '.$order_header->order_number.' -----message:---- : posted successfully');
+                }
+
             }
 
             Auth::logout();
@@ -77,11 +89,8 @@ class getswiftDeliveriesUpload extends Command
 
     }
 
-    private function mappingGetswiftFeilds($order_header)
+    private function mappingGetswiftFeilds($order_header , $getswift_key)
     {
-
-        $getswift_key = auth()->user()->getMerchantGetswiftKey();
-
         $order_store_info = $order_header->storeInfo;
 
         $items = [];

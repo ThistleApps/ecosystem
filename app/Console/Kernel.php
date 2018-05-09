@@ -29,7 +29,7 @@ class Kernel extends ConsoleKernel
                   ->hourly()->withoutOverlapping();
 
         $schedule->command('sync:getswift-deliveries')
-            ->hourly()->withoutOverlapping();
+            ->everyFiveMinutes()->withoutOverlapping();
     }
 
     /**

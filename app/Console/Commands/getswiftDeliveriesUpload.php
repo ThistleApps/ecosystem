@@ -64,7 +64,7 @@ class getswiftDeliveriesUpload extends Command
             {
                 $url = config('getswift.base_url').config('getswift.deliveries');
 
-                $request_data = $this->mappingGetswiftFeilds($order_header);
+                $request_data = $this->mappingGetswiftFeilds($order_header , $getswift_key);
 
                 list($response , $httpcode) = ApiRequest::curlRequest($url , $request_data);
 

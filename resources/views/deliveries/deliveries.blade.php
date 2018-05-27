@@ -93,21 +93,20 @@
                 <table width="100%" class="table table-striped table-bordered nowrap" id="table">
                     <thead>
                     <tr>
-                        <th>Order Number</th>
+                        <th>Order No</th>
                         {{--<th>Trans Ty</th>--}}
-                        <th>Cust Number</th>
+                        <th>Cust No</th>
                         <th>Order Date</th>
-                        <th>Order Due Date</th>
+                        <th>Due Date</th>
                         <th>Status</th>
                         <th>Ship To</th>
                         <th>Address 1</th>
                         <th>Address 2</th>
                         <th>Address 3</th>
                         <th>Email</th>
-                        {{--<th>Status</th>--}}
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="fbody">
 
                     </tbody>
                 </table>
@@ -168,9 +167,17 @@
 
 
             var table = $('#table').DataTable({
+                details: {
+                    type: 'column'
+                },
+                columnDefs: [ {
+                    className: 'control',
+                    orderable: false,
+                    targets:   0
+                } ],
                 processing: true,
                 serverSide: true,
-                iDisplayLength: 100,
+                iDisplayLength: 10,
                 "order": [[ 0, "desc" ]],
                 ajax: '{!! route('deliveries.datatable') !!}',
                 columns: [

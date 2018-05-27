@@ -18,7 +18,7 @@ Route::get('/', [
 
 Route::get('/test', 'TestController@index');
 
-//Route::group(['middleware' => ['auth', 'merchant']] , function () {
+Route::group(['middleware' => ['auth']] , function () {
 
     Route::get('/home', 'HomeController@show');
 
@@ -75,5 +75,5 @@ Route::get('/test', 'TestController@index');
 
     });
 
-//});
+});
 

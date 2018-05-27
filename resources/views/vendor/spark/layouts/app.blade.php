@@ -17,6 +17,7 @@
     <link href="/css/sweetalert.css" rel="stylesheet">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
+    <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('/vendor/toastr-master/build/toastr.min.css') }}">
 
     <style>
@@ -59,18 +60,15 @@
     <script src="/js/sweetalert.min.js"></script>
     <script src="{{ asset('/vendor/toastr-master/build/toastr.min.js') }}"></script>
 
-    <script>
+<script>
     $('#kios-merchant-link').on('click' , function () {
         window.location.href = "{{route('admin.merchants')}}"
     });
     $('#kios-default-config-link').on('click' , function () {
         window.location.href = "{{route('admin.config-default.index')}}"
     });
-</script>
-    @yield('script')
 
-    <script>
-                @if(Session::has('message'))
+    @if(Session::has('message'))
         var type = "{{ Session::get('alert-type', 'info') }}";
         switch (type) {
             case 'info':
@@ -89,24 +87,28 @@
                 toastr.error("{{ Session::get('message') }}");
                 break;
         }
-        @endif
-    </script>
+    @endif
 
-<script>
-    toastr.options = {
-        "closeButton": true,
-        "debug": false,
-        "positionClass": "toast-top-right",
-        "onclick": null,
-        "showDuration": "1000",
-        "hideDuration": "1000",
-        "timeOut": "5000",
-        "extendedTimeOut": "1000",
-        "showEasing": "swing",
-        "hideEasing": "swing",
-        "showMethod": "slideDown",
-        "hideMethod": "fadeOut"
-    };
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "positionClass": "toast-top-right",
+            "onclick": null,
+            "showDuration": "1000",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "swing",
+            "showMethod": "slideDown",
+            "hideMethod": "fadeOut"
+        };
+
 </script>
+
+
+    @yield('script')
+
+
 </body>
 </html>

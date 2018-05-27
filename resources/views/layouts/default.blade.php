@@ -14,11 +14,8 @@
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
 
     <!-- CSS -->
-    <link href="{{ asset('/css/sweetalert.css') }}" rel="stylesheet">
+    <link href="/css/sweetalert.css" rel="stylesheet">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-
-    {{--<link rel="stylesheet" href="css/navbar-left.min.css">--}}
-
 
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('/vendor/toastr-master/build/toastr.min.css') }}">
@@ -29,12 +26,12 @@
         }
     </style>
 
-@yield('style')
+    @yield('style')
 
-<!-- Scripts -->
-@yield('scripts', '')
+    <!-- Scripts -->
+    @yield('scripts', '')
 
-<!-- Global Spark Object -->
+    <!-- Global Spark Object -->
     <script>
         window.Spark = <?php echo json_encode(array_merge(
             Spark::scriptVariables(), []
@@ -44,14 +41,15 @@
 <body class="with-navbar">
 
 <div id="spark-app" v-cloak>
-    <!-- Navigation -->
-@if (Auth::check())
-    @include('spark::nav.user')
-@else
-    @include('spark::nav.guest')
-@endif
 
-<!-- Main Content -->
+    <!-- Navigation -->
+    @if (Auth::check())
+        @include('spark::nav.user')
+    @else
+        @include('spark::nav.guest')
+    @endif
+
+    <!-- Main Content -->
     <div id="page-wrapper">
 
         <div class="spark-screen container">
@@ -78,18 +76,22 @@
     @endif
 </div>
 
-<!-- JavaScript -->
-<script src="{{ mix('js/app.js') }}"></script>
-<script src="{{ asset('/js/sweetalert.min.js') }}"></script>
-
-{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>--}}
-
-<script src="{{ asset('/vendor/toastr-master/build/toastr.min.js') }}"></script>
+    <!-- JavaScript -->
+    <script src="{{ mix('js/app.js') }}"></script>
+    <script src="/js/sweetalert.min.js"></script>
+    <script src="{{ asset('/vendor/toastr-master/build/toastr.min.js') }}"></script>
 
 
-<script async defer src="https://buttons.github.io/buttons.js"></script>
+{{--<script async defer src="https://buttons.github.io/buttons.js"></script>--}}
 
 <script>
+    $('#kios-merchant-link').on('click' , function () {
+        window.location.href = "{{route('admin.merchants')}}"
+    });
+    $('#kios-default-config-link').on('click' , function () {
+        window.location.href = "{{route('admin.config-default.index')}}"
+    });
+
     @if(Session::has('message'))
         var type = "{{ Session::get('alert-type', 'info') }}";
         switch (type) {
@@ -110,10 +112,26 @@
                 break;
         }
     @endif
+
+        toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "positionClass": "toast-top-right",
+        "onclick": null,
+        "showDuration": "1000",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "swing",
+        "showMethod": "slideDown",
+        "hideMethod": "fadeOut"
+    };
+
 </script>
 
 @yield('script')
-<script src="{{ asset('js/app.js') }}"></script>
+
 @yield('footer')
 </body>
 </html>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\MerchantDataTransectionJob;
+use App\Models\OrderDetail;
 use App\Models\OrderHeader;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -35,7 +36,18 @@ class DeliveriesController extends Controller
             $model = $model->where('status' , $request->status);
 
 
-        return DataTables::of($model)->toJson();
+        return DataTables::of($model)
+            ->addColumn('action', function ($order){
+                $resetbutton = '';
+                if ($order->getswift_status == OrderHeader::DELIVERY_CANCELLED)
+                $resetbutton = "<button class='btn btn-danger od-reset-btn' data-id='".$order->order_number."'>Reset</button>";
+                $edit = "<a href='".route('deliveries.edit' , $order->id)."'  class='btn btn-primary btn-sm-block' data-id='".$order->order_number."'>edit</a>";
+                return "<div class='btn-group btn-group-xs'>".$resetbutton.$edit.'</div>';
+            })
+            ->setRowClass(function ($order) {
+                return $order->getswift_status == OrderHeader::DELIVERY_CANCELLED ? 'background-col' : '';
+            })
+            ->make(true);
     }
 
     public function orderDetails($order_number) {
@@ -63,5 +75,45 @@ class DeliveriesController extends Controller
 //        }
 
         return back()->with($notification);
+    }
+
+    public function edit($id)
+    {
+        $delivery = OrderHeader::find($id);
+
+        return view('deliveries.edit', compact('delivery'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $delivery = OrderHeader::find($id);
+        $delivery->update($request->all());
+
+        return back();
+    }
+
+    public function itemRemove(Request $request)
+    {
+        OrderDetail::where('id', $request->id)->delete();
+
+        $notification = array(
+            'message' => 'Item removed Successfully',
+            'alert-type' => 'success'
+        );
+        return response()->json($notification);
+    }
+
+    public function itemUpdate(Request $request)
+    {
+//        dd($request->all());
+    }
+
+    public function getswiftReset($id)
+    {
+        $delivery = OrderHeader::findOrFail($id);
+
+        $delivery->update(['getswift_status' => null]);
+
+        return back();
     }
 }

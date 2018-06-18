@@ -4,6 +4,11 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('/vendor/datatables/css/dataTables.bootstrap.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('/vendor/bootstrap-daterangepicker-master/daterangepicker.css') }}" />
 
+    <style>
+        .background-col {
+            background-color: #f9c3d073!important;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -104,6 +109,7 @@
                         <th>Address 2</th>
                         <th>Address 3</th>
                         <th>Email</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
                     <tbody class="fbody">
@@ -136,6 +142,27 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="OD-reset-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button " class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+                    <h4 class="modal-title">
+                        Reset Order Header
+                    </h4>
+                </div>
+                <div class="modal-body" id="OD-reset-modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="reset-order-proceed" class="btn btn-danger" data-dismiss="modal">Proceed</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     {{--@include('deliveries.partials.order-details-modal')--}}
 @endsection
 {{-- page level scripts --}}
@@ -155,6 +182,18 @@
                 locale: {
                     cancelLabel: 'Clear'
                 }
+            });
+
+            $('#reset-order-proceed').on('click', function () {
+                window.location.href = '{{route('deliveries.index')}}/'+$('#reset_od_id').val()+'/getswift-reset';
+            });
+
+            $(document).on('click', '.od-reset-btn' , function () {
+                console.log('hello');
+                var order_id = $(this).attr('data-id');
+                $('#OD-reset-modal').modal().show();
+                $('#OD-reset-modal-body').html('Are you sure to reset this '+order_id+' Getswfit order Status?');
+                $('#OD-reset-modal-body').append("<input type='hidden' id='reset_od_id' name='reset_od_id' value='"+order_id+"'>")
             });
 
             $('#date_range').on('apply.daterangepicker', function(ev, picker) {
@@ -190,7 +229,8 @@
                     { data: 'ship_to_addr_1', name:'ship_to_addr_1'},
                     { data: 'ship_to_addr_2', name:'ship_to_addr_2'},
                     { data: 'ship_to_addr_3', name:'ship_to_addr_3'},
-                    { data: 'ship_to_email_address', name: 'ship_to_email_address'}
+                    { data: 'ship_to_email_address', name: 'ship_to_email_address'},
+                    { data: 'action', name: 'action'}
                 ]
             });
 
@@ -200,7 +240,7 @@
                 table.ajax.url(url).load();
             });
 
-            $('#table tbody').on('click', 'tr', function () {
+            $('#table tbody').on('dblclick', 'td', function (t) {
                 var data = table.row( this ).data();
                 var order_number = data['order_number'];
                 var url = "{{url('deliveries/order-details/')}}/"+order_number;

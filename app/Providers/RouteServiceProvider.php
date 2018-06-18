@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Routing\Route;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -40,7 +41,7 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapAdminRoutes($router);
 
         $this->mapApiRoutes($router);
-
+        $this->mapWebhookListener($router);
         //
     }
 
@@ -86,5 +87,16 @@ class RouteServiceProvider extends ServiceProvider
         ], function ($router) {
             require base_path('routes/api.php');
         });
+    }
+
+    public function mapWebhookListener(Router $router)
+    {
+        $router->group([
+            'namespace' => 'App\Http\Controllers\Webhook',
+            'middleware' => 'web',
+            'prefix' => 'webhook-listen',
+        ], function ($router) {
+            require base_path('routes/webhook-listener.php');
+        });         
     }
 }

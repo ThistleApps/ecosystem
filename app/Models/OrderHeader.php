@@ -9,10 +9,13 @@ class OrderHeader extends Model
 {
 
     CONST DELIVERY_NEW = 'New'; //Posted to Blend but not sent to Get Swift
-    CONST GETSWIFT_STATUS_POSTED = 'Posted'; //Sent to Get Swift
-    CONST GETSWIFT_STATUS_READY_FOR_DELIVERY = 'Ready for Delivery'; //The signal to the driver that these are ready for pickup
-    CONST GETSWIFT_STATUS_OUT_FOR_DELIVERY = 'Out for Delivery'; //When the driver starts the trip using Get Swift
-    CONST GETSWIFT_STATUS_COMPLETE = 'Complete'; //After the driver drops off the packages and marks the order as delivered
+    CONST DELIVERY_ACCEPTED = 'Driver Accepted';
+    CONST DELIVERY_ADDED = 'Posted/Added';
+    CONST DELIVERY_CANCELLED = 'Cancelled';
+    CONST DELIVERY_DRIVER_DROPOFF = 'Driver At Dropoff';
+    CONST DELIVERY_DRIVER_PICKUP = 'Ready for Delivery';
+    CONST DELIVERY_FINISHED = 'Complete';
+    CONST DELIVERY_ONWAY = 'On a Way';
 
     protected $guarded = [];
 
@@ -35,6 +38,11 @@ class OrderHeader extends Model
         $this->attributes['delivery_date'] = $value == '0000-00-00'?null:$value;
     }
 
+    public static function find($id)
+    {
+        return static::where('id', $id)->first();
+    }
+
     public function orderDetails() {
         return $this->hasMany(OrderDetail::class , 'transaction_number' , 'order_number');
     }
@@ -52,5 +60,10 @@ class OrderHeader extends Model
     public function getFullAddressAttribute()
     {
         return $this->ship_to_addr_1.', '.$this->ship_to_addr_2.(!empty($this->ship_to_addr_2)?', ':'').$this->ship_to_addr_3;
+    }
+
+    public function getswiftLogs()
+    {
+        return $this->hasMany(GetswiftOrderLog::class);
     }
 }

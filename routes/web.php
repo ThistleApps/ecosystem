@@ -52,10 +52,39 @@ Route::group(['middleware' => ['auth']] , function () {
     });
 
     Route::group(['prefix' => 'deliveries'] , function () {
+
         Route::get('/' , [
             'as' => 'deliveries.index',
             'uses' => 'DeliveriesController@index'
         ]);
+
+        Route::get('/{id}/edit' , [
+            'as' => 'deliveries.edit',
+            'uses' => 'DeliveriesController@edit'
+        ]);
+
+        Route::get('/{id}/getswift-reset' , [
+            'as' => 'deliveries.getswift.reset',
+            'uses' => 'DeliveriesController@getswiftReset'
+        ]);
+
+        Route::post('/item/update' , [
+            'as' => 'deliveries.item.update',
+            'uses' => 'DeliveriesController@itemUpdate'
+        ]);
+
+        Route::put('/{id}/update' , [
+            'as' => 'deliveries.update',
+            'uses' => 'DeliveriesController@update'
+        ]);
+
+
+        Route::post('/item/remove' , [
+            'as' => 'deliveries.item.remove',
+            'uses' => 'DeliveriesController@itemRemove'
+        ]);
+
+
 
         Route::get('/datatable' , [
             'as' => 'deliveries.datatable',
@@ -66,6 +95,7 @@ Route::group(['middleware' => ['auth']] , function () {
             'as' => 'deliveries.order-details',
             'uses' => 'DeliveriesController@orderDetails'
         ]);
+
 
         Route::get('fetch-new-orders' , [
             'as' => 'deliveries.fetch-new-orders',

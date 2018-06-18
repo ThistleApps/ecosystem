@@ -101,7 +101,6 @@ class getswiftDeliveriesUpload extends Command
             $item['sku'] =  trim($orderDetail->sku_number);
             $item['description'] =  $orderDetail->description;
             $item['price'] =  $orderDetail->cust_price;
-
             $items[] = $item;
         }
 
@@ -110,7 +109,7 @@ class getswiftDeliveriesUpload extends Command
             'booking' =>
                 array (
                     'reference' => $order_header->order_number,
-                    'deliveryInstructions' => '', // need to add this deliveryInstruction in orderDetail model in orderheader table
+                    'deliveryInstructions' => $order_header->delivery_instruction, // need to add this deliveryInstruction in orderDetail model in orderheader table
                     'items' => $items,
                     'pickupTime' => \Carbon\Carbon::parse($order_header->creation_date)->format('Y-m-d\Th:m:s.000000+00:00'),
                     'pickupDetail' =>
@@ -135,8 +134,38 @@ class getswiftDeliveriesUpload extends Command
 //                            'description' => '',
                             'address' => $order_header->full_address,
                         ),
+                    'webhooks' =>
+                        array(
+                            [
+                                'eventName' => 'job/added',
+                                'url' => route('delivery.job.added', $order_header->id)
+                            ],
+                            [
+                                'eventName' => 'job/accepted',
+                                'url' => route('delivery.job.accepted', $order_header->id)
+                            ],
+                            [
+                                'eventName' => 'job/driveratpickup',
+                                'url' => route('delivery.job.driverpickup', $order_header->id)
+                            ],
+                            [
+                                'eventName' => 'job/onway',
+                                'url' => route('delivery.job.onway', $order_header->id)
+                            ],
+                            [
+                                'eventName' => 'job/driveratdropoff',
+                                'url' => route('delivery.job.driveratdropoff', $order_header->id)
+                            ],
+                            [
+                                'eventName' => 'job/finished',
+                                'url' => route('delivery.job.finished', $order_header->id)
+                            ],
+                            [
+                                'eventName' => 'job/cancelled',
+                                'url' => route('delivery.job.cancelled', $order_header->id)
+                            ],
 
-
+                        )
                         ),
                     );
 

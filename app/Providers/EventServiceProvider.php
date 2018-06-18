@@ -63,6 +63,37 @@ class EventServiceProvider extends ServiceProvider
         'Laravel\Spark\Events\Teams\UserInvitedToTeam' => [
             'Laravel\Spark\Listeners\Teams\CreateInvitationNotification',
         ],
+
+        //getswift related events
+
+        \App\Events\Getswift\JobAcceptedEvent::class => [
+            \App\Listeners\GetSwift\DeliveryAccepted::class
+        ],
+
+        \App\Events\Getswift\JobAddedEvent::class => [
+            \App\Listeners\GetSwift\DeliveryAdded::class
+        ],
+
+        \App\Events\Getswift\JobCancelledEvent::class => [
+            \App\Listeners\GetSwift\DeliveryCancelled::class
+        ],
+
+        \App\Events\Getswift\JobDriverAtDropoffEvent::class => [
+            \App\Listeners\GetSwift\DeliveryDriverAtDropoff::class
+        ],
+
+        \App\Events\Getswift\JobDriverAtPickupEvent::class => [
+            \App\Listeners\GetSwift\DeliveryDriverAtPickup::class
+        ],
+
+        \App\Events\Getswift\JobFinishedEvent::class => [
+            \App\Listeners\GetSwift\DeliveryFinished::class
+        ],
+
+        \App\Events\Getswift\JobOnwayEvent::class => [
+            \App\Listeners\GetSwift\DeliveryOnway::class
+        ]
+        
     ];
 
     /**

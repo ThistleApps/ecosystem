@@ -53,11 +53,21 @@
                             <div class="text-center">
                                 <img class="card-img-top" src="{{asset('/img/MailChimp.png')}}" alt="Card image cap">
                             </div>
-                            <div class="coming-soon text-center">
+                            {{-- <div class="coming-soon text-center">
                                 <h3>Coming Soon</h3>
-                            </div>
+                            </div> --}}
                             <div class="text-center">
-                                <h3>MailChimp</h3>
+                                @unless($mc_valid)
+                                {{ __('configurator.mailchimp.connect') }}<br>
+                                <a href="{{ route('configurator.mailchimp.auth') }}" class="btn btn-primary">
+                                    {{ __('configurator.authorize') }}
+                                </a>
+                                @else
+                                    {{ __('configurator.mailchimp.connected') }}<br>
+                                    <button id="mailchimp-config" class="btn btn-success">
+                                        {{ __('configurator.conf') }}
+                                    </button>
+                                @endunless
                             </div>
                         </div>
                     </div>
@@ -148,14 +158,77 @@
 
         </div>
     </div>
+
+    <div id="mailchimp-conf-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">{{ __('configurator.mailchimp.modal-header') }}</h4>
+                </div>
+                <div class="modal-body">
+
+                    <form class="form-horizontal" id="mailchimp-form" method="post" action="{{route('configurator.mailchimp.save')}}" role="form">
+                        {{ csrf_field() }}
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3" for="customers_list">
+                                {{ __('configurator.mailchimp.customers') }}
+                            </label>
+
+                            <div class="col-lg-9">
+                                    <select name="customers_list" class="form-control">
+                                        @foreach($mc_lists as $key => $value)
+                                            <option {{ isset($mc_customer) && $mc_customer->key == $key ? 'selected' : ''}} value="{{$key}}">
+                                                {{$value}}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <label class="control-label col-md-3" for="transactions_list">
+                                {{ __('configurator.mailchimp.transactions') }}
+                            </label>
+
+                            <div class="col-lg-9">
+                                <select name="transactions_list" class="form-control">
+                                        @foreach($mc_lists as $key => $value)
+                                            <option {{ isset($mc_transaction) && $mc_transaction->key == $key ? 'selected' : ''}} value="{{$key}}">
+                                                {{$value}}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" form="mailchimp-form" class="btn btn-success">
+                        {{ __('configurator.update') }}
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        {{ __('configurator.close') }}
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 @endsection
 @section('script')
 <script>
     $('document').ready(function () {
-        $('#get-swift-config').on('click' , function () {
+        $('#get-swift-config').on('click', function () {
             $('#getswift-conf-modal').modal('show');
         });
 
+        $('#mailchimp-config').on('click', function() {
+            $('#mailchimp-conf-modal').modal('show');
+        });
     });
 </script>
 @endsection

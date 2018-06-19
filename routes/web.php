@@ -9,45 +9,52 @@
 | It's a breeze. Simply tell Laravel the URIs it should respond to
 | and give it the controller to call when that URI is requested.
 |
-*/
+ */
 
 Route::get('/', [
-    'as'    => 'integrator',
-    'uses'  => 'IntegratorController@index'
+    'as'   => 'integrator',
+    'uses' => 'IntegratorController@index',
 ]);
 
 Route::get('/test', 'TestController@index');
 
-Route::group(['middleware' => ['auth']] , function () {
-
+Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', 'HomeController@show');
 
-    Route::get('/profile' , [
-        'as'    => 'user.profile',
-        'uses'  => 'UserController@index'
+    Route::get('/profile', [
+        'as'   => 'user.profile',
+        'uses' => 'UserController@index',
     ]);
 
     Route::post('/profile/update', [
-        'as'    => 'user.profile.update',
-        'uses'  => 'UserController@update'
+        'as'   => 'user.profile.update',
+        'uses' => 'UserController@update',
     ]);
 
     Route::post('/profile/test-connection', [
-        'as'    => 'user.profile.test.connection',
-        'uses'  => 'UserController@TestConnection'
+        'as'   => 'user.profile.test.connection',
+        'uses' => 'UserController@TestConnection',
     ]);
 
-
-    Route::group(['prefix' => 'configurator'] , function () {
-
-        Route::get('/' , [
-            'as'    => 'configurator.index',
-            'uses'  => 'ConfiguratorController@index',
+    Route::group(['prefix' => 'configurator'], function () {
+        Route::get('/', [
+            'as'   => 'configurator.index',
+            'uses' => 'ConfiguratorController@index',
         ]);
 
-        Route::post('/getswift' , [
-            'as'    => 'configurator.getswift.save',
-            'uses'  => 'ConfiguratorController@getswiftSettingsSave',
+        Route::post('/getswift', [
+            'as'   => 'configurator.getswift.save',
+            'uses' => 'ConfiguratorController@getswiftSettingsSave',
+        ]);
+
+        Route::get('mailchimp', [
+            'as'   => 'configurator.mailchimp.auth',
+            'uses' => 'ConfiguratorController@mailchimpAuth',
+        ]);
+
+        Route::post('mailchimp', [
+            'as'   => 'configurator.mailchimp.save',
+            'uses' => 'ConfiguratorController@mailchimpSave',
         ]);
     });
 
@@ -91,19 +98,14 @@ Route::group(['middleware' => ['auth']] , function () {
             'uses' => 'DeliveriesController@datatable'
         ]);
 
-        Route::get('order-details/{order_number}' , [
-            'as' => 'deliveries.order-details',
-            'uses' => 'DeliveriesController@orderDetails'
+        Route::get('order-details/{order_number}', [
+            'as'   => 'deliveries.order-details',
+            'uses' => 'DeliveriesController@orderDetails',
         ]);
 
-
-        Route::get('fetch-new-orders' , [
-            'as' => 'deliveries.fetch-new-orders',
-            'uses' => 'DeliveriesController@fetchOrdersNow'
+        Route::get('fetch-new-orders', [
+            'as'   => 'deliveries.fetch-new-orders',
+            'uses' => 'DeliveriesController@fetchOrdersNow',
         ]);
-
-
     });
-
 });
-

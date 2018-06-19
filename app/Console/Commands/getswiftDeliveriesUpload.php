@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\OrderHeader;
 use App\Services\ApiRequest;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -62,6 +63,9 @@ class getswiftDeliveriesUpload extends Command
 
             foreach ($order_headers as $order_header)
             {
+                if (\Carbon\Carbon::parse($order_header->creation_date)->lessThan(Carbon::now()->addMonth()))
+                    continue;
+
                 $url = config('getswift.base_url').config('getswift.deliveries');
 
                 $request_data = $this->mappingGetswiftFeilds($order_header , $getswift_key);
@@ -75,7 +79,7 @@ class getswiftDeliveriesUpload extends Command
                     continue;
                 }
 
-                $order_header->getswift_status = OrderHeader::GETSWIFT_STATUS_POSTED;
+                $order_header->getswift_status = OrderHeader::DELIVERY_ADDED;
 
                 if ($order_header->save())
                 {

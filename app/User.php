@@ -2,13 +2,12 @@
 
 namespace App;
 
-use App\Models\MerchantSetting;
+use App\Models\PosType;
 use App\Models\OrderDetail;
 use App\Models\OrderHeader;
-use App\Models\PosType;
+use App\Models\MerchantSetting;
 use App\Models\StoreInformation;
 use Laravel\Spark\User as SparkUser;
-use function MongoDB\BSON\toJSON;
 
 class User extends SparkUser
 {
@@ -50,7 +49,7 @@ class User extends SparkUser
         'billing_country',
         'extra_billing_information',
         'pos_mysql_un',
-        'pos_mysql_pw'
+        'pos_mysql_pw',
     ];
 
     /**
@@ -59,16 +58,17 @@ class User extends SparkUser
      * @var array
      */
     protected $casts = [
-        'trial_ends_at' => 'datetime',
+        'trial_ends_at'        => 'datetime',
         'uses_two_factor_auth' => 'boolean',
     ];
 
     public function getNameAttribute($value)
     {
-        if (is_null($this->attributes['name']) or empty(trim($this->attributes['name'])))
+        if (is_null($this->attributes['name']) or empty(trim($this->attributes['name']))) {
             return $this->attributes['first_name'] . ' ' . $this->attributes['last_name'];
-        else
+        } else {
             return $value;
+        }
     }
 
     /**
@@ -79,11 +79,10 @@ class User extends SparkUser
         return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id')->withTimestamps();
     }
 
-    public function posType() {
-        return $this->hasOne(PosType::class , 'id' , 'pos_type');
+    public function posType()
+    {
+        return $this->hasOne(PosType::class, 'id', 'pos_type');
     }
-
-
 
     /**
      * @param $role
@@ -116,9 +115,16 @@ class User extends SparkUser
 
     public function getMerchantGetswiftKey()
     {
-        $getswift_key = $this->merchantSettings()->where('slug' , MerchantSetting::GETSWIFT_KEY_SLUG)
+        $getswift_key = $this->merchantSettings()->where('slug', MerchantSetting::GETSWIFT_KEY_SLUG)
             ->first();
-        return isset($getswift_key->key)?$getswift_key->key:null;
+
+        return isset($getswift_key->key) ? $getswift_key->key : null;
     }
 
+    public function getMailchimpToken()
+    {
+        return $this->merchantSettings()
+            ->where('slug', MerchantSetting::MAILCHIMP_TOKEN_SLUG)
+            ->first('value');
+    }
 }

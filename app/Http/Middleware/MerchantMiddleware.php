@@ -3,7 +3,6 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Laravel\Spark\Spark;
 
 class MerchantMiddleware
 {
@@ -16,27 +15,24 @@ class MerchantMiddleware
      */
     public function handle($request, Closure $next)
     {
-
-
         if (!auth()->check()) {
             return $next($request);
         }
 
-        $user = auth()->user();
+        $user             = auth()->user();
         $spark_properties = $user->sparkPlan();
-
 
         //todo: it just for the temporary hardcoded the developer email there should be the admin email
         $developers = [
             'awaismusl@gmail.com',
             'kwentllc@comcast.net',
+            // 'admin@admin.com',
         ];
-        if (!in_array($user->email ,$developers ) && $user->posType->name != 'Epicor (Eagle)')
-        {
+        if (!in_array($user->email, $developers) && $user->posType->name != 'Epicor (Eagle)') {
             auth()->logout();
+
             return response('Thanks for registering. We are currently working on this POS system and will contact you as soon as it is ready. If you require a custom quote then please let us know.!', 200);
         }
-
 
         return $next($request);
     }

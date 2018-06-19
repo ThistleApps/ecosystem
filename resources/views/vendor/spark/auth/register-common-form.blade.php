@@ -62,7 +62,7 @@
 
     <!-- E-Mail Address -->
     <div class="form-group" :class="{'has-error': registerForm.errors.has('email')}">
-        <label class="col-md-4 control-label">Username</label>
+        <label class="col-md-4 control-label">Email</label>
 
         <div class="col-md-6">
             <input type="email" class="form-control" name="email" v-model="registerForm.email">

@@ -35,6 +35,16 @@ class TransactionsToMailchimp extends Command
     }
 
     /**
+     * @var array
+     */
+    private $dwsxe_field_list = [
+        'dwsxe_ship_to_email_address' => 'EMAIL',
+        'dwsxe_transaction_date'      => 'TX_DATE',
+        'dwsxe_transaction_time'      => 'TX_TIME',
+        'dwsxe_store'                 => 'STORE',
+    ];
+
+    /**
      * Execute the console command.
      *
      * @return mixed
@@ -46,17 +56,30 @@ class TransactionsToMailchimp extends Command
         foreach ($users as $user) {
             setRemoteConnection($user->pos_wan_address, $user);
 
-            $query   = "SELECT DISTINCT `dwsxe_ship_to_email_address` FROM `dw_sls_xaction_dtl_e` WHERE `dwsxe_ship_to_email_address` <> ''";
-            $emails  = collect(DB::connection('remote')->select($query))->pluck('dwsxe_ship_to_email_address');
             $list_id = $user->merchantSettings->where('slug', MerchantSetting::MAILCHIMP_TRANSACTIONS_LIST_SLUG)->first()->key;
 
-            $result = (new MailchimpService($user))->batchSubscribe($list_id, $emails);
-            $this->warn('Importing ' . count($emails) . ' emails for user_id: ' . $user->id);
+            $dwsxe_field_list_select = '`' . implode(
+                '`, `',
+                collect($this->dwsxe_field_list)->keys()->toArray()
+            ) . '`';
+
+            $query   = "SELECT $dwsxe_field_list_select FROM `dw_sls_xaction_dtl_e` WHERE `dwsxe_ship_to_email_address` <> ''";
+            $members = collect(DB::connection('remote')->select($query))
+                ->each(function ($item) {
+                    $this->mapFieldsToTags($item);
+                })
+                ->unique('EMAIL');
+
+            $result = (new MailchimpService($user))->batchSubscribe($list_id, $members);
+            $this->warn('Importing ' . count($members) . ' transaction emails for merchant id = ' . $user->id . ', batch id = ' . $result['id']);
         }
 
-        $this->info('Complete');
+        $this->info('Batch successfully dispatched to MailChimp.');
     }
 
+    /**
+     * @return mixed
+     */
     private function getUsers()
     {
         $users = User::with('merchantSettings')
@@ -80,5 +103,24 @@ class TransactionsToMailchimp extends Command
             })->get();
 
         return $users;
+    }
+
+    /**
+     * @param $obj
+     * @return mixed
+     */
+    private function mapFieldsToTags($obj)
+    {
+        $fields = $this->dwsxe_field_list;
+        $keys   = collect($fields)->keys()->toArray();
+
+        foreach ($obj as $key => $value) {
+            if (in_array($key, $keys)) {
+                unset($obj->{$key});
+                $obj->{$fields[$key]} = $value;
+            }
+        }
+
+        return $obj;
     }
 }

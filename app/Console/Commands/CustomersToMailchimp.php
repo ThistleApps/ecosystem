@@ -35,6 +35,36 @@ class CustomersToMailchimp extends Command
     }
 
     /**
+     * @var array
+     */
+    private $cx_field_list = [
+        'cx_email_address'     => 'EMAIL',
+        'cx_auth_to_chrg_name' => 'AUTH_TO_CH',
+        'cx_customer'          => 'CUSTOMER',
+    ];
+
+    /**
+     * @var array
+     */
+    private $cr_related_field_list = [
+        'cr_name'                  => 'NAME',
+        'cr_street_1'              => 'STREET_1',
+        'cr_street_2'              => 'STREET_2',
+        'cr_city'                  => 'CITY',
+        'cr_state'                 => 'STATE',
+        'cr_country'               => 'COUNTRY',
+        'cr_contact'               => 'CONTACT',
+        'cr_area_code'             => 'AREA_CODE',
+        'cr_phone'                 => 'PHONE',
+        'cr_net_sales_running_bal' => 'NET_SALES',
+        'cr_bal_current'           => 'BAL_CURR',
+        'cr_bal_aged1'             => 'BAL_AGED1',
+        'cr_bal_aged2'             => 'BAL_AGED2',
+        'cr_bal_aged3'             => 'BAL_AGED3',
+        'cr_bal_aged4'             => 'BAL_AGED3',
+    ];
+
+    /**
      * Execute the console command.
      *
      * @return mixed
@@ -46,17 +76,37 @@ class CustomersToMailchimp extends Command
         foreach ($users as $user) {
             setRemoteConnection($user->pos_wan_address, $user);
 
-            $query   = "SELECT DISTINCT `cx_email_address` FROM `CX` WHERE `cx_email_address` <> ''";
-            $emails  = collect(DB::connection('remote')->select($query))->pluck('cx_email_address');
             $list_id = $user->merchantSettings->where('slug', MerchantSetting::MAILCHIMP_CUSTOMERS_LIST_SLUG)->first()->key;
 
-            $result = (new MailchimpService($user))->batchSubscribe($list_id, $emails);
-            $this->warn('Importing ' . count($emails) . ' emails for user_id: ' . $user->id);
+            // Note: if query fails make sure ONLY_FULL_GROUP_BY is _NOT_ set
+            // > SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
+
+            $cx_field_list_select = '`' . implode(
+                '`, `',
+                collect($this->cx_field_list)->keys()->toArray()
+            ) . '`';
+            $cr_field_list_select = '`' . implode(
+                '`, `',
+                collect($this->cr_related_field_list)->keys()->toArray()
+            ) . '`';
+
+            $query   = "SELECT $cx_field_list_select, $cr_field_list_select FROM `CX` LEFT JOIN `CR` ON `cx_customer`=`cr_customer` WHERE `cx_email_address` <> ''";
+            $members = collect(DB::connection('remote')->select($query))
+                ->each(function ($item) {
+                    $this->mapFieldsToTags($item);
+                })
+                ->unique('EMAIL');
+
+            $result = (new MailchimpService($user))->batchSubscribe($list_id, $members);
+            $this->warn('Importing ' . count($members) . ' customer emails for merchant id = ' . $user->id . ', batch id = ' . $result['id']);
         }
 
-        $this->info('Complete');
+        $this->info('Batch successfully dispatched to MailChimp.');
     }
 
+    /**
+     * @return mixed
+     */
     private function getUsers()
     {
         $users = User::with('merchantSettings')
@@ -80,5 +130,24 @@ class CustomersToMailchimp extends Command
             })->get();
 
         return $users;
+    }
+
+    /**
+     * @param $obj
+     * @return mixed
+     */
+    private function mapFieldsToTags($obj)
+    {
+        $fields = array_merge($this->cx_field_list, $this->cr_related_field_list);
+        $keys   = collect($fields)->keys()->toArray();
+
+        foreach ($obj as $key => $value) {
+            if (in_array($key, $keys)) {
+                unset($obj->{$key});
+                $obj->{$fields[$key]} = $value;
+            }
+        }
+
+        return $obj;
     }
 }

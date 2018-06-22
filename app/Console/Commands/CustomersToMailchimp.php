@@ -47,6 +47,7 @@ class CustomersToMailchimp extends Command
      * @var array
      */
     private $cr_related_field_list = [
+        'cr_customer'              => 'CUST_NUM',
         'cr_name'                  => 'NAME',
         'cr_street_1'              => 'STREET_1',
         'cr_street_2'              => 'STREET_2',

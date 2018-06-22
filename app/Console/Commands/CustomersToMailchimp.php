@@ -58,10 +58,10 @@ class CustomersToMailchimp extends Command
         'cr_phone'                 => 'PHONE',
         'cr_net_sales_running_bal' => 'NET_SALES',
         'cr_bal_current'           => 'BAL_CURR',
-        'cr_bal_aged1'             => 'BAL_AGED1',
-        'cr_bal_aged2'             => 'BAL_AGED2',
-        'cr_bal_aged3'             => 'BAL_AGED3',
-        'cr_bal_aged4'             => 'BAL_AGED3',
+        'cr_bal_aged1'             => 'BAL_OVR30',
+        'cr_bal_aged2'             => 'BAL_OVR60',
+        'cr_bal_aged3'             => 'BAL_OVR90',
+        'cr_bal_aged4'             => 'BAL_OVR120',
     ];
 
     /**

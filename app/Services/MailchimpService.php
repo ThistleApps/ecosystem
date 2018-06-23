@@ -59,28 +59,25 @@ class MailchimpService
 
     /**
      * @param $list_id
-     * @param $emails
+     * @param $members
      * @return mixed
      */
-    public function batchSubscribe($list_id, $emails)
+    public function batchSubscribe($list_id, $members)
     {
         if (!$this->api) {
             return null;
         }
 
-        \Log::debug('Started');
-
         try {
             $batch = $this->api->new_batch();
 
-            foreach ($emails as $key => $email) {
-                \Log::debug('Email '.$key.': ' . $email);
+            foreach ($members as $key => $member) {
                 $batch->post("op$key", "/lists/$list_id/members", [
-                    'email_address' => $email,
+                    'email_address' => $member->EMAIL,
                     'status'        => 'subscribed',
+                    'merge_fields'  => $member,
                 ]);
             }
-
 
             $result = $batch->execute();
         } catch (Exception $e) {

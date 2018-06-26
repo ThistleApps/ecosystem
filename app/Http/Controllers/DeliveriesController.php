@@ -38,9 +38,10 @@ class DeliveriesController extends Controller
 
         return DataTables::of($model)
             ->addColumn('action', function ($order){
-                $resetbutton = '';
+                $resetbutton =$edit = '';
                 if ($order->getswift_status == OrderHeader::DELIVERY_CANCELLED)
                 $resetbutton = "<button class='btn btn-danger od-reset-btn' data-id='".$order->order_number."'>Reset</button>";
+                if ($order->getswift_status == OrderHeader::DELIVERY_CANCELLED or $order->getswift_status == null or $order->getswift_status == OrderHeader::DELIVERY_NEW)
                 $edit = "<a href='".route('deliveries.edit' , $order->id)."'  class='btn btn-primary btn-sm-block' data-id='".$order->order_number."'>edit</a>";
                 return "<div class='btn-group btn-group-xs'>".$resetbutton.$edit.'</div>';
             })

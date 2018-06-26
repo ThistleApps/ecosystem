@@ -103,10 +103,10 @@
                     <tbody>
                     @foreach($delivery->orderDetails as $item)
                         <tr data-id="{{$item->id}}">
-                            <td><input class='form-control item-input' name='sku' type='text' value="{{$item->sku_number}}"></td>
-                            <td><input class='form-control item-input' name='quantity' type='text' value="{{$item->qty_selling_units}}"/></td>
-                            <td><input class='form-control item-input' name='description' type='text' value="{{$item->description}}"> </td>
-                            <td><input class='form-control item-input' name='price' type='number' value="{{$item->cust_price}}"></td>
+                            <td>{{--<input class='form-control item-input' name='sku' type='text' value="--}}{{$item->sku_number}}{{--">--}}</td>
+                            <td>{{--<input class='form-control item-input' name='quantity' type='text' value="--}}{{$item->qty_selling_units}}{{--"/>--}}</td>
+                            <td>{{--<input class='form-control item-input' name='description' type='text' value="--}}{{$item->description}}{{--"> --}}</td>
+                            <td>{{--<input class='form-control item-input' name='price' type='number' value="--}}{{$item->cust_price}}{{--">--}}</td>
                             <td><a href='javascript:void(0)' class="btnDelete"><span class='fa fa-trash'></span></a></td>
                         </tr>
                     @endforeach

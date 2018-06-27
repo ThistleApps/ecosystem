@@ -79,3 +79,20 @@ function set_file_value($configKey, $newValue)
 
     return $found;
 }
+
+function round_up($value, $precision = 2)
+{
+    /* Currently this function ALWAYS rounds UP to the nearest cent.
+        E.g. 0.005 = 0.01
+             0.123 = 0.13
+             12344.4844 = 12344.49
+    */
+    //           $pow = pow(10, 2);
+    // $result = (ceil($pow * $value) + ceil($pow * $value - ceil($pow * $value)) ) / $pow;
+    // return number_format((float) $result, 2, '.', '');
+    $offset = 0.5;
+    if ($precision !== 0)
+        $offset /= pow(10, $precision);
+    $result = round($value + $offset, $precision, PHP_ROUND_HALF_DOWN);
+    return number_format((float)$result, 2, '.', '');
+}

@@ -282,7 +282,7 @@
                     <td><%= i.sku_number %></td>
                         <td><%= i.description %></td>
                         <td><%= i.qty_selling_units %></td>
-                        <td><%= i.cust_price %></td>
+                        <td>$<%= Math.round(i.cust_price * 100) / 100 %></td>
                     </tr>
                 <% }); %>
                 </tbody>

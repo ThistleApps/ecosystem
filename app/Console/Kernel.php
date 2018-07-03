@@ -14,7 +14,9 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         \App\Console\Commands\MerchantRemoteDateFetchingCommand::class,
-        \App\Console\Commands\getswiftDeliveriesUpload::class
+        \App\Console\Commands\getswiftDeliveriesUpload::class,
+        \App\Console\Commands\CustomersToMailchimp::class,
+        \App\Console\Commands\TransactionsToMailchimp::class
     ];
 
     /**
@@ -30,6 +32,12 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('sync:getswift-deliveries')
             ->hourly()->withoutOverlapping();
+
+        $schedule->command('mailchimp:customers')
+            ->hourly()->withoutOverlapping();
+
+        $schedule->command('mailchimp:transactions')
+            ->nightly()->withoutOverlapping();
     }
 
     /**

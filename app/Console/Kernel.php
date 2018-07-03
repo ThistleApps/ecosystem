@@ -37,7 +37,7 @@ class Kernel extends ConsoleKernel
             ->daily()->withoutOverlapping();
 
         $schedule->command('mailchimp:transactions')
-            ->hourly()->withoutOverlapping();
+            ->everyTenMinutes()->withoutOverlapping();
     }
 
     /**

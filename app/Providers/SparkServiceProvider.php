@@ -76,7 +76,7 @@ class SparkServiceProvider extends ServiceProvider
                 'primary_affiliate' => 'required|max:255',
                 'primary_affiliate_number' => 'required|max:255',
                 'pos_type' => 'required|max:255',
-                'email' => 'required|max:255|unique:users',
+                'email' => 'required|email|max:255|unique:users',
                 'password' => 'required|confirmed|min:6',
                 'vat_id' => 'max:50|vat_id',
                 'terms' => 'required|accepted',

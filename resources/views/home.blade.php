@@ -62,8 +62,8 @@
                         <i class="fa fa-shopping-cart fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">124</div>
-                        <div>New Orders!</div>
+                        <div class="huge">{{$ordercount}}</div>
+                        <div><a href="/deliveries">Active Orders</a> </div>
                     </div>
                 </div>
             </div>
@@ -84,7 +84,7 @@
                         <i class="fa fa-support fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge"></div>
+                        <div class="huge">{{$ticketcount}}</div>
                         <div><a href="/tickets">Support Tickets</a> </div>
                     </div>
                 </div>

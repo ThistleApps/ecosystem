@@ -22,7 +22,7 @@ class StoreInformation extends Model
 
     protected static function boot()
     {
-
+        if (auth()->user())
         static::addGlobalScope('user_id', function (Builder $builder) {
             $builder->where('user_id', auth()->user()->id);
         });

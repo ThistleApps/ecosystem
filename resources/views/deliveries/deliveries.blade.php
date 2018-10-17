@@ -209,14 +209,10 @@
                 details: {
                     type: 'column'
                 },
-                columnDefs: [ {
-                    className: 'control',
-                    orderable: false,
-                    targets:   0
-                } ],
+
                 processing: true,
                 serverSide: true,
-                iDisplayLength: 10,
+                iDisplayLength: 11,
                 "order": [[ 0, "desc" ]],
                 ajax: '{!! route('deliveries.datatable') !!}',
                 columns: [

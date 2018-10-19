@@ -13,7 +13,7 @@ return [
     |
      */
 
-    'name'            => env('APP_NAME', 'Blend Retail'),
+    'name'            => env('APP_NAME', 'Spyglass Retail'),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
     |
      */
 
-    'url'             => env('APP_URL', 'http://blendretail.com'),
+    'url'             => env('APP_URL', 'https://spyglassretail.com'),
 
     /*
     |--------------------------------------------------------------------------

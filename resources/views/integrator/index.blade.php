@@ -1,5 +1,5 @@
 @extends('layouts.layout_guest')
-@section('title', 'Blend Retail' )
+@section('title', 'Spyglass Retail' )
 
 @section('content')
 
@@ -10,10 +10,13 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Blend Retail - Connect and Conquer Retail</title>
+        <title>Spyglass Retail</title>
 
         <!-- Bootstrap core CSS -->
-        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <link href="css/agency.css" rel="stylesheet">
 
         <!-- Custom fonts for this template -->
         <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -21,9 +24,6 @@
         <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
-
-        <!-- Custom styles for this template -->
-        <link href="css/agency.min.css" rel="stylesheet">
 
     </head>
 
@@ -34,9 +34,9 @@
     <header class="masthead">
         <div class="container">
             <div class="intro-text">
-                <div class="intro-heading text-uppercase">Welcome To Blend Retail!</div>
+                <div class="intro-heading text-uppercase">Welcome To Spyglass Retail!</div>
                 <div class="intro-lead-in">We help Retailers Mix and Match POS systems with Modern Apps</div>
-                <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Tell Me More</a>
+                <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="/register">Get Started</a>
             </div>
         </div>
     </header>
@@ -47,7 +47,8 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading text-uppercase">CONNECT</h2>
-                    <h3 class="section-subheading text-muted">So what apps are we working on?</h3>
+                    <h3 class="section-subheading text-muted">Simplifying Connections</h3>
+
                 </div>
             </div>
             <div class="row text-center">
@@ -76,8 +77,81 @@
                     <p class="text-muted">APIs, or application program interfaces, are vital tools for businesses in all industries and retail is no exception!</p>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <img class="img-fluid" src="img/SpyglassIntegrationPage.jpg" alt="">
+                </div>
+            </div>
+
         </div>
     </section>
+
+    <!-- Getting Started -->
+    <section id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading text-uppercase">Get Started</h2>
+                    <h3 class="section-subheading text-muted">Simple steps to get going.</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="timeline">
+                        <li>
+                            <div class="timeline-image">
+                                <h4><br>1</h4>
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4>Step 1</h4>
+                                    <h4 class="subheading">Register a Spyglass Account</h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted">You need to register an account with Spyglass Retail which will then allow you to connect your POS!</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="timeline-inverted">
+                            <div class="timeline-image">
+                                <h4><br>2</h4>
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4>Step 1 2</h4>
+                                    <h4 class="subheading">Connect your POS</h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted">Following the help and using information from your POS vendor you can connect your POS to enable access to Order and Customer data.</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="timeline-image">
+                                <h4><br>3</h4>
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4>Step 3</h4>
+                                    <h4 class="subheading">Setup you getswift and MailChimp Accounts</h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted">Whether you have an account or are setting up a new one, you will need credentials to connect these to our platform.</p>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="timeline-inverted">
+                            <div class="timeline-image">
+                                <h4>All set!</h4>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
     {{--
         <!-- Portfolio Grid -->
         <section class="bg-light" id="portfolio">
@@ -177,86 +251,6 @@
             </div>
         </section>
 
-        <!-- About -->
-        <section id="about">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 text-center">
-                        <h2 class="section-heading text-uppercase">About</h2>
-                        <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <ul class="timeline">
-                            <li>
-                                <div class="timeline-image">
-                                    <img class="rounded-circle img-fluid" src="img/about/1.jpg" alt="">
-                                </div>
-                                <div class="timeline-panel">
-                                    <div class="timeline-heading">
-                                        <h4>2009-2011</h4>
-                                        <h4 class="subheading">Our Humble Beginnings</h4>
-                                    </div>
-                                    <div class="timeline-body">
-                                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="timeline-inverted">
-                                <div class="timeline-image">
-                                    <img class="rounded-circle img-fluid" src="img/about/2.jpg" alt="">
-                                </div>
-                                <div class="timeline-panel">
-                                    <div class="timeline-heading">
-                                        <h4>March 2011</h4>
-                                        <h4 class="subheading">An Agency is Born</h4>
-                                    </div>
-                                    <div class="timeline-body">
-                                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="timeline-image">
-                                    <img class="rounded-circle img-fluid" src="img/about/3.jpg" alt="">
-                                </div>
-                                <div class="timeline-panel">
-                                    <div class="timeline-heading">
-                                        <h4>December 2012</h4>
-                                        <h4 class="subheading">Transition to Full Service</h4>
-                                    </div>
-                                    <div class="timeline-body">
-                                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="timeline-inverted">
-                                <div class="timeline-image">
-                                    <img class="rounded-circle img-fluid" src="img/about/4.jpg" alt="">
-                                </div>
-                                <div class="timeline-panel">
-                                    <div class="timeline-heading">
-                                        <h4>July 2014</h4>
-                                        <h4 class="subheading">Phase Two Expansion</h4>
-                                    </div>
-                                    <div class="timeline-body">
-                                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="timeline-inverted">
-                                <div class="timeline-image">
-                                    <h4>Be Part
-                                        <br>Of Our
-                                        <br>Story!</h4>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- Team -->
         <section class="bg-light" id="team">
@@ -383,10 +377,11 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading text-uppercase">Contact Us</h2>
-                    <h3 class="section-subheading text-muted"><a href="http://blog.blendretail.com/">Let us know if you have any questions.</a> </h3>
+                    <h3 class="section-subheading text-muted"><a href="https://info.spyglassretail.com/spyglass/contact" target="_blank">Let us know if you have any questions.</a> </h3>
+
                 </div>
             </div>
-            {{--<div class="row">
+            <div class="row">
                 <div class="col-lg-12">
                     <form id="contactForm" name="sentMessage" novalidate>
                         <div class="row">
@@ -418,7 +413,7 @@
                         </div>
                     </form>
                 </div>
-            </div>--}}
+            </div>
         </div>
     </section>
 
@@ -427,7 +422,37 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <span class="copyright">Copyright &copy; Blend Retail 2018</span>
+                    <span class="copyright">Copyright &copy; Spyglass Retail 2018</span>
+                </div>
+
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <li class="list-inline-item">
+                            <a href="https://info.spyglassretail.com/spyglass/privacy-policy">Privacy Policy</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://spyglassretail.com/terms">Terms of Use</a>
+                        </li>
+
+                        <li class="list-inline-item">
+                            <img src="/img/mono-logo.png" style="height: 55px;">
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+
+                        <li class="list-inline-item">
+                            <a href="mailto:contact@spyglassretail.com">contact@spyglassretail.com</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a>302-481-6515</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a>7209 Lancaster Pike, Hockessin, DE 19707</a>
+                        </li>
+
+                    </ul>
                 </div>
                 {{--<div class="col-md-4">
                     <ul class="list-inline social-buttons">
@@ -448,16 +473,6 @@
                         </li>
                     </ul>
                 </div>--}}
-                <div class="col-md-4">
-                    <ul class="list-inline quicklinks">
-                        <li class="list-inline-item">
-                            <a href="#">Privacy Policy</a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#">Terms of Use</a>
-                        </li>
-                    </ul>
-                </div>
             </div>
         </div>
     </footer>

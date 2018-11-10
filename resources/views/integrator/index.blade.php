@@ -118,11 +118,11 @@
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
-                                    <h4>Step 1 2</h4>
+                                    <h4>Step 2</h4>
                                     <h4 class="subheading">Connect your POS</h4>
                                 </div>
                                 <div class="timeline-body">
-                                    <p class="text-muted">Following the help and using information from your POS vendor you can connect your POS to enable access to Order and Customer data.</p>
+                                    <p class="text-muted">Following our help and using information from your POS vendor you can connect your POS to enable access to Order and Customer data.</p>
                                 </div>
                             </div>
                         </li>

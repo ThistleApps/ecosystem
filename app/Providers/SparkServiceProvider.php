@@ -15,11 +15,11 @@ class SparkServiceProvider extends ServiceProvider
      * @var array
      */
     protected $details = [
-        'vendor' => 'Your Company',
-        'product' => 'Your Product',
-        'street' => 'PO Box 111',
-        'location' => 'Your Town, NY 12345',
-        'phone' => '555-555-5555',
+        'vendor' => 'Spyglass Retail',
+        'product' => 'Spyglass Retail Subscription',
+        'street' => '7209 Lancaster Pike',
+        'location' => 'Hockessin, DE 19707',
+        'phone' => '302-481-6515',
     ];
 
     /**
@@ -27,7 +27,9 @@ class SparkServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $sendSupportEmailsTo = null;
+    protected $sendSupportEmailsTo = [
+        'admin@spyglassretail.com',
+    ];
 
     /**
      * All of the application developer e-mail addresses.
@@ -35,8 +37,7 @@ class SparkServiceProvider extends ServiceProvider
      * @var array
      */
     protected $developers = [
-        'awaismusl@gmail.com',
-        'kwentllc@comcast.net',
+        'admin@spyglassretail.com',
     ];
 
     /**
@@ -44,7 +45,7 @@ class SparkServiceProvider extends ServiceProvider
      *
      * @var bool
      */
-    protected $usesApi = true;
+    protected $usesApi = false;
 
     /**
      * Finish configuring Spark for the application.

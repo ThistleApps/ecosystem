@@ -10,6 +10,7 @@
     "require": {
         "php": ">=7.0.0",
         "arcanedev/log-viewer": "^4.3",
+        "barryvdh/laravel-debugbar": "dev-master",
         "doctrine/dbal": "2.6.x-dev",
         "drewm/mailchimp-api": "^2.5",
         "expandonline/oauth2-mailchimp": "^1.0",
@@ -26,7 +27,6 @@
         "yajra/laravel-datatables-oracle": "^8.3"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.1",
         "filp/whoops": "~2.0",
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "~1.0",

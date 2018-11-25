@@ -24,9 +24,9 @@ class MerchantMiddleware
 
         //todo: it just for the temporary hardcoded the developer email there should be the admin email
         $developers = [
-            'awaismusl@gmail.com',
-            'kwentllc@comcast.net',
-            // 'admin@admin.com',
+            //'awaismusl@gmail.com',
+            //'kwentllc@comcast.net',
+            'admin@spyglassretail.com',
         ];
         if (!in_array($user->email, $developers) && $user->posType->name != 'Epicor (Eagle)') {
             auth()->logout();

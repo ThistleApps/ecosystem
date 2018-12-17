@@ -40,6 +40,7 @@
     @include('spark::nav.user')
 @else
     @include('spark::nav.guest')
+    @include('spark::modals.support')
 @endif
 
 <!-- Main Content -->

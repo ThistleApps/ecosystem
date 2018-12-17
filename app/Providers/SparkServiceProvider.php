@@ -111,13 +111,13 @@ class SparkServiceProvider extends ServiceProvider
 
         Spark::freePlan()
             ->features([
-                'trail'
+                'Free 10 Day Trial'
             ]);
 
-        Spark::plan('Basic', 'provider-id-1')
+        Spark::plan('Intro', 'provider-id-1')
             ->price(10)
             ->features([
-                'merchant-basic'
+                'For a limited time we will offer these integrations at the intro rate.  You will receive this rate, for this class of service as long as you are an active subscriber.'
             ]);
     }
 }

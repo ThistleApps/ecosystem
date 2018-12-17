@@ -25,6 +25,11 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/login" class="navbar-link">Login</a></li>
                 <li><a href="/register" class="navbar-link">Register</a></li>
+                <li>
+                    <a @click.prevent="showSupportForm" style="cursor: pointer;">
+                        <i class="fa fa-fw fa-btn fa-paper-plane"></i>Email Us
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

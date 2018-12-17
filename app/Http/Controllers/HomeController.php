@@ -16,7 +16,7 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
 
-        // $this->middleware('subscribed');
+        $this->middleware('subscribed');
     }
 
 

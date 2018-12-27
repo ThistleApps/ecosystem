@@ -114,6 +114,12 @@ class SparkServiceProvider extends ServiceProvider
                 'Free 10 Day Trial'
             ]);
 
+        Spark::plan('Employee', 'provider-id-2')
+            ->price(0)
+            ->features([
+                'Employee 0.'
+            ]);
+        
         Spark::plan('Intro', 'provider-id-1')
             ->price(10)
             ->features([

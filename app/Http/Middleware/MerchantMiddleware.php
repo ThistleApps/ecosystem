@@ -21,7 +21,7 @@ class MerchantMiddleware
         }
 
         $user             = auth()->user();
-        $spark_properties = $user->sparkPlan();
+        //$spark_properties = $user->sparkPlan();
 
         //todo: it just for the temporary hardcoded the developer email there should be the admin email
         $developers = [
@@ -29,12 +29,24 @@ class MerchantMiddleware
             //'kwentllc@comcast.net',
             'admin@spyglassretail.com',
         ];
+
+       /* if (!in_array($user->email, $developers) && $user->posType->name != 'Epicor (Eagle)')
+        {
+            return redirect()->route('integrator') ;
+            //auth()->logout();
+        }elseif($user->posType->name != 'Epicor (Eagle)'){
+            return redirect()->route('user.profile') ;
+        }*/
+
+
         if (!in_array($user->email, $developers) && $user->posType->name != 'Epicor (Eagle)')
-/*        {
+        {
             auth()->logout();
 
-            return response('Thanks for registering. We are currently working on this POS system and will contact you as soon as it is ready. If you require a custom quote then please let us know.!', 200);
-        }*/
+            return redirect('/terms');
+
+            //return response('Thanks for registering. We are currently working on this POS system and will contact you as soon as it is ready. If you require a custom quote then please let us know.!', 200);
+        }
 
        /* {
 

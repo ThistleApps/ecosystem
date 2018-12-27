@@ -34,7 +34,7 @@ class MerchantsController extends Controller
 
             return DataTables::of($model)
                 ->addColumn('subscription_plan', function ($merchant) {
-                    return $merchant->sparkPlan()->name;
+                    return $merchant->current_billing_plan;
                 })
                 ->addColumn('active', function ($merchant) {
                     return $merchant->is_active ? "Activated" : "Deactivated";

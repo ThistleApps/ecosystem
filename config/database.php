@@ -43,9 +43,9 @@ return [
             'driver' => 'mysql',
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', 'V52ejOz5tAyQVrHTSENj'),
+            'database' => env('DB_DATABASE', ''),
+            'username' => env('DB_USERNAME', ''),
+            'password' => env('DB_PASSWORD', ''),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
@@ -56,11 +56,11 @@ return [
 
         'remote' => [
             'driver' => 'mysql',
-            'host' => env('TEMP_DB_HOST', 'ns2.m54.siteground.biz'),
-            'port' => env('TEMP_DB_PORT', '3306'),
-            'database' => env('TEMP_DB_DATABASE', 'abayzing_EAGLEDW'),
-            'username' => env('TEMP_DB_USERNAME', 'abayzing_READ'),
-            'password' => env('TEMP_DB_PASSWORD', 'BlendApp2017'),
+            'host' => env('TEMP_DB_HOST', ''),
+            'port' => env('TEMP_DB_PORT', ''),
+            'database' => env('TEMP_DB_DATABASE', ''),
+            'username' => env('TEMP_DB_USERNAME', ''),
+            'password' => env('TEMP_DB_PASSWORD', ''),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
@@ -96,9 +96,9 @@ return [
     ],
 
     'remote' => [
-        'TEMP_DB_CONNECTION' => 'mysql',
-        'TEMP_DB_PORT' => '3306',
-        'TEMP_DB_DATABASE' => 'abayzing_EAGLEDW'
+        'TEMP_DB_CONNECTION' => '',
+        'TEMP_DB_PORT' => '',
+        'TEMP_DB_DATABASE' => ''
     ],
 
     /*

@@ -11,6 +11,7 @@
         "php": ">=7.0.0",
         "arcanedev/log-viewer": "^4.3",
         "barryvdh/laravel-debugbar": "dev-master",
+        "consoletvs/charts": "^6.3",
         "doctrine/dbal": "2.6.x-dev",
         "drewm/mailchimp-api": "^2.5",
         "expandonline/oauth2-mailchimp": "^1.0",

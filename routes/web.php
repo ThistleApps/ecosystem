@@ -16,7 +16,7 @@ Route::get('/', [
     'uses' => 'IntegratorController@index',
 ]);
 
-Route::get('/test', 'TestController@index');
+Route::get('/testchart', 'HomeController@show');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', 'HomeController@show');

@@ -185,6 +185,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         Kordy\Ticketit\TicketitServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
+
+        ConsoleTVs\Charts\ChartsServiceProvider::class,
     ],
 
     /*
@@ -198,7 +200,7 @@ return [
     |
      */
 
-    'aliases'         => [
+    'aliases'         => array(
 
         'App'          => Illuminate\Support\Facades\App::class,
         'Artisan'      => Illuminate\Support\Facades\Artisan::class,
@@ -234,6 +236,7 @@ return [
         'Validator'    => Illuminate\Support\Facades\Validator::class,
         'View'         => Illuminate\Support\Facades\View::class,
         'Datatables'   => Yajra\DataTables\Facades\DataTables::class,
-    ],
+
+    ),
 
 ];

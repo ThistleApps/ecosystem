@@ -20,6 +20,11 @@ class UserController extends Controller
         return view('user.profile' , compact('user', 'pos_types'));
     }
 
+    public function merchantpage(){
+
+       return view('merchantpage');
+    }
+
     public function update(Request $request) {
         $user = auth()->user();
         $user->update($request->all());

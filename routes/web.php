@@ -18,6 +18,8 @@ Route::get('/', [
 
 Route::get('/testchart', 'HomeController@show');
 
+Route::get('/merchantpage', 'UserController@merchantpage');
+
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', 'HomeController@show');
 
@@ -35,6 +37,7 @@ Route::group(['middleware' => ['auth']], function () {
         'as'   => 'user.profile.test.connection',
         'uses' => 'UserController@TestConnection',
     ]);
+
 
     Route::group(['prefix' => 'configurator'], function () {
         Route::get('/', [

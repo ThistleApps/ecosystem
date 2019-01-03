@@ -28,8 +28,8 @@ class DeliveriesController extends Controller
 
             if (!empty(trim($request->date_range)) && !empty(trim($request->filter_on)) && $request->filter_on == 'order_date')
                 $model = $model->where('delivery_date' ,'>=', $date[0])->where('delivery_date' ,'<=', $date[1]);
-            if (!empty(trim($request->date_range)) && !empty(trim($request->filter_on)) && $request->filter_on == 'order_due_date')
-                $model = $model->where('expiration_date' ,'>=', $date[0])->where('expiration_date' ,'<=', $date[1]);
+            if (!empty(trim($request->date_range)) && !empty(trim($request->filter_on)) && $request->filter_on == 'creation_date')
+                $model = $model->where('creation_date' ,'>=', $date[0])->where('creation_date' ,'<=', $date[1]);
         }
 
         if(!empty(trim($request->status)) )

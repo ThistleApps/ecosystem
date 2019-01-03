@@ -44,8 +44,8 @@
                                     <label class="col-sm-3 col-form-label" for="status">Filter On:</label>
                                     <div class="col-sm-5">
                                         <select id="status" class="input-sm form-control" name="filter_on">
-                                            <option value="order_date">Order Date</option>
-                                            <option value="order_due_date">Order Due Date</option>
+                                            <option value="order_date">Delivery Date</option>
+                                            <option value="creation_date">Created Date</option>
                                         </select>
                                     </div>
                                 </div>
@@ -98,18 +98,19 @@
                 <table width="100%" class="table table-striped table-bordered nowrap" id="table">
                     <thead>
                     <tr>
+                        <th>Action</th>
                         <th>Order No</th>
                         {{--<th>Trans Ty</th>--}}
                         <th>Cust No</th>
-                        <th>Order Date</th>
-                        <th>Due Date</th>
+                        <th>Delivery Due</th>
+                        <th>Created</th>
                         <th>Status</th>
                         <th>Ship To</th>
                         <th>Address 1</th>
                         <th>Address 2</th>
                         <th>Address 3</th>
                         <th>Email</th>
-                        <th>Action</th>
+
                     </tr>
                     </thead>
                     <tbody class="fbody">
@@ -216,17 +217,18 @@
                 "order": [[ 0, "desc" ]],
                 ajax: '{!! route('deliveries.datatable') !!}',
                 columns: [
+                    { data: 'action', name: 'action'},
                     { data: 'order_number', name: 'order_number' },
                     { data: 'customer_number', name: 'customer_number' },
                     { data: 'delivery_date', name: 'delivery_date'},
-                    { data: 'expiration_date', name: 'expiration_date'},
+                    { data: 'creation_date', name: 'creation_date'},
                     { data: 'getswift_status', name: 'getswift_status' },
                     { data: 'ship_to_name', name:'ship_to_name'},
                     { data: 'ship_to_addr_1', name:'ship_to_addr_1'},
                     { data: 'ship_to_addr_2', name:'ship_to_addr_2'},
                     { data: 'ship_to_addr_3', name:'ship_to_addr_3'},
-                    { data: 'ship_to_email_address', name: 'ship_to_email_address'},
-                    { data: 'action', name: 'action'}
+                    { data: 'ship_to_email_address', name: 'ship_to_email_address'}
+
                 ]
             });
 

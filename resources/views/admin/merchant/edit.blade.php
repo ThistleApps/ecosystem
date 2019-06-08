@@ -169,7 +169,7 @@
                 $.ajax({
                     url: "{!! route('admin.merchants.test-connection') !!}",
                     data: data,
-                    headers: { 'X-XSRF-TOKEN' : '{{\Illuminate\Support\Facades\Crypt::encrypt(csrf_token())}}' },
+                    headers: { 'X-CSRF-TOKEN' : '{{ csrf_token() }}' },
                     error: function() {
 
                     },

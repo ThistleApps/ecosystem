@@ -31,6 +31,10 @@
             Spark::scriptVariables(), []
         )); ?>;
     </script>
+
+    <!-- Start of HubSpot Embed Code -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/5988074.js"></script>
+    <!-- End of HubSpot Embed Code -->
 </head>
 <body class="with-navbar">
 

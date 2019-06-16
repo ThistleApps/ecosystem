@@ -16,6 +16,32 @@
             <div class="col-md-2">
                 <div class="panel panel-default panel-flush">
                     <div class="panel-heading">
+                        Manage
+                    </div>
+                    <div class="panel-body">
+                        <div class="spark-settings-tabs">
+                            <ul class="nav spark-settings-stacked-tabs" role="tablist">
+                                <!-- Dashboard Link -->
+                                <li @if(request()->is('home')) class="active" @endif role="presentation">
+                                    <a href="{{ url('/home') }}" aria-controls="profile">
+                                        <i class="fa fa-fw fa-btn fa-user"></i>Dashboard
+                                    </a>
+                                </li>
+
+
+                                <!-- Deliveries Link -->
+                                <li @if(request()->is('deliveries')) class="active" @endif role="presentation">
+                                    <a href="{{ url('/deliveries') }}" aria-controls="deliveries">
+                                        <i class="fa fa-fw fa-btn fa-truck"></i>Deliveries
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default panel-flush">
+                    <div class="panel-heading">
                         Settings
                     </div>
 

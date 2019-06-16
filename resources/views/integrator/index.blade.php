@@ -372,7 +372,7 @@
         </section>
     --}}
     <!-- Contact -->
-    <section id="contact">
+    {{--<section id="contact">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -417,7 +417,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>--}}
 
     <!-- Footer -->
     <footer>

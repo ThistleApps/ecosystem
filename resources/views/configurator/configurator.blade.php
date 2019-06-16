@@ -42,8 +42,8 @@
                             <div class="text-center">
                                 <img class="card-img-top" src="{{asset('/img/getswift.png')}}" alt="Card image cap">
                             </div>
-                            <div class="text-center">
-                                <h3>Getswift</h3>
+                            <div class="text-center"><h5>Configure getswift</h5>
+                            <div class="btn btn-primary text-center">getswift</div>
                             </div>
                         </div>
                     </div>
@@ -53,9 +53,7 @@
                             <div class="text-center">
                                 <img class="card-img-top" src="{{asset('/img/MailChimp.png')}}" alt="Card image cap">
                             </div>
-                            {{-- <div class="coming-soon text-center">
-                                <h3>Coming Soon</h3>
-                            </div> --}}
+
                             <div class="text-center">
                                 @unless($mc_valid)
                                 {{ __('configurator.mailchimp.connect') }}<br>
@@ -75,18 +73,32 @@
                     <div class="col-md-4">
                         <div class="ingredients">
                             <div class="text-center">
-                                <img class="card-img-top" src="{{asset('/img/crm.svg')}}" alt="Card image cap">
+                                <img class="card-img-top" src="{{asset('/img/hubspot_logo.png')}}" alt="Hubspot CRM">
                             </div>
                             <div class="coming-soon text-center">
                                 <h3>Coming Soon</h3>
                             </div>
                             <div class="text-center">
-                                <h3>CRM</h3>
+                                <h3>HubSpot CRM</h3>
                             </div>
+
+                            {{--<div class="text-center">
+                                @unless($mc_valid)
+                                    {{ __('configurator.mailchimp.connect') }}<br>
+                                    <a href="{{ route('configurator.mailchimp.auth') }}" class="btn btn-primary">
+                                        {{ __('configurator.authorize') }}
+                                    </a>
+                                @else
+                                    {{ __('configurator.mailchimp.connected') }}<br>
+                                    <button id="mailchimp-config" class="btn btn-success">
+                                        {{ __('configurator.conf') }}
+                                    </button>
+                                @endunless
+                            </div>--}}
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    {{--<div class="col-md-4">
                         <div class="ingredients">
                             <div class="text-center">
                                 <img class="card-img-top" src="{{asset('/img/cms.svg')}}" alt="Card image cap">
@@ -98,7 +110,7 @@
                                 <h3>CMS</h3>
                             </div>
                         </div>
-                    </div>
+                    </div>--}}
 
                 </div>
             </div>

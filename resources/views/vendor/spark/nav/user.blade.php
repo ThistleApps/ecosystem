@@ -24,9 +24,9 @@
 
                 @include('spark::nav.brand')
 
-                <div class="hamburger">
+                {{--<div class="hamburger">
                     <a href="/home" class="btn btn-default">Dashboard</a>
-                </div>
+                </div>--}}
             </div>
 
 

@@ -109,15 +109,15 @@ class SparkServiceProvider extends ServiceProvider
 
         Spark::useStripe()->noCardUpFront()->trialDays(10);
 
-        Spark::freePlan()
+        /*Spark::freePlan()
             ->features([
                 '100% Free Plan'
-            ]);
-        /*Spark::plan('Employee', 'spg-id-test-200')
+            ]);*/
+        Spark::plan('Employee', 'spg-id-test-200')
             ->price(0.01)
             ->features([
                 'Employee 0.'
-            ]);*/
+            ]);
 
         Spark::plan('Intro', 'spg-id-test-100')
             ->price(10)

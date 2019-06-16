@@ -29,7 +29,32 @@
         {{--</div>--}}
     {{--</div>--}}
 {{--</nav>--}}
+<div class="panel panel-default panel-flush">
+    <div class="panel-heading">
+        Manage
+    </div>
+    <div class="panel-body">
+        <div class="spark-settings-tabs">
+            <ul class="nav spark-settings-stacked-tabs" role="tablist">
+                <!-- Dashboard Link -->
+                <li @if(request()->is('home')) class="active" @endif role="presentation">
+                    <a href="{{ url('/home') }}" aria-controls="profile">
+                        <i class="fa fa-fw fa-btn fa-user"></i>Dashboard
+                    </a>
+                </li>
 
+
+                <!-- Deliveries Link -->
+                <li @if(request()->is('deliveries')) class="active" @endif role="presentation">
+                    <a href="{{ url('/deliveries') }}" aria-controls="deliveries">
+                        <i class="fa fa-fw fa-btn fa-truck"></i>Deliveries
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
 <div class="panel panel-default panel-flush">
     <div class="panel-heading">
         Settings
@@ -37,6 +62,7 @@
     <div class="panel-body">
         <div class="spark-settings-tabs">
             <ul class="nav spark-settings-stacked-tabs" role="tablist">
+
                 <!-- Profile Link -->
                 <li @if(request()->is('settings')) class="active" @endif role="presentation">
                     <a href="{{ url('/settings') }}" aria-controls="profile">
@@ -44,10 +70,10 @@
                     </a>
                 </li>
 
-                <!-- Deliveries Link -->
-                <li @if(request()->is('deliveries')) class="active" @endif role="presentation">
-                    <a href="{{ url('/deliveries') }}" aria-controls="deliveries">
-                        <i class="fa fa-fw fa-btn fa-truck"></i>Deliveries
+                <!-- Configurator Link -->
+                <li @if(request()->is('configurator')) class="active" @endif role="presentation">
+                    <a href="{{ url('/configurator') }}" aria-controls="configurator">
+                        <i class="fa fa-fw fa-btn fa-gear"></i>Configurator
                     </a>
                 </li>
 
@@ -65,12 +91,7 @@
                     {{--</a>--}}
                 {{--</li>--}}
 
-                <!-- Configurator Link -->
-                <li @if(request()->is('configurator')) class="active" @endif role="presentation">
-                    <a href="{{ url('/configurator') }}" aria-controls="configurator">
-                        <i class="fa fa-fw fa-btn fa-gear"></i>Configurator
-                    </a>
-                </li>
+
             </ul>
         </div>
     </div>

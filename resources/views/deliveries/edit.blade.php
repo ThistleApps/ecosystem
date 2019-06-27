@@ -89,7 +89,7 @@
             <div class="col-lg-12">
                 <h3>Items</h3>
                 <hr>
-                <button type="button" onclick="Add()" disabled="disabled">New Item</button>
+            <!-- ADD IN THE FUTURE <button type="button" onclick="Add()" disabled="disabled">New Item</button> -->
                 <table id="tblData" class="table">
                     <thead>
                     <tr>
@@ -97,7 +97,7 @@
                         <th>Quantity</th>
                         <th>Description</th>
                         <th>Price</th>
-                        <th>Action</th>
+                        <!-- ADD IN THE FUTURE <th>Action</th> -->
                     </tr>
                     </thead>
                     <tbody>
@@ -107,7 +107,7 @@
                             <td>{{--<input class='form-control item-input' name='quantity' type='text' value="--}}{{$item->qty_selling_units}}{{--"/>--}}</td>
                             <td>{{--<input class='form-control item-input' name='description' type='text' value="--}}{{$item->description}}{{--"> --}}</td>
                             <td>{{--<input class='form-control item-input' name='price' type='number' value="--}}{{$item->cust_price}}{{--">--}}</td>
-                            <td><a href='javascript:void(0)' class="btnDelete"><span class='fa fa-trash'></span></a></td>
+                            <!-- ADD IN THE FUTURE <td><a href='javascript:void(0)' class="btnDelete"><span class='fa fa-trash'></span></a></td> -->
                         </tr>
                     @endforeach
                     </tbody>

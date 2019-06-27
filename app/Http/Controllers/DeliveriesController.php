@@ -35,6 +35,9 @@ class DeliveriesController extends Controller
         if(!empty(trim($request->status)) )
             $model = $model->where('status' , $request->status);
 
+        if(!empty(trim($request->store_number)) )
+            $model = $model->where('store_number' , $request->store_number);
+
 
         return DataTables::of($model)
             ->addColumn('action', function ($order){

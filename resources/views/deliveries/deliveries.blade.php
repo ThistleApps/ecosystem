@@ -1,7 +1,8 @@
 @extends('layouts.default')
 @section('title',  'Deliveries' )
 @section('style')
-    <link rel="stylesheet" type="text/css" href="{{ asset('/vendor/datatables/css/dataTables.bootstrap.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('/vendor/datatables/css/dataTables.bootstrap.css') }}"
+          xmlns:margin-bottom="http://www.w3.org/1999/xhtml"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('/vendor/bootstrap-daterangepicker-master/daterangepicker.css') }}" />
 
     <style>
@@ -15,110 +16,105 @@
     <div class="panel panel-default">
         <div class="panel-heading text-center">
             <span class="fa fa-truck"></span> Deliveries
-            <a href="{{route('deliveries.fetch-new-orders')}}" class="btn btn-primary pull-right">Fetch Orders Now</a>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Order Status <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{route('deliveries.fetch-new-orders')}}">Get Orders Now</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li class="dropdown-header">Nav header</li>
+                            <li><a href="#">Separated link</a></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!--/.nav-collapse -->
         </div>
 
         <div class="panel-body">
+            <div class="col-lg-12">
+                <div class="row m-b-sm">
+                    <div><label>Filter By:</label></div>
 
-            <div class="table-responsive">
-                <div class="" style="margin-bottom: 5%">
                     <div class="form-inline">
                         <form class="form-inline" action="/" method="get" id="order-header-form">
-                            <div class="col-md-3 col-lg-3 col-sm-12">
-                                <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label" for="status">Status:</label>
-                                    <div class="col-sm-8">
+
+                            <div class="col-sm-2 col-md-2 m-b-sm">
+
                                         <select id="status" class="input-sm form-control" name="status">
                                             <option value="">Status</option>
                                             <option value="active">Active</option>
                                             <option value="successful">Successful</option>
                                             <option value="canceled">Canceled</option>
                                         </select>
+                            </div>
+
+                            <div class="col-sm-3 col-md-3 m-b-sm">
+                                    <div class="col-sm">
+                                        <input class="input-sm" type="text" placeholder="Store/Location ID" id="store_number" name="store_number" value="">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-2 col-md-2 pull-left m-b-sm">
+                                    <select id="status" class="input-sm form-control" name="filter_on">
+                                        <option value="order_date">Delivery Date</option>
+                                        <option value="creation_date">Created Date</option>
+                                    </select>
+                            </div>
+
+                            <div class="col-sm-2 col-md-2 pull-left m-b-sm">
+                                    <div class="input-group input-group-sm">
+                                                <span class="input-group-addon">
+                                                    <span class="fa fa-calendar"></span>
+                                                </span>
+                                        <input type="text" placeholder="Date Range" id="date_range" class="input-sm form-control" name="date_range">
                                     </div>
-                                </div>
                             </div>
 
-                            <div class="col-lg-9 col-md-9 pull-right">
-                            <div class="col-md-3 col-lg-3 col-sm-12">
-                                <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label" for="status">Filter On:</label>
-                                    <div class="col-sm-5">
-                                        <select id="status" class="input-sm form-control" name="filter_on">
-                                            <option value="order_date">Delivery Date</option>
-                                            <option value="creation_date">Created Date</option>
-                                        </select>
-                                    </div>
-                                </div>
+                            <div class="col-sm-1 col-md-1 pull-left m-b-sm">
+                                    <button type="button" id="filters-btn" class="btn btn-success btn-sm form-inline">filter</button>
                             </div>
 
-                            <div class="col-md-6 col-lg-6 col-sm-12">
-                                <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label" for="start_date">Date Range:</label>
-                                    <div class="col-sm-8">
-                                        <div class="input-group input-group-sm">
-                                            <span class="input-group-addon">
-                                                <span class="fa fa-calendar"></span>
-                                            </span>
-                                            <input type="text" id="date_range" class="input-sm form-control" name="date_range">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                                {{--<div class="col-md-6 col-lg-3 col-sm-12">--}}
-                                    {{--<div class="form-group row">--}}
-                                        {{--<label class="col-sm-1 col-form-label" for="end_date">To:</label>--}}
-                                        {{--<div class="col-sm-9">--}}
-                                            {{--<div class="input-group input-group-sm">--}}
-                                                {{--<span class="input-group-addon">--}}
-                                                    {{--<span class="fa fa-calendar"></span>--}}
-                                                {{--</span>--}}
-                                                {{--<input type="date" id="end_date" class="input-sm form-control" name="end_date">--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                            <div class="col-md-3 col-lg-3 col-sm-12 ">
-                                <div class="form-group row">
-                                    <button type="button" id="filters-btn" class="btn btn-sm form-inline">filter</button>
-                                </div>
-                            </div>
-
-                                {{--<div class="col-md-3 col-lg-3 col-sm-12 ">--}}
-
-                                {{--</div>--}}
-
+                            <div class="col-sm-1 col-md-1 pull-left m-b-sm">
+                                <button type="reset" id="clear-filters-btn" class="btn btn-info btn-sm form-inline">Clear</button>
                             </div>
                         </form>
                     </div>
                 </div>
+                <div class="row m-b-sm">
+
+                    <div class="table-responsive">
+                        <table width="100%" class="table table-striped table-bordered nowrap" id="table">
+                            <thead>
+                                <tr>
+                                    <th>Action</th>
+                                    <th>Store</th>
+                                    <th>Order No</th>
+                                    {{--<th>Trans Ty</th>--}}
+                                    <th>Cust No</th>
+                                    <th>Delivery Due</th>
+                                    <th>Created</th>
+                                    <th>Status</th>
+                                    <th>Ship To</th>
+                                    <th>Address 1</th>
+                                    <th>Address 2</th>
+                                    <th>Address 3</th>
+                                    <th>Email</th>
+
+                                </tr>
+                            </thead>
+                            <tbody class="fbody">
+                                <tfoot>
+
+                                </tfoot>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-
-            <div class="table-responsive">
-                <table width="100%" class="table table-striped table-bordered nowrap" id="table">
-                    <thead>
-                    <tr>
-                        <th>Action</th>
-                        <th>Order No</th>
-                        {{--<th>Trans Ty</th>--}}
-                        <th>Cust No</th>
-                        <th>Delivery Due</th>
-                        <th>Created</th>
-                        <th>Status</th>
-                        <th>Ship To</th>
-                        <th>Address 1</th>
-                        <th>Address 2</th>
-                        <th>Address 3</th>
-                        <th>Email</th>
-
-                    </tr>
-                    </thead>
-                    <tbody class="fbody">
-
-                    </tbody>
-                </table>
-            </div>
-
         </div>
     </div>
     <!-- Modal -->
@@ -218,6 +214,7 @@
                 ajax: '{!! route('deliveries.datatable') !!}',
                 columns: [
                     { data: 'action', name: 'action'},
+                    { data: 'store_number', name: 'store_number' },
                     { data: 'order_number', name: 'order_number' },
                     { data: 'customer_number', name: 'customer_number' },
                     { data: 'delivery_date', name: 'delivery_date'},
@@ -237,6 +234,8 @@
                 url = "{{url('deliveries/datatable')}}"+"?"+filt_val;
                 table.ajax.url(url).load();
             });
+
+
 
             $('#table tbody').on('dblclick', 'td', function (t) {
                 var data = table.row( this ).data();
@@ -259,6 +258,8 @@
                     type: 'GET'
                 });
             } );
+
+
         });
 
     </script>

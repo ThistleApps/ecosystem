@@ -27,7 +27,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-         $schedule->command('merchant-remote-date-fetching')
+         $schedule->command('merchant-remote-data-fetch')
                   ->everyMinute()->withoutOverlapping();
 
         $schedule->command('sync:getswift-deliveries-upload')

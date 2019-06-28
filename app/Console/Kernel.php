@@ -28,10 +28,10 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
          $schedule->command('merchant-remote-data-fetch')
-                  ->everyFiveMinutes()->withoutOverlapping();
+                  ->everyMinute()->withoutOverlapping();
 
         $schedule->command('sync:getswift-deliveries')
-            ->hourly()->withoutOverlapping();
+            ->everyMinute()->withoutOverlapping();
 
         $schedule->command('mailchimp:customers')
             ->daily()->withoutOverlapping();

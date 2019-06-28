@@ -30,7 +30,7 @@ class Kernel extends ConsoleKernel
          $schedule->command('merchant-remote-data-fetch')
                   ->everyMinute()->withoutOverlapping();
 
-        $schedule->command('sync:getswift-deliveries-upload')
+        $schedule->command('sync:getswift-deliveries')
             ->everyMinute()->withoutOverlapping();
 
         $schedule->command('mailchimp:customers')

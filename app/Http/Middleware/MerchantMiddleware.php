@@ -28,7 +28,7 @@ class MerchantMiddleware
             'admin@spyglassretail.com',
         ];
 
-        if (!in_array($user->email, $developers) && $user->posType->name != 'Epicor (Eagle)')
+        if (!in_array($user->email, $developers) )
         {
             auth()->logout();
 

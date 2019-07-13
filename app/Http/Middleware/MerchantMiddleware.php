@@ -32,7 +32,9 @@ class MerchantMiddleware
         {
             //auth()->logout();
 
-            return redirect('/merchantpage');
+            //return redirect('/merchantpage');
+
+            return $next($request);
 
         }
 

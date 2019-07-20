@@ -66,7 +66,7 @@ class getswiftDeliveriesUpload extends Command
                 if (\Carbon\Carbon::parse($order_header->creation_date)->lessThan(Carbon::now()->addMonth()))
                     continue;
 
-                $url = config('getswift.base_url').config('getswift.deliveries');
+                $url = config('getswift.base_url');
 
                 $request_data = $this->mappingGetswiftFeilds($order_header , $getswift_key);
 

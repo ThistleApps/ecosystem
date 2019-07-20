@@ -116,7 +116,7 @@ class User extends SparkUser
     public function getMerchantGetswiftKey()
     {
         $getswift_key = $this->merchantSettings()->where('slug', MerchantSetting::GETSWIFT_KEY_SLUG)
-            ->first('value');
+            ->first();
 
         return isset($getswift_key->key) ? $getswift_key->key : null;
     }

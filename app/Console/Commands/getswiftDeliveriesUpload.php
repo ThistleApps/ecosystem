@@ -43,6 +43,7 @@ class getswiftDeliveriesUpload extends Command
      */
     public function handle()
     {
+        Log::info('Attempting to post deliveries');
         $users = User::all();
 
         foreach ($users as $user)

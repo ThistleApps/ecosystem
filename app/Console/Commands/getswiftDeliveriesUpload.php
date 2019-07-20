@@ -114,7 +114,7 @@ class getswiftDeliveriesUpload extends Command
             'booking' =>
                 array (
                     'reference' => $order_header->order_number,
-                    'deliveryInstructions' => $order_header->delivery_instruction, // need to add this deliveryInstruction in orderDetail model in orderheader table
+                    //'deliveryInstructions' => $order_header->delivery_instruction, // need to add this deliveryInstruction in orderDetail model in orderheader table
                     'items' => $items,
                     'pickupTime' => \Carbon\Carbon::parse($order_header->creation_date)->format('Y-m-d\Th:m:s.000000+00:00'),
                     'pickupDetail' =>

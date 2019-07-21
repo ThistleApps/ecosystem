@@ -51,6 +51,7 @@ class getswiftDeliveriesUpload extends Command
             Auth::loginUsingId($user->id);
 
             $getswift_key = auth()->user()->getMerchantGetswiftKey();
+            dd($getswift_key);
 
             if (is_null($getswift_key))
             {
@@ -72,7 +73,6 @@ class getswiftDeliveriesUpload extends Command
                 $request_data = $this->mappingGetswiftFeilds($order_header , $getswift_key);
 
                 list($response , $httpcode) = ApiRequest::curlRequest($url , $request_data);
-                Log::info($request_data);
 
                 echo "response code ". $httpcode ." ";
                 if ($httpcode != 200 && isset($response->message))

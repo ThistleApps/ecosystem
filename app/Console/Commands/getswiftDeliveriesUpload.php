@@ -72,6 +72,7 @@ class getswiftDeliveriesUpload extends Command
                 $request_data = $this->mappingGetswiftFeilds($order_header , $getswift_key);
 
                 list($response , $httpcode) = ApiRequest::curlRequest($url , $request_data);
+                Log::info($request_data);
 
                 echo "response code ". $httpcode ." ";
                 if ($httpcode != 200 && isset($response->message))

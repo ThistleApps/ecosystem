@@ -80,7 +80,7 @@ class getswiftDeliveriesUpload extends Command
 
                 list($response , $httpcode) = ApiRequest::curlRequest($url , $request_data);
 
-                Log::info(base64_encode($response));
+                //Log::info(base64_encode($response));
 
                 echo "response code ". $httpcode ." ";
                 if ($httpcode != 200 && isset($response->message))

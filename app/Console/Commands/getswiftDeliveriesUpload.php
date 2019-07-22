@@ -51,27 +51,28 @@ class getswiftDeliveriesUpload extends Command
             Auth::loginUsingId($user->id);
 
             $getswift_key = auth()->user()->getMerchantGetswiftKey();
-            dd($getswift_key);
+            var_dump($getswift_key);
 
             if (is_null($getswift_key))
             {
-                Log::info("getswift order sync: this merchant ".auth()->user()->email. " not have the getswift key");
+                Log::info("getswift order sync: this merchant ".auth()->user()->email. " does not have the getswift key");
                 continue;
             }
-            Log::info("Log before order header 1");
+            //Log::info("Log before order header 1");
 
             $order_headers = OrderHeader::query()->where(function ($q){
                 $q->whereNull('getswift_status')->orWhere('getswift_status' , OrderHeader::DELIVERY_NEW);
             })->orderByDesc('id')->get();
 
-            Log::info("Log after order header 2");
+            //Log::info("Log after order header 2");
 
             foreach ($order_headers as $order_header)
             {
+                //var_dump($order_header);
                 Log::info("inside loop 1");
 
-                if (\Carbon\Carbon::parse($order_header->creation_date)->lessThan(Carbon::now()->addMonth()))
-                    continue;
+                /*if (\Carbon\Carbon::parse($order_header->creation_date)->lessThan(Carbon::now()->addMonth()))
+                    continue;*/
 
                 $url = config('getswift.base_url').config('getswift.deliveries');
 

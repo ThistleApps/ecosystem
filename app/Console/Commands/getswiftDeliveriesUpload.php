@@ -51,7 +51,7 @@ class getswiftDeliveriesUpload extends Command
             Auth::loginUsingId($user->id);
 
             $getswift_key = auth()->user()->getMerchantGetswiftKey();
-            var_dump($getswift_key);
+            //var_dump($getswift_key);
 
             if (is_null($getswift_key))
             {
@@ -69,7 +69,7 @@ class getswiftDeliveriesUpload extends Command
             foreach ($order_headers as $order_header)
             {
                 //var_dump($order_header);
-                Log::info("inside loop 1");
+                //Log::info("inside loop 1");
 
                 /*if (\Carbon\Carbon::parse($order_header->creation_date)->lessThan(Carbon::now()->addMonth()))
                     continue;*/
@@ -85,14 +85,14 @@ class getswiftDeliveriesUpload extends Command
                 echo "response code ". $httpcode ." ";
                 if ($httpcode != 200 && isset($response->message))
                 {
-                    Log::error('user:'.$user->email. 'getswift order sync: order_number: '.$order_header->order_number.' -----message:---- '.$response->message);
+                    Log::error('user:'.auth()->user()->email. 'getswift order sync: order_number: '.$order_header->order_number.' -----message:---- '.$response->message);
                     continue;
                 }
 
-                if ($order_header->save())
+                if ($httpcode != 200)
                 {
                     $order_header->getswift_status = OrderHeader::DELIVERY_ADDED;
-                    Log::info('user:'.$user->email. 'getswift order sync: order_number: '.$order_header->order_number.' -----message:---- : posted successfully');
+                    Log::info('user:'.auth()->user()->email. 'getswift order sync: order_number: '.$order_header->order_number.' -----message:---- : posted successfully');
 
                 }
 
@@ -100,7 +100,7 @@ class getswiftDeliveriesUpload extends Command
 
                 if ($order_header->save())
                 {
-                    Log::info('user:'.$user->email. 'getswift order sync: order_number: '.$order_header->order_number.' -----message:---- : posted successfully');
+                    Log::info('user:'.auth()->user()->email. 'getswift order sync: order_number: '.$order_header->order_number.' -----message:---- : posted successfully');
                 }*/
 
             }

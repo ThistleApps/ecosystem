@@ -85,7 +85,7 @@ class getswiftDeliveriesUpload extends Command
                 echo "response code ". $httpcode ." ";
                 if ($httpcode != 200 && isset($response->message))
                 {
-                    Log::error('getswift order sync: order_number: '.$order_header->order_number.' -----message:---- '.$response->message);
+                    Log::error('user:'.$user. 'getswift order sync: order_number: '.$order_header->order_number.' -----message:---- '.$response->message);
                     continue;
                 }
 
@@ -93,7 +93,7 @@ class getswiftDeliveriesUpload extends Command
 
                 if ($order_header->save())
                 {
-                    Log::info('getswift order sync: order_number: '.$order_header->order_number.' -----message:---- : posted successfully');
+                    Log::info('user:'.$user. 'getswift order sync: order_number: '.$order_header->order_number.' -----message:---- : posted successfully');
                 }
 
             }

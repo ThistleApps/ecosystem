@@ -89,7 +89,7 @@ class getswiftDeliveriesUpload extends Command
                     continue;
                 }
 
-                Log::info(base64_encode($json));
+                Log::info(base64_encode($response));
 
                 //test code
                 if ($httpcode = 200)

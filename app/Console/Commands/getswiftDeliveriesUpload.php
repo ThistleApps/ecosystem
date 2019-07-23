@@ -89,12 +89,18 @@ class getswiftDeliveriesUpload extends Command
                     continue;
                 }
 
-                $order_header->getswift_status = OrderHeader::DELIVERY_ADDED;
+                if ($httpcode = 200 && ($order_header->save())
+                {
+                    $order_header->getswift_status = OrderHeader::DELIVERY_ADDED;
+                    Log::info('user:'.$user->email. 'getswift order sync: order_number: '.$order_header->order_number.' -----message:---- : posted successfully');
+                }
+
+                /*$order_header->getswift_status = OrderHeader::DELIVERY_ADDED;
 
                 if ($order_header->save())
                 {
                     Log::info('user:'.$user->email. 'getswift order sync: order_number: '.$order_header->order_number.' -----message:---- : posted successfully');
-                }
+                }*/
 
             }
 

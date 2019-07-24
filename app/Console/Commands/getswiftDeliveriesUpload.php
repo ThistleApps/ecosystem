@@ -80,7 +80,6 @@ class getswiftDeliveriesUpload extends Command
 
                 list($response , $httpcode) = ApiRequest::curlRequest($url , $request_data);
 
-                //Log::info(base64_encode($response));
 
                 echo "response code ". $httpcode ." ";
                 if ($httpcode != 200 && isset($response->message))
@@ -89,17 +88,6 @@ class getswiftDeliveriesUpload extends Command
                     continue;
                 }
 
-                //Log::info(base64_encode($response));
-
-                //test code
-               /* if ($httpcode = 200)
-                {
-                    $order_header->getswift_status = OrderHeader::DELIVERY_ADDED;
-                    Log::info('user:'.auth()->user()->email. 'getswift order sync: order_number: '.$order_header->order_number.' -----message:---- : posted successfully');
-
-                }*/
-
-                // Good Code
                 $order_header->getswift_status = OrderHeader::DELIVERY_ADDED;
 
                 if ($order_header->save())

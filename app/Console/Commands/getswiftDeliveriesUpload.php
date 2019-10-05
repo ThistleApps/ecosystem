@@ -125,7 +125,7 @@ class getswiftDeliveriesUpload extends Command
                     'reference' => $order_header->order_number,
                     //'deliveryInstructions' => $order_header->delivery_instruction, // need to add this deliveryInstruction in orderDetail model in orderheader table
                     'items' => $items,
-                    'pickupTime' => \Carbon\Carbon::parse($order_header->creation_date)->format('Y-m-d\Th:m:s.000000+00:00'),
+                    //'pickupTime' => \Carbon\Carbon::parse($order_header->creation_date)->format('Y-m-d\Th:m:s.000000+00:00'),
                     'pickupDetail' =>
                         array (
                             'name' => $order_store_info->long_name,
@@ -137,8 +137,8 @@ class getswiftDeliveriesUpload extends Command
                         ),
                     'dropoffWindow' =>
                         array (
-                            'earliestTime' => \Carbon\Carbon::parse($order_header->delivery_date)->format('Y-m-d\Th:m:s.000000+00:00'),
-                            'latestTime' => \Carbon\Carbon::parse($order_header->delivery_date)->format('Y-m-d\Th:m:s.000000+00:00'),
+                            //'earliestTime' => \Carbon\Carbon::parse($order_header->delivery_date)->format('Y-m-d\Th:m:s.000000+00:00'),
+                            //'latestTime' => \Carbon\Carbon::parse($order_header->delivery_date)->format('Y-m-d\Th:m:s.000000+00:00'),
                         ),
                     'dropoffDetail' =>
                         array (

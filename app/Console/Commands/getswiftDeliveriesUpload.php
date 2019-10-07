@@ -135,11 +135,11 @@ class getswiftDeliveriesUpload extends Command
                             'address' => $order_store_info->full_address,
 
                         ),
-                    'dropoffWindow' =>
+                    /*'dropoffWindow' =>
                         array (
-                            //'earliestTime' => \Carbon\Carbon::parse($order_header->delivery_date)->format('Y-m-d\Th:m:s.000000+00:00'),
-                            //'latestTime' => \Carbon\Carbon::parse($order_header->delivery_date)->format('Y-m-d\Th:m:s.000000+00:00'),
-                        ),
+                            'earliestTime' => \Carbon\Carbon::parse($order_header->delivery_date)->format('Y-m-d\Th:m:s.000000+00:00'),
+                            'latestTime' => \Carbon\Carbon::parse($order_header->delivery_date)->format('Y-m-d\Th:m:s.000000+00:00'),
+                        ),*/
                     'dropoffDetail' =>
                         array (
                             'name' => $order_header->ship_to_name,
@@ -148,7 +148,7 @@ class getswiftDeliveriesUpload extends Command
 //                            'description' => '',
                             'address' => $order_header->full_address,
                         ),
-                    'webhooks' =>
+                    /*'webhooks' =>
                         array(
                             [
                                 'eventName' => 'job/added',
@@ -179,7 +179,7 @@ class getswiftDeliveriesUpload extends Command
                                 'url' => route('delivery.job.cancelled', $order_header->id)
                             ],
 
-                        )
+                        )*/
                         ),
                     );
 

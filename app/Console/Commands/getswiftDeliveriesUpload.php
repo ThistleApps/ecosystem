@@ -68,8 +68,8 @@ class getswiftDeliveriesUpload extends Command
 
             foreach ($order_headers as $order_header)
             {
-                var_dump($order_header);
-                Log::info("inside loop 1");
+                //var_dump($order_header);
+                //Log::info("inside loop 1");
 
                 /*if (\Carbon\Carbon::parse($order_header->creation_date)->lessThan(Carbon::now()->addMonth()))
                     continue;*/
@@ -77,10 +77,10 @@ class getswiftDeliveriesUpload extends Command
                 $url = config('getswift.base_url').config('getswift.deliveries');
 
                 $request_data = $this->mappingGetswiftFeilds($order_header , $getswift_key);
-                var_dump($request_data);
+                dd($request_data);
 
                 list($response , $httpcode) = ApiRequest::curlRequest($url , $request_data);
-                var_dump($response);
+                //var_dump($response);
 
                 echo "response code ". $httpcode ." ";
                 if ($httpcode != 200 && isset($response->message))
